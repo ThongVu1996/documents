@@ -139,7 +139,7 @@
   - Trong linux thì có 2 cách quản lý network là NetworkManager và systemd-networkd. Cả 2 đều hoạt động ở phía background (dưới dạng deamon)
   - Còn với netplan, nó dùng file `yaml` để cấu hình, nó dùng ở phía trên, khi chạy nó sẽ apply cái cấu hình đó xuống bên dưới. Ở dưới NetworkManager hay systemd-networkd sẽ tự động sinh file tương ứng để phù hợp với cấu hình đó.
 
-  ```bash
+     ```bash
      # Xóa các file Netplan cũ (50-cloud-init.yaml)
      sudo rm -f /etc/netplan/*.yaml
 
@@ -150,7 +150,7 @@
       # Kích hoạt và khởi động lại systemd-networkd để bắt đầu quản lý mạng
       sudo systemctl enable systemd-networkd
       sudo systemctl restart systemd-networkd
-  ```
+      ```
 
 ---
 
