@@ -156,21 +156,21 @@
 
 - #### Bước 2.1: Đối với dùng IPVLAN (Sử dụng Systemd-networkd)
 
-Sử dụng `systemd-networkd` để cấu hình Host IPVLAN.(Thay `ens160` bằng tên card mạng vật lý của bạn)
+  Sử dụng `systemd-networkd` để cấu hình Host IPVLAN.(Thay `ens160` bằng tên card mạng vật lý của bạn)
 
-1. Tạo file `05-ens160.network` (Biến card vật lý thành "cha", dùng `ip a` để kiểm tra):
+  1. Tạo file `05-ens160.network` (Biến card vật lý thành "cha", dùng `ip a` để kiểm tra):
 
-```bash
-sudo nano /etc/systemd/network/05-ens160.network
-```
-
-```bash
-[Match]
-Name=ens160
-
-[Network]
-IPVLAN=ipvhost0
-```
+  ```bash
+  sudo nano /etc/systemd/network/05-ens160.network
+  ```
+  
+  ```bash
+  [Match]
+  Name=ens160
+  
+  [Network]
+  IPVLAN=ipvhost0
+  ```
 
 #### [Giải thích File 05-ens160.network]
 
