@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 800" style="background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L10,3 z" fill="#4299e1" />
+    </marker>
+    <marker id="arrowRed" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L10,3 z" fill="#fc8181" />
+    </marker>
+    <marker id="arrowPurple" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L10,3 z" fill="#9f7aea" />
+    </marker>
+    <marker id="arrowOrange" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L10,3 z" fill="#ed8936" />
+    </marker>
+    <marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L10,3 z" fill="#48bb78" />
+    </marker>
+  </defs>
+
+  <style>
+    .title { font-family: 'Segoe UI', sans-serif; font-size: 28px; fill: #e2e8f0; font-weight: 700; }
+    .subtitle { font-family: 'Segoe UI', sans-serif; font-size: 16px; fill: #a0aec0; }
+    .node-text { font-family: 'Segoe UI', sans-serif; font-size: 14px; fill: #1a202c; font-weight: 700; }
+    .node-text-light { font-family: 'Segoe UI', sans-serif; font-size: 16px; fill: #e2e8f0; font-weight: 700; }
+    .step-num { font-family: 'Segoe UI', sans-serif; font-size: 12px; fill: #fff; font-weight: 700; }
+    .step-text { font-family: 'Segoe UI', sans-serif; font-size: 11px; fill: #cbd5e0; font-weight: 500; }
+    .sidebar-title { font-family: 'Segoe UI', sans-serif; font-size: 18px; fill: #48bb78; font-weight: 600; text-decoration: underline; }
+    .sidebar-text { font-family: 'Segoe UI', sans-serif; font-size: 14px; fill: #718096; transition: all 0.5s; }
+    
+    /* Animation Cycle: 26s */
+    .s1 { opacity: 0.1; animation: hlBlue 26s ease-in-out infinite; animation-delay: 0s; }
+    .s2 { opacity: 0.1; animation: hlBlue 26s ease-in-out infinite; animation-delay: 2s; }
+    .s3 { opacity: 0.1; animation: hlGreen 26s ease-in-out infinite; animation-delay: 4s; }
+    .s4 { opacity: 0.1; animation: hlBlue 26s ease-in-out infinite; animation-delay: 6s; }
+    .s5 { opacity: 0.1; animation: hlGreen 26s ease-in-out infinite; animation-delay: 8s; }
+    .s6 { opacity: 0.1; animation: hlPurple 26s ease-in-out infinite; animation-delay: 10s; } /* Expired */
+    .s7 { opacity: 0.1; animation: hlOrange 26s ease-in-out infinite; animation-delay: 12s; } /* 401 */
+    .s8 { opacity: 0.1; animation: hlRed 26s ease-in-out infinite; animation-delay: 14s; } /* Intercept */
+    .s9 { opacity: 0.1; animation: hlPurple 26s ease-in-out infinite; animation-delay: 16s; } /* Refresh */
+    .s10 { opacity: 0.1; animation: hlRed 26s ease-in-out infinite; animation-delay: 18s; } /* DB Check */
+    .s11 { opacity: 0.1; animation: hlGreen 26s ease-in-out infinite; animation-delay: 20s; } /* New Tokens */
+    .s12 { opacity: 0.1; animation: hlBlue 26s ease-in-out infinite; animation-delay: 22s; } /* Retry */
+    .s13 { opacity: 0.1; animation: hlGreen 26s ease-in-out infinite; animation-delay: 24s; } /* Success */
+
+    /* Text Highlights */
+    .txt-s1 { animation: txtHlBlue 26s ease-in-out infinite; animation-delay: 0s; }
+    .txt-s2 { animation: txtHlBlue 26s ease-in-out infinite; animation-delay: 2s; }
+    .txt-s3 { animation: txtHlGreen 26s ease-in-out infinite; animation-delay: 4s; }
+    .txt-s4 { animation: txtHlBlue 26s ease-in-out infinite; animation-delay: 6s; }
+    .txt-s5 { animation: txtHlGreen 26s ease-in-out infinite; animation-delay: 8s; }
+    .txt-s6 { animation: txtHlPurple 26s ease-in-out infinite; animation-delay: 10s; }
+    .txt-s7 { animation: txtHlOrange 26s ease-in-out infinite; animation-delay: 12s; }
+    .txt-s8 { animation: txtHlRed 26s ease-in-out infinite; animation-delay: 14s; }
+    .txt-s9 { animation: txtHlPurple 26s ease-in-out infinite; animation-delay: 16s; }
+    .txt-s10 { animation: txtHlRed 26s ease-in-out infinite; animation-delay: 18s; }
+    .txt-s11 { animation: txtHlGreen 26s ease-in-out infinite; animation-delay: 20s; }
+    .txt-s12 { animation: txtHlBlue 26s ease-in-out infinite; animation-delay: 22s; }
+    .txt-s13 { animation: txtHlGreen 26s ease-in-out infinite; animation-delay: 24s; }
+
+    @keyframes hlBlue { 0%,4% { opacity:1; filter:drop-shadow(0 0 8px rgba(66,153,225,1)); stroke-width:3; } 5%,100% { opacity:0.1; stroke-width:1; } }
+    @keyframes hlPurple { 0%,4% { opacity:1; filter:drop-shadow(0 0 8px rgba(159,122,234,1)); stroke-width:3; } 5%,100% { opacity:0.1; stroke-width:1; } }
+    @keyframes hlRed { 0%,4% { opacity:1; filter:drop-shadow(0 0 8px rgba(252,129,129,1)); stroke-width:3; } 5%,100% { opacity:0.1; stroke-width:1; } }
+    @keyframes hlGreen { 0%,4% { opacity:1; filter:drop-shadow(0 0 8px rgba(72,187,120,1)); stroke-width:3; } 5%,100% { opacity:0.1; stroke-width:1; } }
+    @keyframes hlOrange { 0%,4% { opacity:1; filter:drop-shadow(0 0 8px rgba(237,137,54,1)); stroke-width:3; } 5%,100% { opacity:0.1; stroke-width:1; } }
+
+    @keyframes txtHlBlue { 0%,4% { fill: #63b3ed; font-weight:700; transform: translateX(10px); } 5%,100% { fill: #718096; transform: translateX(0); } }
+    @keyframes txtHlPurple { 0%,4% { fill: #b794f4; font-weight:700; transform: translateX(10px); } 5%,100% { fill: #718096; transform: translateX(0); } }
+    @keyframes txtHlRed { 0%,4% { fill: #fc8181; font-weight:700; transform: translateX(10px); } 5%,100% { fill: #718096; transform: translateX(0); } }
+    @keyframes txtHlGreen { 0%,4% { fill: #68d391; font-weight:700; transform: translateX(10px); } 5%,100% { fill: #718096; transform: translateX(0); } }
+    @keyframes txtHlOrange { 0%,4% { fill: #fbd38d; font-weight:700; transform: translateX(10px); } 5%,100% { fill: #718096; transform: translateX(0); } }
+    
+    .indicator { animation: pulse 1s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.2); } }
+  </style>
+
+  <text x="700" y="750" text-anchor="middle" class="title">Standard Auth Loop (AT &amp; RT)</text>
+  <text x="700" y="780" text-anchor="middle" class="subtitle">Complete Login &amp; Refresh Lifecycle</text>
+
+  <!-- SIDEBAR (Left) -->
+  <g transform="translate(50, 100)">
+    <rect x="0" y="0" width="300" height="650" rx="10" fill="rgba(30, 30, 40, 0.5)" stroke="#2d3748" />
+    <text x="20" y="40" class="sidebar-title">Lifecycle Steps</text>
+    
+    <text x="20" y="80" class="sidebar-text txt-s1">1. User Login (User/Pass)</text>
+    <text x="20" y="115" class="sidebar-text txt-s2">2. Submit Credentials</text>
+    <text x="20" y="150" class="sidebar-text txt-s3">3. Receive AT (Short) &amp; RT (Long)</text>
+    <text x="20" y="200" class="sidebar-text txt-s4">4. Normal Request (AT Valid)</text>
+    <text x="20" y="235" class="sidebar-text txt-s5">5. Success Response</text>
+    <text x="20" y="300" class="sidebar-text txt-s6">6. Expired Request (AT Invalid)</text>
+    <text x="20" y="335" class="sidebar-text txt-s7">7. Error 401 Unauthorized</text>
+    <text x="20" y="370" class="sidebar-text txt-s8">8. Client Interceptor Catches 401</text>
+    <text x="20" y="420" class="sidebar-text txt-s9">9. Request Refresh (Send RT)</text>
+    <text x="20" y="455" class="sidebar-text txt-s10">10. Server checks Database</text>
+    <text x="20" y="490" class="sidebar-text txt-s11">11. Issue New Tokens</text>
+    <text x="20" y="540" class="sidebar-text txt-s12">12. Retry Original Request</text>
+    <text x="20" y="575" class="sidebar-text txt-s13">13. Final Success (Seamless)</text>
+  </g>
+
+  <!-- DIAGRAM AREA -->
+  <g transform="translate(380, 0)">
+    
+    <!-- Nodes -->
+    
+    <!-- User -->
+    <g transform="translate(0, 50)">
+      <rect x="0" y="0" width="80" height="60" rx="10" fill="#2d3748" stroke="#cbd5e0" stroke-width="2"/>
+      <text x="40" y="35" text-anchor="middle" style="font-size:24px">👤</text>
+      <text x="40" y="75" text-anchor="middle" class="node-text-light">User</text>
+    </g>
+
+    <!-- Client -->
+    <g transform="translate(200, 50)">
+      <rect x="0" y="0" width="100" height="60" rx="10" fill="#2d3748" stroke="#4299e1" stroke-width="2"/>
+      <text x="50" y="35" text-anchor="middle" style="font-size:24px">💻</text>
+      <text x="50" y="75" text-anchor="middle" class="node-text-light">Client</text>
+    </g>
+
+    <!-- Server -->
+    <g transform="translate(500, 50)">
+      <rect x="0" y="0" width="100" height="60" rx="10" fill="#2d3748" stroke="#48bb78" stroke-width="2"/>
+      <text x="50" y="35" text-anchor="middle" style="font-size:24px">⚙️</text>
+      <text x="50" y="75" text-anchor="middle" class="node-text-light">Server</text>
+    </g>
+
+    <!-- Database -->
+    <g transform="translate(800, 50)">
+      <rect x="0" y="0" width="80" height="60" rx="10" fill="#fff5f5" stroke="#fc8181" stroke-width="2"/>
+      <text x="40" y="35" text-anchor="middle" style="font-size:24px">🗄️</text>
+      <text x="40" y="75" text-anchor="middle" class="node-text-light">DB</text>
+    </g>
+
+    <!-- Vertical Lines -->
+    <line x1="40" y1="120" x2="40" y2="750" stroke="#4a5568" stroke-width="1" stroke-dasharray="5,5"/>
+    <line x1="250" y1="120" x2="250" y2="750" stroke="#4a5568" stroke-width="1" stroke-dasharray="5,5"/>
+    <line x1="550" y1="120" x2="550" y2="750" stroke="#4a5568" stroke-width="1" stroke-dasharray="5,5"/>
+    <line x1="840" y1="120" x2="840" y2="750" stroke="#4a5568" stroke-width="1" stroke-dasharray="5,5"/>
+
+    <!-- Flows -->
+
+    <!-- 1. User -> Client -->
+    <path d="M 40 140 L 250 140" stroke="#4299e1" stroke-width="2" class="s1" fill="none" marker-end="url(#arrowBlue)"/>
+    <text x="145" y="135" text-anchor="middle" class="step-text s1">1. Login</text>
+
+    <!-- 2. Client -> Server -->
+    <path d="M 250 170 L 550 170" stroke="#4299e1" stroke-width="2" class="s2" fill="none" marker-end="url(#arrowBlue)"/>
+    <text x="400" y="165" text-anchor="middle" class="step-text s2">2. Send Login Request</text>
+
+    <!-- 3. Server -> Client (Tokens) -->
+    <path d="M 550 200 L 250 200" stroke="#48bb78" stroke-width="2" class="s3" fill="none" class="dashed" marker-end="url(#arrowGreen)"/>
+    <text x="400" y="195" text-anchor="middle" class="step-text s3">3. AT (5m) + RT (7d)</text>
+
+    <!-- Divider -->
+    <line x1="100" y1="230" x2="900" y2="230" stroke="#2d3748" stroke-width="1"/>
+    <text x="500" y="245" text-anchor="middle" class="step-text" style="fill:#a0aec0">Normal Usage</text>
+
+    <!-- 4. Client -> Server (Normal) -->
+    <path d="M 250 270 L 550 270" stroke="#4299e1" stroke-width="2" class="s4" fill="none" marker-end="url(#arrowBlue)"/>
+    <text x="400" y="265" text-anchor="middle" class="step-text s4">4. Request + Valid AT</text>
+
+    <!-- 5. Server -> Client (Data) -->
+    <path d="M 550 300 L 250 300" stroke="#48bb78" stroke-width="2" class="s5" fill="none" marker-end="url(#arrowGreen)"/>
+    <text x="400" y="295" text-anchor="middle" class="step-text s5">5. Data Payload</text>
+
+    <!-- Divider -->
+    <line x1="100" y1="330" x2="900" y2="330" stroke="#2d3748" stroke-width="1"/>
+    <text x="500" y="345" text-anchor="middle" class="step-text" style="fill:#fc8181">... 5 Minutes Later (Token Expired) ...</text>
+
+    <!-- 6. Client -> Server (Expired) -->
+    <path d="M 250 380 L 550 380" stroke="#9f7aea" stroke-width="2" class="s6" fill="none" marker-end="url(#arrowPurple)"/>
+    <text x="400" y="375" text-anchor="middle" class="step-text s6">6. Request + Expired AT</text>
+
+    <!-- 7. Server -> Client (401) -->
+    <path d="M 550 410 L 250 410" stroke="#ed8936" stroke-width="2" class="s7" fill="none" stroke-dasharray="5,5" marker-end="url(#arrowOrange)"/>
+    <text x="400" y="405" text-anchor="middle" class="step-text s7">7. 401 Unauthorized</text>
+
+    <!-- 8. Intercept (Self) -->
+    <circle cx="250" cy="440" r="15" fill="none" stroke="#fc8181" stroke-width="2" class="s8"/>
+    <text x="180" y="445" text-anchor="end" class="step-text s8" fill="#fc8181">8. Intercept!</text>
+
+    <!-- 9. Client -> Server (Refresh) -->
+    <path d="M 250 470 L 550 470" stroke="#9f7aea" stroke-width="2" class="s9" fill="none" marker-end="url(#arrowPurple)"/>
+    <text x="400" y="465" text-anchor="middle" class="step-text s9">9. POST /refresh (RT)</text>
+
+    <!-- 10. Server -> DB (Check) -->
+    <path d="M 550 500 L 840 500" stroke="#fc8181" stroke-width="2" class="s10" fill="none" marker-end="url(#arrowRed)"/>
+    <text x="695" y="495" text-anchor="middle" class="step-text s10">10. Verify RT</text>
+
+    <!-- 11. Server -> Client (New Tokens) -->
+    <path d="M 550 530 L 250 530" stroke="#48bb78" stroke-width="2" class="s11" fill="none" marker-end="url(#arrowGreen)"/>
+    <text x="400" y="525" text-anchor="middle" class="step-text s11">11. New AT + RT</text>
+
+    <!-- 12. Client -> Server (Retry) -->
+    <path d="M 250 580 L 550 580" stroke="#4299e1" stroke-width="2" class="s12" fill="none" marker-end="url(#arrowBlue)"/>
+    <text x="400" y="575" text-anchor="middle" class="step-text s12">12. Retry (New AT)</text>
+
+    <!-- 13. server -> Client (Success) -->
+    <path d="M 550 620 L 250 620" stroke="#48bb78" stroke-width="2" class="s13" fill="none" marker-end="url(#arrowGreen)"/>
+    <text x="400" y="615" text-anchor="middle" class="step-text s13">13. Success!</text>
+
+  </g>
+</svg>
+

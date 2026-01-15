@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 700" style="background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shieldGlow">
+      <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#9f7aea" />
+    </filter>
+    
+    <!-- Markers -->
+    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L10,3 z" fill="#4299e1" />
+    </marker>
+    <marker id="arrowRed" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L10,3 z" fill="#fc8181" />
+    </marker>
+    <marker id="arrowPurple" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L10,3 z" fill="#9f7aea" />
+    </marker>
+    <marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L10,3 z" fill="#48bb78" />
+    </marker>
+    <marker id="arrowGray" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L10,3 z" fill="#a0aec0" />
+    </marker>
+  </defs>
+  
+  <style>
+    /* Typography */
+    .title { font-family: 'Segoe UI', sans-serif; font-size: 32px; fill: #e2e8f0; font-weight: 700; }
+    .subtitle { font-family: 'Segoe UI', sans-serif; font-size: 18px; fill: #a0aec0; }
+    .node-text { font-family: 'Segoe UI', sans-serif; font-size: 14px; fill: #e2e8f0; font-weight: 700; }
+    .token-text { font-family: 'Consolas', monospace; font-size: 12px; fill: #cbd5e0; }
+    .status-text { font-family: 'Segoe UI', sans-serif; font-size: 12px; font-weight: 700; }
+    .step-num { font-family: 'Segoe UI', sans-serif; font-size: 12px; fill: #fff; font-weight: 700; }
+    .step-text { font-family: 'Segoe UI', sans-serif; font-size: 11px; fill: #cbd5e0; font-weight: 500; }
+    
+    .sidebar-title { font-family: 'Segoe UI', sans-serif; font-size: 20px; fill: #9f7aea; font-weight: 600; text-decoration: underline; }
+    .sidebar-text { font-family: 'Segoe UI', sans-serif; font-size: 15px; fill: #718096; transition: all 0.5s; }
+
+    /* Animation Cycle: 21s total */
+    .s1 { opacity: 0.1; animation: hlBlue 21s ease-in-out infinite; animation-delay: 0s; }   /* Client -> Server */
+    .s2 { opacity: 0.1; animation: hlGray 21s ease-in-out infinite; animation-delay: 3s; }   /* Server -> DB */
+    .s3 { opacity: 0.3; animation: revokeAnim 21s ease-in-out infinite; animation-delay: 6s; } /* DB Revoke */
+    .s4 { opacity: 0;   animation: createAnim 21s ease-in-out infinite; animation-delay: 9s; } /* DB Create */
+    .s5 { opacity: 0.1; animation: hlGreen 21s ease-in-out infinite; animation-delay: 12s; }  /* DB -> Server */
+    .s6 { opacity: 0.1; animation: hlGreen 21s ease-in-out infinite; animation-delay: 15s; }  /* Server -> Client */
+    .s7 { opacity: 0.1; animation: storageAnim 21s ease-in-out infinite; animation-delay: 18s; } /* Client Save */
+
+    /* Sidebar Highlight */
+    .txt-s1 { animation: txtHlBlue 21s ease-in-out infinite; animation-delay: 0s; }
+    .txt-s2 { animation: txtHlGray 21s ease-in-out infinite; animation-delay: 3s; }
+    .txt-s3 { animation: txtHlRed 21s ease-in-out infinite; animation-delay: 6s; }
+    .txt-s4 { animation: txtHlGreen 21s ease-in-out infinite; animation-delay: 9s; }
+    .txt-s5 { animation: txtHlGreen 21s ease-in-out infinite; animation-delay: 12s; }
+    .txt-s6 { animation: txtHlGreen 21s ease-in-out infinite; animation-delay: 15s; }
+    .txt-s7 { animation: txtHlBlue 21s ease-in-out infinite; animation-delay: 18s; }
+    
+    /* Highlight Animations */
+    @keyframes hlBlue { 0%,10% { opacity:1; filter:drop-shadow(0 0 5px #4299e1); stroke-width:3; } 14%,100% { opacity:0.1; stroke-width:1; } }
+    @keyframes hlGray { 0%,10% { opacity:1; filter:drop-shadow(0 0 5px #a0aec0); stroke-width:3; } 14%,100% { opacity:0.1; stroke-width:1; } }
+    @keyframes hlGreen { 0%,10% { opacity:1; filter:drop-shadow(0 0 5px #48bb78); stroke-width:3; } 14%,100% { opacity:0.1; stroke-width:1; } }
+
+    /* DB Logic Animations */
+    @keyframes revokeAnim {
+        0% { opacity: 1; fill: #48bb78; }
+        10%, 100% { opacity: 0.3; fill: #fc8181; text-decoration: line-through; }
+    }
+    @keyframes createAnim {
+        0% { opacity: 0; transform: translateY(10px); }
+        10%, 100% { opacity: 1; transform: translateY(0); fill: #48bb78; font-weight: bold; }
+    }
+    
+    /* Client Storage Animation */
+    @keyframes storageAnim {
+        0% { opacity: 1; fill: #cbd5e0; }
+        10%, 100% { opacity: 1; fill: #48bb78; font-weight: bold; }
+    }
+    
+    /* Client Text Swap */
+    .client-txt-old { animation: clientTxtSwapA 21s infinite; }
+    .client-txt-new { animation: clientTxtSwapB 21s infinite; }
+    @keyframes clientTxtSwapA { 0%, 85% { opacity: 1; } 90%, 100% { opacity: 0; } }
+    @keyframes clientTxtSwapB { 0%, 85% { opacity: 0; } 90%, 100% { opacity: 1; } }
+
+    /* Sidebar Text Highlights */
+    @keyframes txtHlBlue { 0%,10% { fill: #63b3ed; font-weight:700; transform: translateX(10px); } 14%,100% { fill: #718096; transform: translateX(0); } }
+    @keyframes txtHlGray { 0%,10% { fill: #cbd5e0; font-weight:700; transform: translateX(10px); } 14%,100% { fill: #718096; transform: translateX(0); } }
+    @keyframes txtHlRed  { 0%,10% { fill: #fc8181; font-weight:700; transform: translateX(10px); } 14%,100% { fill: #718096; transform: translateX(0); } }
+    @keyframes txtHlGreen{ 0%,10% { fill: #68d391; font-weight:700; transform: translateX(10px); } 14%,100% { fill: #718096; transform: translateX(0); } }
+  </style>
+  
+  <text x="600" y="50" text-anchor="middle" class="title">Refresh Token Rotation</text>
+  <text x="600" y="80" text-anchor="middle" class="subtitle">Secure Lifecycle: Request, Revoke, Rotate, Return</text>
+
+  <!-- SIDEBAR (Left) -->
+  <g transform="translate(50, 130)">
+    <rect x="0" y="0" width="320" height="480" rx="10" fill="rgba(30, 30, 40, 0.5)" stroke="#2d3748" />
+    <text x="20" y="40" class="sidebar-title">Rotation Steps</text>
+    
+    <text x="20" y="80" class="sidebar-text txt-s1">1. Client Request (Send RT_Old)</text>
+    <text x="20" y="120" class="sidebar-text txt-s2">2. Server Validates DB</text>
+    <text x="20" y="160" class="sidebar-text txt-s3" font-weight="bold">3. DB: REVOKE RT_Old (❌)</text>
+    <text x="20" y="200" class="sidebar-text txt-s4" font-weight="bold">4. DB: CREATE RT_New (🆕)</text>
+    <text x="20" y="240" class="sidebar-text txt-s5">5. DB Returns Pair {AT, RT}</text>
+    <text x="20" y="280" class="sidebar-text txt-s6">6. Server Returns to Client</text>
+    <text x="20" y="320" class="sidebar-text txt-s7">7. Client Updates Storage</text>
+    
+    <line x1="20" y1="380" x2="300" y2="380" stroke="#4a5568"/>
+    <text x="20" y="410" class="sidebar-text" fill="#a0aec0" font-style="italic">Replay Attack Protection:</text>
+    <text x="20" y="430" class="sidebar-text" fill="#a0aec0" font-style="italic">Old tokens are dead instantly.</text>
+  </g>
+
+  <!-- NODES (Right) -->
+
+  <!-- Client (x=450, Center=520) -->
+  <g transform="translate(450, 250)">
+    <rect x="0" y="0" width="140" height="100" rx="40" fill="#2d3748" stroke="#4299e1" stroke-width="3"/>
+    <text x="70" y="55" text-anchor="middle" style="font-size:35px">💻</text>
+    <text x="70" y="85" text-anchor="middle" class="node-text-light" fill="#e2e8f0">Client</text>
+    
+    <!-- Storage Box -->
+    <rect x="20" y="110" width="100" height="30" rx="5" fill="#1a202c" stroke="#4a5568"/>
+    <text x="70" y="130" text-anchor="middle" class="token-text client-txt-old">RT_Old</text>
+    <text x="70" y="130" text-anchor="middle" class="token-text client-txt-new" fill="#48bb78">RT_New</text>
+  </g>
+
+  <!-- Server/Auth (x=700, Center=775) -->
+  <g transform="translate(700, 220)">
+    <rect x="0" y="0" width="150" height="160" rx="10" fill="#2d3748" stroke="#9f7aea" stroke-width="3"/>
+    <g filter="url(#shieldGlow)">
+      <text x="75" y="70" text-anchor="middle" style="font-size:50px;">🛡️</text>
+    </g>
+    <text x="75" y="110" text-anchor="middle" class="node-text-light" fill="#e2e8f0">Auth Server</text>
+  </g>
+
+  <!-- DB (x=950, Center=1050) -->
+  <g transform="translate(950, 150)">
+    <rect x="0" y="0" width="200" height="300" rx="5" fill="#1a202c" stroke="#718096" stroke-width="2"/>
+    <line x1="0" y1="40" x2="200" y2="40" stroke="#718096"/>
+    <text x="100" y="25" text-anchor="middle" class="node-text" fill="#a0aec0">Token Table</text>
+    
+    <!-- Row 1: Old -->
+    <g transform="translate(10, 80)">
+       <text x="0" y="0" class="token-text s3" style="font-size:16px;">Row 1: RT_Old Active</text>
+    </g>
+    
+    <!-- Row 2: New -->
+    <g transform="translate(10, 140)">
+       <text x="0" y="0" class="token-text s4" style="font-size:16px;">Row 2: RT_New Active</text>
+    </g>
+  </g>
+
+  <!-- LINES -->
+  <!-- Aligned Top Row (Request): Y=270 -->
+  
+  <!-- 1. Client -> Server -->
+  <g class="s1">
+    <path d="M 590 270 L 700 270" stroke="#4299e1" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
+    <circle cx="645" cy="270" r="10" fill="#2d3748" stroke="#4299e1" />
+    <text x="645" y="274" text-anchor="middle" class="step-num" fill="#4299e1">1</text>
+    <text x="645" y="250" text-anchor="middle" class="step-text">RT_Old</text>
+  </g>
+
+  <!-- 2. Server -> DB (Top Path) -->
+  <g class="s2">
+    <path d="M 850 270 L 950 270" stroke="#a0aec0" stroke-width="2" fill="none" marker-end="url(#arrowGray)"/>
+    <circle cx="900" cy="270" r="10" fill="#2d3748" stroke="#a0aec0" />
+    <text x="900" y="274" text-anchor="middle" class="step-num" fill="#a0aec0">2</text>
+    <text x="900" y="250" text-anchor="middle" class="step-text">Check RT</text>
+  </g>
+  
+  <!-- Aligned Bottom Row (Response): Y=330 -->
+
+  <!-- 5. DB -> Server (Bottom Path) -->
+  <g class="s5">
+    <path d="M 950 330 L 850 330" stroke="#48bb78" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
+    <circle cx="900" cy="330" r="10" fill="#2d3748" stroke="#48bb78" />
+    <text x="900" y="334" text-anchor="middle" class="step-num" fill="#48bb78">5</text>
+    <text x="900" y="360" text-anchor="middle" class="step-text">{New Pair}</text>
+  </g>
+
+  <!-- 6. Server -> Client (Bottom Path) -->
+  <g class="s6">
+    <path d="M 700 330 L 590 330" stroke="#48bb78" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
+    <circle cx="645" cy="330" r="10" fill="#2d3748" stroke="#48bb78" />
+    <text x="645" y="334" text-anchor="middle" class="step-num" fill="#48bb78">6</text>
+    <text x="645" y="360" text-anchor="middle" class="step-text">Return Pair</text>
+  </g>
+  
+</svg>
+

@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" style="background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,10 L10,5 z" fill="#fc8181" />
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,10 L10,5 z" fill="#4299e1" />
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,10 L10,5 z" fill="#48bb78" />
+    </marker>
+    <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,10 L10,5 z" fill="#9f7aea" />
+    </marker>
+  </defs>
+
+  <style>
+    /* Fonts */
+    .title { font-family: 'Segoe UI', sans-serif; font-size: 28px; fill: #e2e8f0; font-weight: 700; }
+    .subtitle { font-family: 'Segoe UI', sans-serif; font-size: 16px; fill: #a0aec0; }
+    .node-text { font-family: 'Segoe UI', sans-serif; font-size: 14px; fill: #fff; font-weight: 700; }
+    .desc-text { font-family: 'Segoe UI', sans-serif; font-size: 12px; fill: #cbd5e0; }
+    .step-num { font-family: 'Segoe UI', sans-serif; font-size: 11px; fill: #fff; font-weight: 700; }
+    
+    .sidebar-title { font-family: 'Segoe UI', sans-serif; font-size: 18px; fill: #9f7aea; font-weight: 600; text-decoration: underline; }
+    .sidebar-text { font-family: 'Segoe UI', sans-serif; font-size: 14px; fill: #718096; transition: all 0.5s; }
+
+    /* Timeline: 30s Total */
+    /* Phase 1: Fail (0-6s) */
+    .s1 { opacity: 0; animation: fadeFlow 30s linear infinite; animation-delay: 0s; }
+    .s2 { opacity: 0; animation: fadeFlow 30s linear infinite; animation-delay: 3s; }
+    
+    /* Phase 2: Logic (6-12s) */
+    .s3-lock { opacity: 0; animation: lockAnim 30s linear infinite; animation-delay: 6s; }
+    .s3-queue { opacity: 0; animation: queueAnim 30s linear infinite; animation-delay: 7s; }
+    
+    /* Phase 3: Refresh (12-18s) */
+    .s4 { opacity: 0; animation: fadeFlow 30s linear infinite; animation-delay: 12s; } /* Refresh Req */
+    .s5 { opacity: 0; animation: fadeFlow 30s linear infinite; animation-delay: 15s; } /* Refresh Res */
+    
+    /* Phase 4: Retry (18-24s) */
+    .s6 { opacity: 0; animation: queueRelease 30s linear infinite; animation-delay: 18s; } /* Queue Release */
+    .s7 { opacity: 0; animation: fadeFlow 30s linear infinite; animation-delay: 21s; }    /* Retries */
+    .s8 { opacity: 0; animation: fadeFlow 30s linear infinite; animation-delay: 24s; }    /* Success */
+
+    /* Animations */
+    @keyframes fadeFlow { 0%, 5% { opacity: 0; } 10%, 20% { opacity: 1; } 25%, 100% { opacity: 0; } }
+    
+    @keyframes lockAnim { 
+        0% { opacity: 0; transform: scale(0.8); } 
+        5% { opacity: 1; transform: scale(1.1); fill: #fbbf24; } 
+        10%, 40% { opacity: 1; transform: scale(1); fill: #fbbf24; } /* Stay On during refresh */
+        45% { opacity: 0; transform: scale(1.5); } /* Unlock */
+        100% { opacity: 0; }
+    }
+    
+    @keyframes queueAnim {
+        0% { opacity: 0; transform: translateX(-50px); }
+        5% { opacity: 1; transform: translateX(0); } /* Enqueue */
+        10%, 35% { opacity: 1; }                      /* Wait */
+        40%, 100% { opacity: 0; }                     /* Dequeue happens in s6 */
+    }
+
+    @keyframes queueRelease {
+        0% { opacity: 0; }
+        5% { opacity: 1; transform: translateY(0); }
+        15% { opacity: 0; transform: translateY(-50px); } /* Fly out to retry */
+        100% { opacity: 0; }
+    }
+    
+    /* Sidebar Highlights */
+    .txt-s1 { animation: txtHlRed 30s infinite; animation-delay: 0s; }
+    .txt-s2 { animation: txtHlRed 30s infinite; animation-delay: 3s; }
+    .txt-s3 { animation: txtHlYellow 30s infinite; animation-delay: 6s; }
+    .txt-s4 { animation: txtHlPurple 30s infinite; animation-delay: 12s; }
+    .txt-s5 { animation: txtHlGreen 30s infinite; animation-delay: 15s; }
+    .txt-s6 { animation: txtHlBlue 30s infinite; animation-delay: 18s; }
+    .txt-s8 { animation: txtHlGreen 30s infinite; animation-delay: 24s; }
+
+    @keyframes txtHlRed { 0%,8% { fill:#fc8181; font-weight:700; transform:translateX(5px); } 10%,100% { fill:#718096; transform:translateX(0); } }
+    @keyframes txtHlYellow { 0%,15% { fill:#fbbf24; font-weight:700; transform:translateX(5px); } 17%,100% { fill:#718096; transform:translateX(0); } }
+    @keyframes txtHlPurple { 0%,8% { fill:#9f7aea; font-weight:700; transform:translateX(5px); } 10%,100% { fill:#718096; transform:translateX(0); } }
+    @keyframes txtHlGreen { 0%,8% { fill:#48bb78; font-weight:700; transform:translateX(5px); } 10%,100% { fill:#718096; transform:translateX(0); } }
+    @keyframes txtHlBlue { 0%,8% { fill:#63b3ed; font-weight:700; transform:translateX(5px); } 10%,100% { fill:#718096; transform:translateX(0); } }
+
+  </style>
+
+  <text x="500" y="50" text-anchor="middle" class="title">Reactive Flow: Promise Singleton</text>
+  <text x="500" y="80" text-anchor="middle" class="subtitle">Concurrent Requests -> Queue -> Single Refresh</text>
+
+  <g transform="translate(40, 140)">
+    <rect x="0" y="0" width="220" height="400" rx="10" fill="rgba(30, 30, 40, 0.5)" stroke="#2d3748" />
+    <text x="20" y="40" class="sidebar-title">Execution Log</text>
+    
+    <text x="20" y="80" class="sidebar-text txt-s1">1. Req A &amp; B Sent</text>
+    <text x="20" y="120" class="sidebar-text txt-s2">2. Both Fail (401)</text>
+    <text x="20" y="160" class="sidebar-text txt-s3">3. Logic Split:</text>
+    <text x="30" y="180" class="sidebar-text txt-s3">- Main: Locks &amp; Refresh</text>
+    <text x="30" y="200" class="sidebar-text txt-s3">- Others: Queue (Wait)</text>
+    <text x="20" y="240" class="sidebar-text txt-s4">4. Refresh API Call</text>
+    <text x="20" y="280" class="sidebar-text txt-s5">5. New Token Recv</text>
+    <text x="20" y="320" class="sidebar-text txt-s6">6. Queue Released</text>
+    <text x="20" y="360" class="sidebar-text txt-s8">7. All Retry Success</text>
+  </g>
+
+  <g transform="translate(300, 100)">
+    
+    <g transform="translate(0, 150)">
+        <rect width="180" height="250" rx="10" fill="#2d3748" stroke="#4299e1" stroke-width="3"/>
+        <text x="90" y="30" text-anchor="middle" class="node-text">Client Logic</text>
+        
+        <g transform="translate(40, 80)" class="s3-lock">
+            <text x="0" y="0" font-size="24">🔐</text>
+            <text x="30" y="0" class="step-num" fill="#fbbf24">isRefreshing</text>
+        </g>
+        
+        <g transform="translate(20, 150)">
+            <rect width="140" height="80" rx="5" fill="#1a202c" stroke="#718096" stroke-dasharray="4"/>
+            <text x="70" y="20" text-anchor="middle" class="step-num" fill="#a0aec0">failedQueue []</text>
+            
+            <g class="s3-queue">
+                <rect x="30" y="35" width="80" height="30" rx="3" fill="#fc8181"/>
+                <text x="70" y="55" text-anchor="middle" class="step-num">Req B</text>
+            </g>
+        </g>
+    </g>
+
+    <g transform="translate(500, 150)">
+        <rect width="140" height="250" rx="10" fill="#2d3748" stroke="#9f7aea" stroke-width="3"/>
+        <text x="70" y="30" text-anchor="middle" class="node-text">Server</text>
+        <text x="70" y="125" text-anchor="middle" font-size="40">☁️</text>
+    </g>
+
+    ) thay vì /* */ -->
+    <g class="s1">
+        <path d="M 180 180 L 500 180" stroke="#fc8181" stroke-width="2" marker-end="url(#arrowRed)"/>
+        <text x="340" y="170" text-anchor="middle" class="desc-text">Req A &amp; B</text>
+    </g>
+    <g class="s2">
+        <path d="M 500 200 L 180 200" stroke="#fc8181" stroke-width="2" marker-end="url(#arrowRed)"/>
+        <text x="340" y="220" text-anchor="middle" class="desc-text" fill="#fc8181">401 Unauth</text>
+    </g>
+    
+    <g class="s4">
+        <path d="M 180 240 L 500 240" stroke="#9f7aea" stroke-width="3" marker-end="url(#arrowPurple)"/>
+        <rect x="280" y="230" width="120" height="20" rx="3" fill="#2d3748" stroke="#9f7aea"/>
+        <text x="340" y="244" text-anchor="middle" class="step-num" fill="#9f7aea">POST /refresh</text>
+    </g>
+    <g class="s5">
+        <path d="M 500 270 L 180 270" stroke="#48bb78" stroke-width="3" marker-end="url(#arrowGreen)"/>
+        <text x="340" y="290" text-anchor="middle" class="desc-text" fill="#48bb78">New Tokens</text>
+    </g>
+    
+    <g class="s7">
+        <path d="M 180 320 L 500 320" stroke="#4299e1" stroke-width="2" marker-end="url(#arrowBlue)"/>
+        <text x="340" y="310" text-anchor="middle" class="desc-text" fill="#4299e1">Retry A &amp; B</text>
+    </g>
+    <g class="s8">
+        <path d="M 500 350 L 180 350" stroke="#48bb78" stroke-width="2" marker-end="url(#arrowGreen)"/>
+        <text x="340" y="370" text-anchor="middle" class="desc-text" fill="#48bb78">200 OK</text>
+    </g>
+
+  </g>
+</svg>

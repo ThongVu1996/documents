@@ -1,0 +1,184 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 600" style="background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Tiny Markers -->
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#4299e1" />
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#fc8181" />
+    </marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9f7aea" />
+    </marker>
+  </defs>
+
+  <style>
+    .title { font-family: 'Segoe UI', sans-serif; font-size: 22px; fill: #e2e8f0; font-weight: 700; }
+    .subtitle { font-family: 'Segoe UI', sans-serif; font-size: 13px; fill: #a0aec0; }
+    .node-text { font-family: 'Segoe UI', sans-serif; font-size: 13px; fill: #e2e8f0; font-weight: 600; }
+    .sidebar-title { font-family: 'Segoe UI', sans-serif; font-size: 13px; fill: #9f7aea; font-weight: 600; text-decoration: underline; }
+    .sidebar-text { font-family: 'Segoe UI', sans-serif; font-size: 11px; fill: #718096; transition: all 0.5s; }
+    
+    .badge-text { font-family: 'Consolas', monospace; font-size: 10px; font-weight: 700; fill: #1a202c; }
+
+    /* Nodes */
+    .node-box { fill: #2d3748; stroke-width: 2; rx: 8; filter: url(#glow); }
+    .icon { font-size: 28px; }
+    
+    /* Animation Logic: 15s Sequence */
+    
+    @keyframes transient { 
+      0%, 100% { opacity: 0; filter: grayscale(100%); }
+      5% { opacity: 1; filter: grayscale(0%); } 
+      30% { opacity: 0.1; filter: grayscale(100%); } 
+      95% { opacity: 0.1; filter: grayscale(100%); }
+    }
+    
+    @keyframes flashAlert { 
+      0%, 65% { opacity: 0; transform: scale(0.5); }
+      66% { opacity: 1; transform: scale(1.1); }
+      70% { transform: scale(1); }
+      79% { opacity: 1; transform: scale(1); }
+      80%, 100% { opacity: 0; transform: scale(0.5); }
+    }
+
+    @keyframes showBlock { 
+      0%, 79% { opacity: 0; } 
+      80% { opacity: 1; }
+      95% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes highlightText { 
+      0%, 100% { fill: #718096; transform: translateX(0); font-weight: 400; } 
+      5% { fill: #fbbf24; font-weight: 700; transform: translateX(5px); } 
+      25% { fill: #718096; font-weight: 400; transform: translateX(0); } 
+    }
+
+    /* Timings (Cycle = 15s) */
+    .s1 { animation: transient 15s infinite; animation-delay: 0.5s; opacity: 0; }
+    .txt-s1 { animation: highlightText 15s infinite; animation-delay: 0.5s; }
+
+    .s2 { animation: transient 15s infinite; animation-delay: 3.5s; opacity: 0; }
+    .txt-s2 { animation: highlightText 15s infinite; animation-delay: 3.5s; }
+
+    .s3 { animation: transient 15s infinite; animation-delay: 6.5s; opacity: 0; }
+    .txt-s3 { animation: highlightText 15s infinite; animation-delay: 6.5s; }
+
+    .s4 { animation: flashAlert 15s infinite; opacity: 0; transform-origin: center; }
+    .txt-s4 { animation: highlightText 15s infinite; animation-delay: 9.5s; }
+
+    .s5 { animation: showBlock 15s infinite; opacity: 0; }
+    .txt-s5 { animation: highlightText 15s infinite; animation-delay: 12.0s; }
+
+  </style>
+
+  <!-- TITLE -->
+  <text x="500" y="40" text-anchor="middle" class="title">Scenario B: User Faster</text>
+  <text x="500" y="65" text-anchor="middle" class="subtitle">User rotates token -> Hacker tries old token -> Self-Destruct</text>
+
+  <!-- SIDEBAR (Left) -->
+  <g transform="translate(20, 150)">
+    <rect x="0" y="0" width="180" height="220" rx="8" fill="rgba(30, 30, 40, 0.6)" stroke="#2d3748" />
+    <text x="15" y="30" class="sidebar-title">Execution Log</text>
+    
+    <text x="15" y="60" class="sidebar-text txt-s1">1. User sends RT_1</text>
+    <text x="15" y="75" class="sidebar-text txt-s1" font-style="italic" style="font-size:10px">   (Legit Rotation)</text>
+
+    <text x="15" y="100" class="sidebar-text txt-s2">2. Server sends RT_2</text>
+    <text x="15" y="115" class="sidebar-text txt-s2" font-style="italic" style="font-size:10px">   (User Wins)</text>
+
+    <text x="15" y="140" class="sidebar-text txt-s3">3. Hacker sends RT_1</text>
+    <text x="15" y="155" class="sidebar-text txt-s3" font-style="italic" style="font-size:10px">   (Revoked!)</text>
+
+    <text x="15" y="180" class="sidebar-text txt-s4">4. 🚨 REUSE DETECTED!</text>
+
+    <text x="15" y="200" class="sidebar-text txt-s5">5. 🛑 BLOCK EVERYONE</text>
+  </g>
+
+  <!-- MAIN DIAGRAM AREA (Shifted Right) -->
+  <g transform="translate(260, 0)">
+
+    <!-- NODES (Centered at Y=300) -->
+    <!-- Height 90: From 255 to 345 -->
+    
+    <!-- User (Bottom Left) -->
+    <g transform="translate(0, 255)">
+      <rect width="110" height="90" class="node-box" stroke="#4299e1" />
+      <text x="55" y="40" text-anchor="middle" class="icon">👤</text>
+      <text x="55" y="70" text-anchor="middle" class="node-text" fill="#4299e1">User</text>
+    </g>
+
+    <!-- Auth Service (Center) -->
+    <g transform="translate(320, 255)">
+      <rect width="130" height="90" class="node-box" stroke="#9f7aea" />
+      <text x="65" y="40" text-anchor="middle" class="icon">⚙️</text>
+      <text x="65" y="70" text-anchor="middle" class="node-text" fill="#9f7aea">Auth Service</text>
+      
+      <!-- Alert Overlay (s4) -->
+      <g transform="translate(65, -30)" class="s4">
+         <circle r="25" fill="#ef4444" stroke="#fff" stroke-width="2"/>
+         <text x="0" y="8" text-anchor="middle" style="font-size: 20px;">🚨</text>
+      </g>
+    </g>
+
+    <!-- Hacker (Bottom Right) -->
+    <g transform="translate(660, 255)">
+      <rect width="110" height="90" class="node-box" stroke="#fc8181" />
+      <text x="55" y="40" text-anchor="middle" class="icon">☠️</text>
+      <text x="55" y="70" text-anchor="middle" class="node-text" fill="#fc8181">Hacker</text>
+    </g>
+
+    <!-- PATHS (Compact Grid: 275, 300, 325) -->
+    
+    <!-- LANE 1 (Top): User -> Server (Step 1) -->
+    <!-- y=275 -->
+    <g class="s1">
+        <line x1="110" y1="275" x2="320" y2="275" stroke="#4299e1" stroke-width="2" marker-end="url(#arrowBlue)" />
+        <rect x="190" y="267" width="60" height="16" rx="3" fill="#4299e1" stroke="#fff"/>
+        <text x="220" y="278" text-anchor="middle" class="badge-text" fill="#000">1. RT_1</text>
+    </g>
+
+    <!-- LANE 2 (Middle): Server -> User (Step 2) -->
+    <!-- y=300 -->
+    <g class="s2">
+        <line x1="320" y1="300" x2="110" y2="300" stroke="#9f7aea" stroke-width="2" marker-end="url(#arrowPurple)" />
+        <rect x="190" y="292" width="60" height="16" rx="3" fill="#9f7aea" stroke="#fff"/>
+        <text x="220" y="303" text-anchor="middle" class="badge-text" fill="#000">2. RT_2</text>
+    </g>
+
+    <!-- LANE 3 (Middle): Hacker -> Server (Step 3) -->
+    <!-- y=300 (Aligned with Lane 2) -->
+    <g class="s3">
+        <line x1="660" y1="300" x2="450" y2="300" stroke="#fc8181" stroke-width="2" marker-end="url(#arrowRed)" />
+        <rect x="530" y="292" width="60" height="16" rx="3" fill="#fc8181" stroke="#fff"/>
+        <text x="560" y="303" text-anchor="middle" class="badge-text" fill="#000">3. RT_1</text>
+    </g>
+
+    <!-- Step 5: BLOCK LINES (s5) -->
+    <!-- Y=325 (Inside Node Bottom) -->
+    <g class="s5">
+        <!-- Block User -->
+        <line x1="320" y1="325" x2="110" y2="325" stroke="#ef4444" stroke-width="3" stroke-dasharray="6,3" />
+        <circle cx="215" cy="325" r="12" fill="#ef4444" stroke="#fff"/>
+        <text x="215" y="329" text-anchor="middle" fill="white" font-weight="bold" font-size="10">X</text>
+        <text x="215" y="350" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">BLOCKED</text>
+
+        <!-- Block Hacker -->
+        <line x1="450" y1="325" x2="660" y2="325" stroke="#ef4444" stroke-width="3" stroke-dasharray="6,3" />
+        <circle cx="555" cy="325" r="12" fill="#ef4444" stroke="#fff"/>
+        <text x="555" y="329" text-anchor="middle" fill="white" font-weight="bold" font-size="10">X</text>
+        <text x="555" y="350" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">BLOCKED</text>
+    </g>
+
+  </g>
+</svg>
+

@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 700" style="background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shieldGlow">
+      <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#9f7aea" />
+    </filter>
+    <!-- Improved Arrow Markers -->
+    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L10,3 z" fill="#4299e1" />
+    </marker>
+    <marker id="arrowRed" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L10,3 z" fill="#fc8181" />
+    </marker>
+    <marker id="arrowPurple" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L10,3 z" fill="#9f7aea" />
+    </marker>
+    <marker id="arrowOrange" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L10,3 z" fill="#ed8936" />
+    </marker>
+    <marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L10,3 z" fill="#48bb78" />
+    </marker>
+  </defs>
+  
+  <style>
+    .title { font-family: 'Segoe UI', sans-serif; font-size: 32px; fill: #e2e8f0; font-weight: 700; }
+    .subtitle { font-family: 'Segoe UI', sans-serif; font-size: 18px; fill: #a0aec0; }
+    .node-text { font-family: 'Segoe UI', sans-serif; font-size: 14px; fill: #1a202c; font-weight: 700; }
+    .node-text-light { font-family: 'Segoe UI', sans-serif; font-size: 16px; fill: #e2e8f0; font-weight: 700; }
+    .step-num { font-family: 'Segoe UI', sans-serif; font-size: 12px; fill: #fff; font-weight: 700; }
+    .step-text { font-family: 'Segoe UI', sans-serif; font-size: 11px; fill: #cbd5e0; font-weight: 500; }
+    .sidebar-title { font-family: 'Segoe UI', sans-serif; font-size: 18px; fill: #9f7aea; font-weight: 600; text-decoration: underline; }
+    .sidebar-text { font-family: 'Segoe UI', sans-serif; font-size: 14px; fill: #718096; transition: all 0.5s; }
+    
+    /* Animation Cycle: 22s total */
+    .s1 { opacity: 0.1; animation: hlBlue 22s ease-in-out infinite; animation-delay: 0s; }
+    .s2 { opacity: 0.1; animation: hlRed 22s ease-in-out infinite; animation-delay: 2s; }
+    .s3 { opacity: 0.1; animation: hlPurple 22s ease-in-out infinite; animation-delay: 4s; }
+    .s4 { opacity: 0.1; animation: hlOrange 22s ease-in-out infinite; animation-delay: 6s; }
+    .s5 { opacity: 0.1; animation: hlRed 22s ease-in-out infinite; animation-delay: 8s; }
+    .s6 { opacity: 0.1; animation: hlPurple 22s ease-in-out infinite; animation-delay: 10s; }
+    .s7 { opacity: 0.1; animation: hlGreen 22s ease-in-out infinite; animation-delay: 12s; }
+    .s8 { opacity: 0.1; animation: hlRed 22s ease-in-out infinite; animation-delay: 14s; }
+    .s9 { opacity: 0.1; animation: hlPurple 22s ease-in-out infinite; animation-delay: 16s; }
+    .s10 { opacity: 0.1; animation: hlGreen 22s ease-in-out infinite; animation-delay: 18s; }
+    .s11 { opacity: 0.1; animation: hlBlue 22s ease-in-out infinite; animation-delay: 20s; }
+
+    /* Text Highlight Animations (Sidebar) */
+    .txt-s1 { animation: txtHlBlue 22s ease-in-out infinite; animation-delay: 0s; }
+    .txt-s2 { animation: txtHlRed 22s ease-in-out infinite; animation-delay: 2s; }
+    .txt-s3 { animation: txtHlPurple 22s ease-in-out infinite; animation-delay: 4s; }
+    .txt-s4 { animation: txtHlOrange 22s ease-in-out infinite; animation-delay: 6s; }
+    .txt-s5 { animation: txtHlRed 22s ease-in-out infinite; animation-delay: 8s; }
+    .txt-s6 { animation: txtHlPurple 22s ease-in-out infinite; animation-delay: 10s; }
+    .txt-s7 { animation: txtHlGreen 22s ease-in-out infinite; animation-delay: 12s; }
+    .txt-s8 { animation: txtHlRed 22s ease-in-out infinite; animation-delay: 14s; }
+    .txt-s9 { animation: txtHlPurple 22s ease-in-out infinite; animation-delay: 16s; }
+    .txt-s10 { animation: txtHlGreen 22s ease-in-out infinite; animation-delay: 18s; }
+    .txt-s11 { animation: txtHlBlue 22s ease-in-out infinite; animation-delay: 20s; }
+    
+    @keyframes hlBlue { 0%,8% { opacity:1; filter:drop-shadow(0 0 8px rgba(66,153,225,1)); stroke-width:3; } 9%,100% { opacity:0.1; stroke-width:1; } }
+    @keyframes hlPurple { 0%,8% { opacity:1; filter:drop-shadow(0 0 8px rgba(159,122,234,1)); stroke-width:3; } 9%,100% { opacity:0.1; stroke-width:1; } }
+    @keyframes hlRed { 0%,8% { opacity:1; filter:drop-shadow(0 0 8px rgba(252,129,129,1)); stroke-width:3; } 9%,100% { opacity:0.1; stroke-width:1; } }
+    @keyframes hlGreen { 0%,8% { opacity:1; filter:drop-shadow(0 0 8px rgba(72,187,120,1)); stroke-width:3; } 9%,100% { opacity:0.1; stroke-width:1; } }
+    @keyframes hlOrange { 0%,8% { opacity:1; filter:drop-shadow(0 0 8px rgba(237,137,54,1)); stroke-width:3; } 9%,100% { opacity:0.1; stroke-width:1; } }
+
+    @keyframes txtHlBlue { 0%,8% { fill: #63b3ed; font-weight:700; transform: translateX(10px); } 9%,100% { fill: #718096; transform: translateX(0); } }
+    @keyframes txtHlPurple { 0%,8% { fill: #b794f4; font-weight:700; transform: translateX(10px); } 9%,100% { fill: #718096; transform: translateX(0); } }
+    @keyframes txtHlRed { 0%,8% { fill: #fc8181; font-weight:700; transform: translateX(10px); } 9%,100% { fill: #718096; transform: translateX(0); } }
+    @keyframes txtHlGreen { 0%,8% { fill: #68d391; font-weight:700; transform: translateX(10px); } 9%,100% { fill: #718096; transform: translateX(0); } }
+    @keyframes txtHlOrange { 0%,8% { fill: #fbd38d; font-weight:700; transform: translateX(10px); } 9%,100% { fill: #718096; transform: translateX(0); } }
+
+    .indicator { animation: pulse 1s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.2); } }
+  </style>
+  
+  <!-- BACKGROUND TITLE - MOVED DOWN to Bottom Center -->
+  <text x="900" y="550" text-anchor="middle" class="title">BFF Architecture Flow</text>
+  <text x="900" y="580" text-anchor="middle" class="subtitle">Secure Silent Refresh Pattern</text>
+
+  <!-- SIDEBAR (Left) -->
+  <g transform="translate(50, 100)">
+    <rect x="0" y="0" width="300" height="500" rx="10" fill="rgba(30, 30, 40, 0.5)" stroke="#2d3748" />
+    <text x="20" y="40" class="sidebar-title">Step-by-Step Flow</text>
+    
+    <text x="20" y="80" class="sidebar-text txt-s1">1. Client requests Data (SessionID)</text>
+    <text x="20" y="115" class="sidebar-text txt-s2">2. BFF checks Redis for Token</text>
+    <text x="20" y="150" class="sidebar-text txt-s3">3. BFF forwards req (Expired AT)</text>
+    <text x="20" y="185" class="sidebar-text txt-s4">4. Backend rejects (401)</text>
+    <text x="20" y="220" class="sidebar-text txt-s5">5. BFF gets RefreshToken from Redis</text>
+    <text x="20" y="255" class="sidebar-text txt-s6">6. BFF calls POST /refresh</text>
+    <text x="20" y="290" class="sidebar-text txt-s7">7. Backend returns New AT &amp; RT</text>
+    <text x="20" y="325" class="sidebar-text txt-s8">8. BFF updates Redis (New AT/RT)</text>
+    <text x="20" y="360" class="sidebar-text txt-s9">9. BFF Retries original Request</text>
+    <text x="20" y="395" class="sidebar-text txt-s10">10. Backend returns Data</text>
+    <text x="20" y="430" class="sidebar-text txt-s11">11. BFF responds to Client</text>
+  </g>
+
+  <!-- DIAGRAM AREA (Right) -->
+  <g transform="translate(400, 0)">
+    
+    <!-- NODES -->
+    
+    <!-- Client -->
+    <g transform="translate(50, 300)">
+      <rect x="0" y="0" width="120" height="80" rx="40" fill="#2d3748" stroke="#4299e1" stroke-width="3"/>
+      <text x="60" y="45" text-anchor="middle" style="font-size:30px">💻</text>
+      <text x="60" y="70" text-anchor="middle" class="node-text-light">Client</text>
+    </g>
+
+    <!-- BFF (BIGGER) -->
+    <g transform="translate(400, 200)">
+      <rect x="0" y="0" width="200" height="280" rx="15" fill="#2d3748" stroke="#9f7aea" stroke-width="3"/>
+      
+      <!-- SHIELD ICON (Clearer) -->
+      <g filter="url(#shieldGlow)">
+        <text x="100" y="140" text-anchor="middle" style="font-size:80px;">🛡️</text>
+      </g>
+      
+      <text x="100" y="180" text-anchor="middle" class="node-text-light" style="font-size:20px; text-shadow: 0 0 10px #9f7aea">BFF / Proxy</text>
+    </g> 
+
+    <!-- Redis - MOVED UP to y=20 (Gap increased) -->
+    <g transform="translate(450, 20)">
+      <rect x="0" y="0" width="100" height="80" rx="10" fill="#fff5f5" stroke="#fc8181" stroke-width="3"/>
+      <text x="50" y="40" text-anchor="middle" style="font-size:30px">🧠</text>
+      <text x="50" y="65" text-anchor="middle" class="node-text">Redis</text>
+    </g>
+
+    <!-- Backend (RECTANGLE) -->
+    <g transform="translate(850, 200)">
+      <rect x="0" y="0" width="200" height="280" rx="15" fill="#c6f6d5" stroke="#48bb78" stroke-width="3"/>
+      
+      <!-- GEAR ICON - Spaced out -->
+      <text x="100" y="110" text-anchor="middle" style="font-size:60px; opacity:0.6">⚙️</text>
+      <text x="100" y="170" text-anchor="middle" class="node-text" style="font-size:20px;">Backend API</text>
+    </g>
+
+    <!-- LINES -->
+
+    <!-- === CLIENT <-> BFF (Balanced) === -->
+    
+    <!-- 1. Client -> BFF (Upper) -->
+    <path d="M 170 320 L 400 320" stroke="#4299e1" stroke-width="2" class="s1" fill="none" marker-end="url(#arrowBlue)"/>
+    <g transform="translate(285, 300)" class="s1"><circle r="12" fill="#4299e1" class="indicator"/><text x="0" y="4" text-anchor="middle" class="step-num">1</text></g>
+    <text x="285" y="340" text-anchor="middle" class="step-text s1">GET /data</text>
+
+    <!-- 11. Final Response (Lower) -->
+    <path d="M 400 360 L 170 360" stroke="#4299e1" stroke-width="2" class="s11" fill="none" marker-end="url(#arrowBlue)"/>
+    <g transform="translate(285, 380)" class="s11"><circle r="12" fill="#4299e1" class="indicator"/><text x="0" y="4" text-anchor="middle" class="step-num">11</text></g>
+    <text x="285" y="355" text-anchor="middle" class="step-text s11">JSON Data</text>
+
+
+    <!-- === BFF <-> REDIS (Extended Arrows) === -->
+    <!-- Redis Bottom is at y = 20 + 80 = 100. BFF Top is at y = 200. Gap is 100px (Huge Gap) -->
+    
+    <!-- 2. Lookup -->
+    <path d="M 460 200 L 460 105" stroke="#fc8181" stroke-width="2" class="s2" fill="none" marker-end="url(#arrowRed)"/>
+    <g transform="translate(460, 155)" class="s2"><circle r="10" fill="#fc8181" class="indicator"/><text x="0" y="4" text-anchor="middle" class="step-num">2</text></g>
+    
+    <!-- 5. Get RT -->
+    <path d="M 500 200 L 500 105" stroke="#fc8181" stroke-width="2" class="s5" fill="none" marker-end="url(#arrowRed)"/>
+    <g transform="translate(500, 155)" class="s5"><circle r="10" fill="#fc8181" class="indicator"/><text x="0" y="4" text-anchor="middle" class="step-num">5</text></g>
+
+    <!-- 8. Update -->
+    <path d="M 540 200 L 540 105" stroke="#fc8181" stroke-width="2" class="s8" fill="none" marker-end="url(#arrowRed)"/>
+    <g transform="translate(540, 155)" class="s8"><circle r="10" fill="#fc8181" class="indicator"/><text x="0" y="4" text-anchor="middle" class="step-num">8</text></g>
+
+
+    <!-- === BFF <-> BACKEND (Straight Parallel Lines) === -->
+    
+    <!-- 3. Req (Old AT) -->
+    <path d="M 600 240 L 850 240" stroke="#9f7aea" stroke-width="2" class="s3" fill="none" marker-end="url(#arrowPurple)"/>
+    <g transform="translate(725, 230)" class="s3"><circle r="10" fill="#9f7aea" class="indicator"/><text x="0" y="4" text-anchor="middle" class="step-num">3</text></g>
+    <text x="725" y="255" text-anchor="middle" class="step-text s3">Req + Old AT</text>
+
+    <!-- 4. 401 Error -->
+    <path d="M 850 280 L 600 280" stroke="#ed8936" stroke-width="2" class="s4" fill="none" stroke-dasharray="8,4" marker-end="url(#arrowOrange)"/>
+    <g transform="translate(725, 270)" class="s4"><circle r="10" fill="#ed8936" class="indicator"/><text x="0" y="4" text-anchor="middle" class="step-num">4</text></g>
+    <text x="725" y="295" text-anchor="middle" class="step-text s4">401 Unauthorized</text>
+
+    <!-- 6. Refresh -->
+    <path d="M 600 320 L 850 320" stroke="#9f7aea" stroke-width="2" class="s6" fill="none" marker-end="url(#arrowPurple)"/>
+    <g transform="translate(725, 310)" class="s6"><circle r="10" fill="#9f7aea" class="indicator"/><text x="0" y="4" text-anchor="middle" class="step-num">6</text></g>
+    <text x="725" y="335" text-anchor="middle" class="step-text s6">POST /refresh (RT)</text>
+
+    <!-- 7. New Tokens -->
+    <path d="M 850 360 L 600 360" stroke="#48bb78" stroke-width="2" class="s7" fill="none" marker-end="url(#arrowGreen)"/>
+    <g transform="translate(725, 350)" class="s7"><circle r="10" fill="#48bb78" class="indicator"/><text x="0" y="4" text-anchor="middle" class="step-num">7</text></g>
+    <text x="725" y="375" text-anchor="middle" class="step-text s7">200 OK (New AT + RT)</text>
+
+    <!-- 9. Retry -->
+    <path d="M 600 400 L 850 400" stroke="#9f7aea" stroke-width="2" class="s9" fill="none" marker-end="url(#arrowPurple)"/>
+    <g transform="translate(725, 390)" class="s9"><circle r="10" fill="#9f7aea" class="indicator"/><text x="0" y="4" text-anchor="middle" class="step-num">9</text></g>
+    <text x="725" y="415" text-anchor="middle" class="step-text s9">Retry Req + New AT</text>
+
+    <!-- 10. Data -->
+    <path d="M 850 440 L 600 440" stroke="#48bb78" stroke-width="2" class="s10" fill="none" marker-end="url(#arrowGreen)"/>
+    <g transform="translate(725, 430)" class="s10"><circle r="10" fill="#48bb78" class="indicator"/><text x="0" y="4" text-anchor="middle" class="step-num">10</text></g>
+    <text x="725" y="455" text-anchor="middle" class="step-text s10">Data Payload</text>
+
+  </g>
+</svg>
+
