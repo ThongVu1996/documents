@@ -2,7 +2,7 @@
 
 > "Talk is cheap, show me the code." — Linus Torvalds
 
-Ở [Phần 4](./part_4.md), chúng ta đã thiết kế kiến trúc **"Zero Token Architecture"** để đạt bảo mật cấp ngân hàng. Mục tiêu tối thượng là: **Trình duyệt chỉ giữ SessionID vô hại, còn Access/Refresh Token được giấu kín hoàn toàn ở Server (BFF).**
+Ở [Phần 4](https://github.com/ThongVu1996/documents/blob/main/web/jwt_refresh_token/part_4.md), chúng ta đã thiết kế kiến trúc **"Zero Token Architecture"** để đạt bảo mật cấp ngân hàng. Mục tiêu tối thượng là: **Trình duyệt chỉ giữ SessionID vô hại, còn Access/Refresh Token được giấu kín hoàn toàn ở Server (BFF).**
 
 Hôm nay, chúng ta sẽ hiện thực hóa nó. Hệ thống bao gồm:
 *   **BFF (Next.js):** Đóng vai trò "Vệ sĩ", quản lý Session và tự động Refresh Token.

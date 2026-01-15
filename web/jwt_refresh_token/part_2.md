@@ -2,7 +2,7 @@
 
 Chào mừng quay trở lại với Serie Authentication.
 
-Ở **[Phần 1](./part_1.md)**, chúng ta đã thống nhất mô hình tiêu chuẩn: **Access Token** (ngắn hạn, lưu RAM) kết hợp với **Refresh Token** (dài hạn, lưu HttpOnly Cookie). Đây là nền tảng vững chắc giúp cân bằng giữa trải nghiệm người dùng và bảo mật.
+Ở **[Phần 1](https://github.com/ThongVu1996/documents/blob/main/web/jwt_refresh_token/part_1.md)**, chúng ta đã thống nhất mô hình tiêu chuẩn: **Access Token** (ngắn hạn, lưu RAM) kết hợp với **Refresh Token** (dài hạn, lưu HttpOnly Cookie). Đây là nền tảng vững chắc giúp cân bằng giữa trải nghiệm người dùng và bảo mật.
 
 Tuy nhiên, mô hình cơ bản này vẫn tồn tại một "gót chân Achilles": **Nếu Hacker đánh cắp được Refresh Token (dù nó nằm trong Cookie), hắn có thể âm thầm gia hạn và duy trì quyền truy cập tài khoản của bạn trong suốt 30 ngày (hoặc hơn).**
 
@@ -20,7 +20,7 @@ Trong mô hình cũ, Refresh Token (RT) giống như một chiếc thẻ từ ra
 ### 2. Giải pháp: Token Rotation (Xoay vòng)
 Chúng ta thay đổi luật chơi: **Mỗi Refresh Token chỉ được sử dụng DUY NHẤT 1 LẦN.**
 
-![Token Rotation](./refresh-token-rotation.svg)
+![Token Rotation](https://github.com/ThongVu1996/documents/raw/main/web/jwt_refresh_token/refresh-token-rotation.svg)
 
 **Quy trình:**
 1.  Client gửi `RT_Old` lên Server để xin cấp mới.
@@ -43,7 +43,7 @@ Cuộc đua bắt đầu. Vì `RT_1` chỉ dùng được 1 lần, ai dùng trư
 
 ### Kịch bản A: Hacker nhanh tay hơn
 
-![hacker faster](./reuse_detection_hacker_faster.svg)
+![hacker faster](https://github.com/ThongVu1996/documents/raw/main/web/jwt_refresh_token/reuse_detection_hacker_faster.svg)
 
 1.  Hacker gửi `RT_1` đổi lấy `RT_2`. Server hủy `RT_1`. Hacker đăng nhập thành công.
 2.  Bạn (User thật) giờ mới gửi `RT_1` lên Server.
@@ -57,7 +57,7 @@ Cuộc đua bắt đầu. Vì `RT_1` chỉ dùng được 1 lần, ai dùng trư
 
 ### Kịch bản B: Bạn nhanh tay hơn
 
-  ![user faster](./reuse_detection_user_faster.svg) 
+  ![user faster](https://github.com/ThongVu1996/documents/raw/main/web/jwt_refresh_token/reuse_detection_user_faster.svg) 
 
 1.  Bạn dùng `RT_1` đổi lấy `RT_2`. Server hủy `RT_1`.
 2.  Hacker dùng `RT_1`.
@@ -104,7 +104,7 @@ Rotation rất an toàn, nhưng nó gây ra một lỗi kinh điển cho Fronten
 ### 1. Mô tả lỗi
 Giả sử trang Dashboard của bạn khi vừa load sẽ gọi song song 2 API: `getUserProfile()` và `getNotifications()`.
 
-![Race Condition](./race-condition.svg)
+![Race Condition](https://github.com/ThongVu1996/documents/raw/main/web/jwt_refresh_token/race-condition.svg)
 
 1.  Access Token hết hạn. Cả 2 API cùng lúc trả về lỗi **401 Unauthorized**.
 2.  Frontend (nếu code interceptor không khéo) sẽ gửi **2 request /refresh gần như cùng lúc**, cả hai đều mang theo `RT_1`.
@@ -129,7 +129,7 @@ Trước khi nhờ cậy đến Server, Frontend phải là "tuyến phòng th�
 *   **Vấn đề:** Khi nhiều request cùng lúc gặp lỗi 401.
 *   **Giải pháp:** Pattern **Promise Singleton**.
 
-![Reactive Flow](./reactive-flow.svg)
+![Reactive Flow](https://github.com/ThongVu1996/documents/raw/main/web/jwt_refresh_token/reactive-flow.svg)
 
 **Logic:**
 1.  Request A bị 401 -> Đặt cờ `isRefreshing = true`. Gọi API refresh.
@@ -145,7 +145,7 @@ Trước khi nhờ cậy đến Server, Frontend phải là "tuyến phòng th�
 
 **Cơ chế:** Client cài một bộ đếm (Timer) hoặc kiểm tra thời gian hết hạn trước mỗi lần gửi request.
 
-![Proactive Flow](./proactive-flow.svg)
+![Proactive Flow](https://github.com/ThongVu1996/documents/raw/main/web/jwt_refresh_token/proactive-flow.svg)
 
 **Logic:**
 1.  Decode Access Token để lấy `exp` (thời gian hết hạn).
@@ -168,7 +168,7 @@ Dù Frontend có làm tốt đến đâu, vẫn có trường hợp ngoại lệ
 
 ### Luồng xử lý mới tại Server:
 
-![Grace period flow](./grace-period-flow.svg)
+![Grace period flow](https://github.com/ThongVu1996/documents/raw/main/web/jwt_refresh_token/grace-period-flow.svg)
 
 Khi nhận được một Refresh Token (`RT_Input`) đã bị revoked:
 1.  **Kiểm tra:** `RT_Input` bị hủy cách đây bao lâu?
@@ -274,4 +274,4 @@ Qua hai phần đầu, chúng ta đã xây dựng được một kiến trúc x�
 
 Lý thuyết đã đủ "chín". Nhưng từ lý thuyết đến code chạy được là cả một bầu trời khoảng cách. Làm sao để code logic Reuse Detection bằng Node.js? Làm sao cấu hình Redis để xử lý việc này tốc độ cao?
 
-👉 **Đón đọc Phần 3: Thực chiến Code - Triển khai hệ thống Token Rotation với Docker & Node.js [tại đây](./part_3.md).**
+👉 **Đón đọc Phần 3: Thực chiến Code - Triển khai hệ thống Token Rotation với Docker & Node.js [tại đây](https://github.com/ThongVu1996/documents/blob/main/web/jwt_refresh_token/part_3.md).**

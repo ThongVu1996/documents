@@ -140,7 +140,7 @@ sequenceDiagram
     Server-->>Client: 13. Thành công! (User không hề hay biết)
 ```
 
-![work flow](./work-flow.svg)
+![work flow](https://github.com/ThongVu1996/documents/raw/main/web/jwt_refresh_token/work-flow.svg)
 
 1.  **Login:** Client gửi user/pass. Server trả về AT (5 phút) + RT (7 ngày).
 2.  **Truy cập:** Client gửi request kèm AT -> Server trả data.
@@ -269,4 +269,4 @@ Lúc này, Refresh Token vốn là tính năng "tiện lợi" bỗng trở thàn
 
 Tất cả sẽ được giải mã trong bài viết tiếp theo với kỹ thuật **Refresh Token Rotation** và **Reuse Detection**.
 
-👉 **Đừng bỏ lỡ [Phần 2]: Refresh Token Rotation - Gài bẫy Hacker và xử lý lỗi Logout oan (Race Condition) [tại đây](./part_2.md)**
+👉 **Đừng bỏ lỡ [Phần 2]: Refresh Token Rotation - Gài bẫy Hacker và xử lý lỗi Logout oan (Race Condition) [tại đây](https://github.com/ThongVu1996/documents/blob/main/web/jwt_refresh_token/part_2.md)**

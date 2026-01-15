@@ -2,7 +2,7 @@
 
 > *"Talk is cheap, show me the code."* — Linus Torvalds
 
-Ở **[Phần 1](./part_1.md)** và **[Phần 2](./part_2.md)**, chúng ta đã đi qua rất nhiều lý thuyết về Access Token, Refresh Token, các kịch bản tấn công và cơ chế phòng thủ "Reuse Detection".
+Ở **[Phần 1](https://github.com/ThongVu1996/documents/blob/main/web/jwt_refresh_token/part_1.md)** và **[Phần 2](https://github.com/ThongVu1996/documents/blob/main/web/jwt_refresh_token/part_2.md)**, chúng ta đã đi qua rất nhiều lý thuyết về Access Token, Refresh Token, các kịch bản tấn công và cơ chế phòng thủ "Reuse Detection".
 
 Nhưng lý thuyết sẽ mãi là lý thuyết nếu không chạy được. Bạn có thể tự hỏi:
 *   *"Code logic Grace Period trông như thế nào?"*
@@ -440,7 +440,7 @@ Với 5% còn lại – những hệ thống Tài chính, Ngân hàng, hay Enter
 
 Đó là lúc chúng ta bước vào cảnh giới cao nhất của bảo mật Frontend: **Kiến trúc Zero Token với BFF (Backend For Frontend).**
 
-👉 **Nếu bạn muốn biết các "ông lớn" Fintech bảo vệ tài sản người dùng như thế nào, đừng bỏ lỡ bài viết cuối cùng (Bonus): [Authentication Part 4] BFF Pattern - Khi Browser hoàn toàn "mù tịt" về Token [tại đây](./part_4.md).**
+👉 **Nếu bạn muốn biết các "ông lớn" Fintech bảo vệ tài sản người dùng như thế nào, đừng bỏ lỡ bài viết cuối cùng (Bonus): [Authentication Part 4] BFF Pattern - Khi Browser hoàn toàn "mù tịt" về Token [tại đây](https://github.com/ThongVu1996/documents/blob/main/web/jwt_refresh_token/part_4.md).**
 
 > **Link Github Source Code (Part 3):** `github.com/your-username/token-rotation-demo` *(Placeholder)*
 

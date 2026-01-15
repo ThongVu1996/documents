@@ -59,7 +59,7 @@ Dưới đây là luồng đi của dữ liệu từ lúc đăng nhập đến k
 
 ### A. Giai đoạn Đăng nhập (Authentication)
 
-   ![Authentication](./bff-login-flow.svg)
+   ![Authentication](https://github.com/ThongVu1996/documents/raw/main/web/jwt_refresh_token/bff-login-flow.svg)
 1.  **Client:** Gửi username/password lên BFF.
 2.  **BFF:** Chuyển tiếp (Forward) thông tin này đến Backend API để xác thực.
 3.  **Backend API:** Xác thực thành công, trả về Access Token (AT) và Refresh Token (RT) cho BFF.
@@ -75,7 +75,7 @@ Dưới đây là luồng đi của dữ liệu từ lúc đăng nhập đến k
 
 ### B. Giai đoạn Gọi dữ liệu (Authorization)
 
-   ![Authorization](./bff-proxy-flow.svg) 
+   ![Authorization](https://github.com/ThongVu1996/documents/raw/main/web/jwt_refresh_token/bff-proxy-flow.svg) 
 1.  **Client:** Cần lấy danh sách tài khoản. Client gọi API lên BFF: `GET /api/proxy/accounts`. (Browser tự động đính kèm Cookie chứa SessionID).
 2.  **BFF:**
     *   Nhận request, bóc tách Cookie để lấy `SessionID`.
@@ -89,7 +89,7 @@ Dưới đây là luồng đi của dữ liệu từ lúc đăng nhập đến k
 
 Đây là nơi BFF tỏa sáng. Client không hề biết Token đã hết hạn.
 
-   ![Silent Refresh](./bff-slient-refresh-flow.svg)
+   ![Silent Refresh](https://github.com/ThongVu1996/documents/raw/main/web/jwt_refresh_token/bff-slient-refresh-flow.svg)
 
 1.  **BFF:** Dùng AT trong Redis gọi Backend API.
 2.  **Backend API:** Trả về lỗi **401 Unauthorized** (do AT hết hạn).
@@ -315,7 +315,7 @@ Từ bản vẽ đến ngôi nhà thực tế là một khoảng cách lớn. Kh
 
 Tôi sẽ không để bạn dừng lại ở những sơ đồ lý thuyết. Chúng ta cần một **"Phòng thí nghiệm"** thứ hai, nơi kiến trúc BFF được hiện thực hóa bằng những dòng code cụ thể.
 
-👉 **Đừng bỏ lỡ phần cuối cùng của Series: [Authentication Part 5] Thực chiến BFF: Xây dựng Security Proxy "One-Click" với Next.js, Laravel & Redis [tại đây](./part_5.md)**
+👉 **Đừng bỏ lỡ phần cuối cùng của Series: [Authentication Part 5] Thực chiến BFF: Xây dựng Security Proxy "One-Click" với Next.js, Laravel & Redis [tại đây](https://github.com/ThongVu1996/documents/blob/main/web/jwt_refresh_token/part_5.md)**
 *(Chúng ta sẽ cùng nhau code một con BFF server hoàn chỉnh, xử lý toàn bộ luồng Proxy, Session Management và Auto-Refresh).*
 
 **Happy Coding & See you in the Lab!**
