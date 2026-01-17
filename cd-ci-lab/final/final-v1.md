@@ -70,42 +70,7 @@ Hệ thống sử dụng CloudFlare làm điểm nhập (Entry point) để đi�
 
 **Sơ đồ luồng dữ liệu:**
 
-```mermaid
-flowchart LR
-    %% Style Definitions
-    classDef aws fill:#fff0e6,stroke:#f66,stroke-width:1px,stroke-dasharray: 5 5;
-    classDef local fill:#e6f3ff,stroke:#33f,stroke-width:1px,stroke-dasharray: 5 5;
-    classDef proxy fill:#fff5cc,stroke:#d4a017,stroke-width:2px,rx:5,ry:5;
-    classDef user fill:#2d3748,stroke:#1a202c,stroke-width:2px,color:white,rx:10,ry:10;
-
-    User(User):::user -->|Truy cập Domain| CF{CloudFlare}:::proxy
-    
-    %% AWS Branch (Primary)
-    CF == Primary Route ==> AWS_ALB[AWS ALB]
-    
-    subgraph AWS_Cloud [☁️ Primary Site - AWS Cloud]
-        direction LR
-        AWS_ALB:::aws --> AWS_Ingress[Ingress Controller]:::aws
-        AWS_Ingress --> AWS_Svc[K8s Service]:::aws
-        AWS_Svc --> AWS_Pod[App Pods]:::aws
-    end
-    
-    %% Local Branch (Failover)
-    CF -. Failover / DR Mode .-> Tunnel[CloudFlare Tunnel]
-    
-    subgraph On_Premise [🏠 DR Site - On-Premise]
-        direction LR
-        Tunnel:::local --> CF_Agent[CloudFlare Agent]:::local
-        CF_Agent --> Local_Ingress[Ingress Nginx]:::local
-        Local_Ingress --> Local_Svc[K8s Service]:::local
-        Local_Svc --> Local_Pod[App Pods]:::local
-    end
-
-    %% Link Styles for emphasis
-    linkStyle 1 stroke:#48bb78,stroke-width:2px,color:#2f855a
-    linkStyle 5 stroke:#e53e3e,stroke-width:2px,stroke-dasharray: 5 5,color:#c53030
-```
-
+![Traffic Diagram](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/traffic_diagram.svg)
 
 **Quy trình xử lý chi tiết:**
 
@@ -134,7 +99,7 @@ Hệ thống được chia thành hai môi trường vật lý riêng biệt đ�
 * **Computing:** Cụm Amazon EKS (Elastic Kubernetes Service). ([Hướng dẫn cài đặt](https://github.com/ThongVu1996/cd-ci-lab/blob/master/aws/install.md))  
 * **Container Registry:** Amazon ECR (Elastic Container Registry). ([Hướng dẫn cài đặt](https://www.google.com/search?q))  
 * **Source Control (Mirror):** GitHub Repo. ([Tại đây](https://github.com/ThongVu1996/lab-final))  
-* **Database:** Amazon RDS (MySQL). ([Hướng dẫn cài đặt](https://github.com/ThongVu1996/cd-ci-lab/blob/master/final/insall-AWS-RDS.md))  
+* **Database:** Amazon RDS (MySQL). ([Hướng dẫn cài đặt](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/insall-AWS-RDS.md))  
 
 ### **3.2. Disaster Recovery (DR) Site \- On-Premise**
 
@@ -142,7 +107,7 @@ Môi trường dự phòng và cũng là nơi đặt hệ thống CI/CD trung t�
 
 * **Orchestration:** Kubernetes Local Cluster. ([Hướng dẫn cài đặt](https://www.google.com/search?q))  
 * **CI/CD Tooling:**  
-  ![pipe-line-CI-CD](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//pipeline.png)
+  ![pipe-line-CI-CD](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/pipeline.png)
   * Jenkins (Automation Server). ([Hướng dẫn cài đặt](https://github.com/ThongVu1996/cd-ci-lab/blob/master/all-in-one/all-in-one.md#b%C6%B0%E1%BB%9Bc-3-t%E1%BA%A1o-file-jenkinsdockerfile))  
   * GitLab (Source Code Management \- Private). ([Xem tại đây](https://www.google.com/search?q))  
 * **Container Registry (Private):** Harbor.  
@@ -158,64 +123,7 @@ Chúng ta tuân thủ nguyên tắc **GitOps**: Git là "nguồn chân lý duy n
 
 ### **4.1. Sơ đồ quy trình (Pipeline Diagram)**
 
-```mermaid
-flowchart LR
-    %% Style Definitions
-    classDef person fill:#2d3748,stroke:#1a202c,stroke-width:2px,color:white,rx:10,ry:10;
-    classDef system fill:#edf2f7,stroke:#a0aec0,stroke-width:1px,color:#2d3748,rx:5,ry:5;
-    classDef storage fill:#ebf8ff,stroke:#4299e1,stroke-width:2px,color:#2b6cb0,shape:cylinder;
-    classDef k8s fill:#3182ce,stroke:#2c5282,stroke-width:2px,color:white,shape:hexagon;
-    classDef jenkins fill:#fff5f5,stroke:#fc8181,stroke-width:2px,color:#c53030,rx:5,ry:5;
-
-    %% Nodes
-    Dev(👨‍💻 Developer):::person
-    CTO(🤵 CTO/Manager):::person
-
-    subgraph OnPrem [🏠 On-Premise Infrastructure]
-        GL[GitLab Local]:::system
-        
-        subgraph Jenkins_Server [Jenkins Pipeline]
-            direction TB
-            JenBuild[Stage 1: Build & Local]:::jenkins
-            JenDeploy[Stage 2: Cloud Deploy]:::jenkins
-        end
-        
-        Har[(Harbor Registry)]:::storage
-        ArgoLoc[ArgoCD Local]:::system
-        K8sLoc{{K8s Local}}:::k8s
-    end
-
-    subgraph Cloud [☁️ AWS Cloud Infrastructure]
-        GitOps[GitOps Repo]:::system
-        ECR[(AWS ECR)]:::storage
-        ArgoCloud[ArgoCD Cloud]:::system
-        EKS{{AWS EKS}}:::k8s
-    end
-
-    %% Connections - Linear Flow
-    Dev ==>|1. Push Code| GL
-    GL ==>|2. Webhook| JenBuild
-    
-    %% Local Path
-    JenBuild -->|3. Build & Push| Har
-    Har -->|4. Pull| ArgoLoc
-    ArgoLoc -->|5. Auto Deploy| K8sLoc
-
-    %% Approval Bridge - KEY CHANGE HERE
-    JenBuild -.->|6. Request Approval| CTO
-    CTO -.->|7. Approve| JenDeploy
-
-    %% Cloud Path (Only starts from JenDeploy)
-    JenDeploy -->|8. Push Image| ECR
-    JenDeploy -->|9. Update Manifest| GitOps
-    
-    GitOps -->|10. Sync| ArgoCloud
-    ArgoCloud -->|11. Rolling Update| EKS
-    
-    %% Link Styles
-    linkStyle 5,6 stroke:#ed8936,stroke-width:2px,stroke-dasharray: 5 5;
-
-```
+![Pull Base Git Óp](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/pipe_line_diagram.svg)
 
 ### **4.2. Chiến lược triển khai (Deployment Strategy)**
 
@@ -304,7 +212,7 @@ Trước tiên, hãy đảm bảo Helm Chart đã được cài đặt trên k8s
 
 YOUR\_TUNNEL\_TOKEN được lấy từ mục **Install and run a connector** trên giao diện Cloudflare như hình dưới:
 
-![token-cloud-flare-access-token](image-1.png)
+![token-cloud-flare-access-token](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/image-1.png)
 
 **Bước 3: Kiểm tra cài đặt**
 
@@ -316,7 +224,7 @@ Sử dụng lệnh sau để kiểm tra xem Cloudflare Agent đã hoạt động
 
 Kết quả hiển thị:
 
-![check-cloud-flare-agent-in-local](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//check-cloud-flare-agent-in-local.png)
+![check-cloud-flare-agent-in-local](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/check-cloud-flare-agent-in-local.png)
 
 ## **7.2. Cài đặt Nginx Ingress**
 
@@ -343,7 +251,7 @@ Chúng ta sẽ cài đặt Nginx Ingress Controller với loại Service là Clu
 kubectl get svc -n ingress-nginx
 ```
 
-![check ingress-nginx in local](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//check-ingress-nginx-local.png)
+![check ingress-nginx in local](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/check-ingress-nginx-local.png)
 
 **Tại sao sử dụng ClusterIP?**
 
@@ -355,7 +263,7 @@ kubectl get svc -n ingress-nginx
 
 Khi cấu hình Tunnel, bạn không cần dùng IP Private mà sử dụng địa chỉ DNS nội bộ của K8s. Điền vào ô URL giá trị: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80.
 
-![config-cloud-flare-tunel](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//token-cloud-flare-tunel.png)
+![config-cloud-flare-tunel](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/token-cloud-flare-tunel.png)
 
 *Giải thích địa chỉ:* \<service-name\>.\<namespace\>.svc.cluster.local
 
@@ -424,17 +332,17 @@ eksctl version
 
 Kết quả như ảnh là được:
 
-![aws-confirm-install](image.png)
+![aws-confirm-install](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/image.png)
 
 Nội dung Jenkinsfile xem [tại đây](https://github.com/ThongVu1996/lab-final-full/blob/main/Jenkinsfile).
 
 Sử dụng giao diện **Blue Ocean** để theo dõi quá trình build:
 
-![blue-ocean](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//blue-ocean.png)
+![blue-ocean](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/blue-ocean.png)
 
 Kết quả build thành công:
 
-![jenkins-build](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//jenkins-build.png)
+![jenkins-build](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/jenkins-build.png)
 
 ## **7.5. Kiểm tra Harbor**
 
@@ -442,15 +350,15 @@ Trên Harbor, Image và Helm Chart sẽ được đẩy lên tương ứng với
 
 Dự án trên Harbor:
 
-![harbor-project](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//harbor-project.png)
+![harbor-project](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/harbor-project.png)
 
 Danh sách Images:
 
-![harbor-images](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//harbor-images.png)
+![harbor-images](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/harbor-images.png)
 
 Chi tiết Platform:
 
-![multilpe-plate-form](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//multilpe-plate-form.png)
+![multilpe-plate-form](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/multilpe-plate-form.png)
 
 *Lưu ý:* Image có hai phiên bản (amd64, arm64) do sử dụng buildx. K8s sẽ tự chọn phiên bản phù hợp với chip của máy chủ. Trên môi trường Product nên dùng máy chủ chip AMD để tối ưu tốc độ build và tương thích.
 
@@ -458,19 +366,19 @@ Chi tiết Platform:
 
 Kiểm tra danh sách Repository và Images trên AWS ECR:
 
-![ECR-list-repo](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//ECR-list-repo.png)
+![ECR-list-repo](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/ECR-list-repo.png)
 
-![ECR-repo-detail](image-2.png)
+![ECR-repo-detail](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/image-2.png)
 
 ## **7.7. Kiểm tra Manifest Github**
 
 Kiểm tra repo chứa manifest để đảm bảo code và config đã được cập nhật:
 
-![manifest-cloud](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//manifest-cloud.png)
+![manifest-cloud](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/manifest-cloud.png)
 
 File values cấu hình:
 
-![mainifest-values-config](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//mainifest-values-config.png)
+![mainifest-values-config](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/mainifest-values-config.png)
 
 ## **7.8. Triển khai ứng dụng bằng ArgoCD**
 
@@ -572,21 +480,21 @@ kubectl apply -f ten_file_config.yaml
 
 Ứng dụng xuất hiện trên ArgoCD:
 
-![argocd-local-app](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//argocd-local-app.png)
+![argocd-local-app](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/argocd-local-app.png)
 
 Chi tiết đồng bộ:
 
-![argocd-local-app-detail](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//argocd-local-app-detail.png)
+![argocd-local-app-detail](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/argocd-local-app-detail.png)
 
 **Bước 4: Truy cập ứng dụng**
 
 * Trường hợp thành công:
   
-![app-local-success](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//app-local-success.png)
+![app-local-success](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/app-local-success.png)
 
 * Trường hợp thất bại:
 
-![app-local-fail](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//app-local-fail.png)
+![app-local-fail](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/app-local-fail.png)
 
 **Bước 5: Kiểm tra Log**
 
@@ -598,7 +506,7 @@ kubectl logs -f -l app.kubernetes.io/name=ingress-nginx -n ingress-nginx
 
 Log sẽ hiển thị khi bạn F5 trang web:
 
-![log-app-local](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//log-app-local.png)
+![log-app-local](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/log-app-local.png)
 
 ---
 
@@ -611,10 +519,10 @@ Khác với môi trường Local nơi mọi thành phần đều chạy trong Co
 Thay vì chạy MySQL trên Kubernetes (như ở Local), chúng ta sẽ sử dụng dịch vụ Amazon RDS (Relational Database Service).
 
 * **Lợi ích:** Tăng khả năng sao lưu, phục hồi và tính sẵn sàng cao (High Availability).  
-* **Hướng dẫn cài đặt:** Chi tiết các bước tạo và cấu hình AWS RDS bạn có thể xem [tại đây](https://github.com/ThongVu1996/cd-ci-lab/blob/master/final/insall-AWS-RDS.md).
+* **Hướng dẫn cài đặt:** Chi tiết các bước tạo và cấu hình AWS RDS bạn có thể xem [tại đây](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/insall-AWS-RDS.md).
 * **Kết quả**:
 
-  ![RDS](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//RDS.png)
+  ![RDS](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/RDS.png)
 
 ## **8.2. Cấu hình Ứng dụng và Ingress**
 
@@ -630,7 +538,7 @@ kubectl get ingress -A
 
 Kết quả sẽ hiển thị địa chỉ ADDRESS của Load Balancer do AWS cấp:
 
-![address-aws-alb](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//address-aws-alb.png)
+![address-aws-alb](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/address-aws-alb.png)
 
 ## **8.3. Cấu hình DNS trên Cloudflare**
 
@@ -688,15 +596,15 @@ Phần này hướng dẫn chi tiết các bước thực hiện thao tác chuy�
 
 Kết quả sau khi thay đổi:
 
-![change-subdomain-local](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//change-subdomain-local.png)
+![change-subdomain-local](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/change-subdomain-local.png)
 
-![results-change-subdomain](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//results-change-subdomain.png)
+![results-change-subdomain](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/results-change-subdomain.png)
 
 **Bước 2: Xác nhận sự cố (Downtime)**
 
 Kiểm tra truy cập trang web. Nếu trang web báo lỗi hoặc không thể truy cập, nghĩa là hệ thống Local đã "chết" đúng như kịch bản.
 
-![link-app-die](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//link-app-die.png)
+![link-app-die](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/link-app-die.png)
 
 ## **10.2. Chuyển đổi sang AWS (Failover)**
 
@@ -708,9 +616,9 @@ Truy cập Cloudflare Dashboard \-\> DNS \-\> Records và tạo (hoặc cập nh
 * **Name:** Subdomain của trang web.  
 * **Target:** Địa chỉ AWS ELB (đã lấy được ở phần 8.2 \- Triển khai Cloud).
   
-![record-for-aws](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//record-for-aws.png)
+![record-for-aws](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/record-for-aws.png)
 
-![record-for-aws-1](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//record-for-aws-1.png)
+![record-for-aws-1](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/record-for-aws-1.png)
 
 
 **Bước 4: Kiểm tra phục hồi dịch vụ**
@@ -718,9 +626,9 @@ Truy cập Cloudflare Dashboard \-\> DNS \-\> Records và tạo (hoặc cập nh
 Đợi khoảng 30-60 giây để Cloudflare cập nhật DNS toàn cầu. Sau đó tải lại trang web.  
 Kết quả mong đợi: Trang web hoạt động trở lại bình thường.
 
-![results-app-aws-1](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//results-app-aws-1.png)
+![results-app-aws-1](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/results-app-aws-1.png)
 
-![results-app-aws-2](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//results-app-aws-2.png)
+![results-app-aws-2](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/results-app-aws-2.png)
 
 ## **10.3. Xác thực hệ thống**
 
@@ -734,11 +642,11 @@ Mở terminal kết nối tới AWS EKS và chạy lệnh xem log Nginx Ingress:
 kubectl logs -f -l app.kubernetes.io/name=ingress-nginx -n ingress-nginx
 ```
 
-![confirm-connect-aws](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//confirm-connect-aws.png)
+![confirm-connect-aws](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/confirm-connect-aws.png)
 
 Khi bạn thao tác trên trang web (F5 hoặc đăng nhập), log mới sẽ xuất hiện trên terminal của AWS, chứng tỏ kịch bản DR đã thành công và hệ thống đang chạy hoàn toàn trên Cloud.
 
-![aws-logs](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//aws-logs.png)
+![aws-logs](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/aws-logs.png)
 
 ---
 
@@ -778,7 +686,7 @@ Mặc dù Nginx đều xuất hiện ở cả Frontend và Backend, vai trò và
 * **Triển khai:** Chúng ta build một Docker Image bao gồm Nginx và copy source code đã build vào thư mục root của Nginx. Nginx sẽ trực tiếp "giao hàng" (serve) các file này cho trình duyệt người dùng.  
 * **Cấu trúc Pod:** Thông thường chỉ chứa **1 Container**.
 
-![frontend-pod](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//frontend-pod.png)
+![frontend-pod](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/frontend-pod.png)
 
 ### **3.2. Đối với Backend (Reverse Proxy & FastCGI)**
 
@@ -793,6 +701,6 @@ Mặc dù Nginx đều xuất hiện ở cả Frontend và Backend, vai trò và
   * **Trên ArgoCD/Kubernetes:** Bạn sẽ thấy Pod Backend có trạng thái **2/2** (Ready/Total). Điều này nghĩa là trong 1 Pod đang chạy song song 2 Containers:  
     1. **Container App:** Chạy code Laravel (PHP-FPM).  
     2. **Container Nginx:** Đứng bên cạnh (Sidecar) để hứng traffic và chuyển cho App.
-  ![backend-pod](https://github.com/ThongVu1996/documents/raw/main/cd-ci-lab/final//backend-pod.png)
+  ![backend-pod](https://github.com/ThongVu1996/cd-ci-lab/raw/master/final/backend-pod.png)
 
 Việc tách biệt này cũng giúp khả năng mở rộng (Scaling) tốt hơn. Khi lưu lượng tăng cao, ta có thể scale cả Pod (bao gồm cặp Nginx \+ PHP-FPM) để đáp ứng nhu cầu.

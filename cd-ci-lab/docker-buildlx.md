@@ -39,7 +39,6 @@ Vì bạn dùng máy ARM để build cho Intel (AMD64), bạn cần "thông dị
 ```bash
     sudo apt-get install -y qemu-user-static binfmt-support
     # Đăng ký trình giả lập với Docker (Sử dụng bản mới nhất của tonistiigi)
-    # Riêng cái này phải cài trên máy host, còn buildx có thể cài ở máy host hoặc trên thẳng container jenkins cũng đuơc
     docker run --privileged --rm tonistiigi/binfmt --install all
 ```
 

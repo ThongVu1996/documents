@@ -1,0 +1,256 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 750" style="background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <style>
+    .title { font-family: 'Segoe UI', sans-serif; font-size: 20px; fill: #e2e8f0; font-weight: 600; }
+    .subtitle { font-family: 'Segoe UI', sans-serif; font-size: 11px; fill: #a0aec0; }
+    .node-text { font-family: 'Segoe UI', sans-serif; font-size: 10px; fill: #1a202c; font-weight: 500; }
+    .node-text-light { font-family: 'Segoe UI', sans-serif; font-size: 10px; fill: #e2e8f0; font-weight: 500; }
+    .step-num { font-family: 'Segoe UI', sans-serif; font-size: 11px; fill: #fff; font-weight: 700; }
+    .step-text { font-family: 'Segoe UI', sans-serif; font-size: 9px; fill: #cbd5e0; }
+    .section-title { font-family: 'Segoe UI', sans-serif; font-size: 13px; fill: #e2e8f0; font-weight: 600; }
+    
+    /* Node animations */
+    .s1 { opacity: 0.35; animation: hl 22s ease-in-out infinite; animation-delay: 0s; }
+    .s2 { opacity: 0.35; animation: hl 22s ease-in-out infinite; animation-delay: 2s; }
+    .s3 { opacity: 0.35; animation: hl 22s ease-in-out infinite; animation-delay: 4s; }
+    .s4 { opacity: 0.35; animation: hlBlue 22s ease-in-out infinite; animation-delay: 6s; }
+    .s5 { opacity: 0.35; animation: hlBlue 22s ease-in-out infinite; animation-delay: 8s; }
+    .s6 { opacity: 0.35; animation: hlOrange 22s ease-in-out infinite; animation-delay: 10s; }
+    .s7 { opacity: 0.35; animation: hlGreen 22s ease-in-out infinite; animation-delay: 12s; }
+    .s8 { opacity: 0.35; animation: hl 22s ease-in-out infinite; animation-delay: 14s; }
+    .s9 { opacity: 0.35; animation: hl 22s ease-in-out infinite; animation-delay: 16s; }
+    .s10 { opacity: 0.35; animation: hlGreen 22s ease-in-out infinite; animation-delay: 18s; }
+    .reject { opacity: 0.2; animation: hlRed 22s ease-in-out infinite; animation-delay: 12s; }
+    
+    /* Line animations */
+    .l1 { opacity: 0.2; animation: lineGlow 22s ease-in-out infinite; animation-delay: 0s; }
+    .l2 { opacity: 0.2; animation: lineGlow 22s ease-in-out infinite; animation-delay: 2s; }
+    .l3 { opacity: 0.2; animation: lineGlow 22s ease-in-out infinite; animation-delay: 4s; }
+    .l4 { opacity: 0.2; animation: lineGlow 22s ease-in-out infinite; animation-delay: 6s; }
+    .l5 { opacity: 0.2; animation: lineGlow 22s ease-in-out infinite; animation-delay: 8s; }
+    .l6 { opacity: 0.2; animation: lineGlowOrange 22s ease-in-out infinite; animation-delay: 10s; }
+    .l7 { opacity: 0.2; animation: lineGlowGreen 22s ease-in-out infinite; animation-delay: 12s; }
+    .l8 { opacity: 0.2; animation: lineGlow 22s ease-in-out infinite; animation-delay: 14s; }
+    .l9 { opacity: 0.2; animation: lineGlow 22s ease-in-out infinite; animation-delay: 16s; }
+    .l10 { opacity: 0.2; animation: lineGlowGreen 22s ease-in-out infinite; animation-delay: 18s; }
+    .lreject { opacity: 0.1; animation: lineGlowRed 22s ease-in-out infinite; animation-delay: 12s; }
+    
+    @keyframes hl { 0%,8% { opacity:1; filter:drop-shadow(0 0 10px rgba(125,211,252,0.8)); } 9%,100% { opacity:0.35; } }
+    @keyframes hlBlue { 0%,8% { opacity:1; filter:drop-shadow(0 0 10px rgba(49,130,206,0.9)); } 9%,100% { opacity:0.35; } }
+    @keyframes hlOrange { 0%,8% { opacity:1; filter:drop-shadow(0 0 12px rgba(237,137,54,0.9)); } 9%,100% { opacity:0.35; } }
+    @keyframes hlGreen { 0%,8% { opacity:1; filter:drop-shadow(0 0 12px rgba(72,187,120,0.9)); } 9%,100% { opacity:0.35; } }
+    @keyframes hlRed { 0%,8% { opacity:0.6; filter:drop-shadow(0 0 8px rgba(245,101,101,0.7)); } 9%,100% { opacity:0.2; } }
+    
+    @keyframes lineGlow { 0%,8% { opacity:1; stroke-width:4; filter:drop-shadow(0 0 6px rgba(125,211,252,0.6)); } 9%,100% { opacity:0.25; stroke-width:3; } }
+    @keyframes lineGlowOrange { 0%,8% { opacity:1; stroke-width:4; filter:drop-shadow(0 0 6px rgba(237,137,54,0.7)); } 9%,100% { opacity:0.25; stroke-width:3; } }
+    @keyframes lineGlowGreen { 0%,8% { opacity:1; stroke-width:4; filter:drop-shadow(0 0 6px rgba(72,187,120,0.7)); } 9%,100% { opacity:0.25; stroke-width:3; } }
+    @keyframes lineGlowRed { 0%,8% { opacity:0.5; stroke-width:3; filter:drop-shadow(0 0 4px rgba(245,101,101,0.5)); } 9%,100% { opacity:0.15; stroke-width:2; } }
+    
+    .indicator { animation: pulse 1s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.08); } }
+  </style>
+  
+  <!-- Title -->
+  <text x="750" y="30" text-anchor="middle" class="title">CI/CD GitOps Pipeline - Pull-based Deployment</text>
+  <text x="750" y="48" text-anchor="middle" class="subtitle">Local: 1-5 (Auto) | Approval: 6-10 (Manual) | Lines glow when step executes | 22s cycle</text>
+  
+  <!-- ========== LOCAL PATH (Row 1) ========== -->
+  
+  <!-- 1. Developer -->
+  <g transform="translate(50, 100)" class="s1">
+    <rect x="0" y="0" width="80" height="60" rx="10" fill="#2d3748" stroke="#7dd3fc" stroke-width="2"/>
+    <text x="40" y="26" text-anchor="middle" style="font-size:18px">👨‍💻</text>
+    <text x="40" y="45" text-anchor="middle" class="node-text-light">Developer</text>
+  </g>
+  
+  <!-- 2. GitLab -->
+  <g transform="translate(180, 100)" class="s2">
+    <rect x="0" y="0" width="80" height="60" rx="8" fill="#faf5ff" stroke="#9f7aea" stroke-width="2"/>
+    <text x="40" y="26" text-anchor="middle" style="font-size:16px">🦊</text>
+    <text x="40" y="45" text-anchor="middle" class="node-text">GitLab</text>
+  </g>
+  
+  <!-- 3. Jenkins Build -->
+  <g transform="translate(310, 95)" class="s3">
+    <rect x="0" y="0" width="90" height="70" rx="8" fill="#fff5f5" stroke="#fc8181" stroke-width="2"/>
+    <text x="45" y="24" text-anchor="middle" style="font-size:14px">🔧</text>
+    <text x="45" y="40" text-anchor="middle" class="node-text">Jenkins</text>
+    <text x="45" y="55" text-anchor="middle" class="node-text" style="font-size:8px">Build</text>
+  </g>
+  
+  <!-- 4. Harbor -->
+  <g transform="translate(450, 100)" class="s4">
+    <ellipse cx="42" cy="30" rx="45" ry="30" fill="#ebf8ff" stroke="#4299e1" stroke-width="2"/>
+    <text x="42" y="26" text-anchor="middle" style="font-size:13px">🐳</text>
+    <text x="42" y="43" text-anchor="middle" class="node-text">Harbor</text>
+  </g>
+  
+  <!-- 5. ArgoCD Local -->
+  <g transform="translate(580, 100)" class="s5">
+    <rect x="0" y="0" width="85" height="55" rx="8" fill="#edf2f7" stroke="#667eea" stroke-width="2"/>
+    <text x="42" y="22" text-anchor="middle" style="font-size:12px">🔄</text>
+    <text x="42" y="40" text-anchor="middle" class="node-text">ArgoCD</text>
+  </g>
+  
+  <!-- 5. K8s Local -->
+  <g transform="translate(720, 85)" class="s5">
+    <polygon points="42,0 84,24 84,62 42,86 0,62 0,24" fill="#3182ce" stroke="#2c5282" stroke-width="2"/>
+    <text x="42" y="40" text-anchor="middle" class="node-text-light" style="font-size:10px">K8s</text>
+    <text x="42" y="55" text-anchor="middle" class="node-text-light" style="font-size:9px">Local ✓</text>
+  </g>
+  
+  <!-- ========== APPROVAL/CLOUD PATH (Row 2) ========== -->
+  <g transform="translate(125, 0)">
+    <!-- 6. CTO -->
+    <g transform="translate(180, 330)" class="s6">
+    <rect x="0" y="0" width="100" height="65" rx="10" fill="#2d3748" stroke="#ed8936" stroke-width="3"/>
+    <text x="50" y="28" text-anchor="middle" style="font-size:18px">🤵</text>
+    <text x="50" y="48" text-anchor="middle" class="node-text-light">CTO/Manager</text>
+    </g>
+  
+    <!-- 7. Decision -->
+    <g transform="translate(335, 315)" class="s7">
+      <polygon points="50,0 100,45 50,90 0,45" fill="#2d3748" stroke="#B1BB49" stroke-width="2"/>
+      <text x="50" y="48" text-anchor="middle" class="node-text-light" style="font-size:9px">Approve ?</text>
+    </g>
+  
+    <!-- 8. Deploy Stage -->
+    <g transform="translate(490, 330)" class="s8">
+      <rect x="0" y="0" width="100" height="60" rx="8" fill="#c6f6d5" stroke="#48bb78" stroke-width="2"/>
+      <text x="50" y="24" text-anchor="middle" style="font-size:14px">🚀</text>
+      <text x="50" y="40" text-anchor="middle" class="node-text">Deploy</text>
+      <text x="50" y="52" text-anchor="middle" class="node-text" style="font-size:7px">(Cloud Release)</text>
+    </g>
+  
+    <!-- Reject Result -->
+    <g transform="translate(335, 450)" class="reject">
+      <rect x="0" y="0" width="100" height="45" rx="6" fill="#2d3748" stroke="#f56565" stroke-width="2" stroke-dasharray="4 4"/>
+      <text x="50" y="20" text-anchor="middle" class="node-text-light" style="fill:#f56565; font-size:9px">❌ Rejected</text>
+      <text x="50" y="35" text-anchor="middle" class="node-text-light" style="font-size:8px">Local Only</text>
+    </g>
+  
+    <!-- ========== CLOUD INFRASTRUCTURE BOX ========== -->
+    <g transform="translate(650, 230)">
+      <rect x="0" y="0" width="510" height="260" rx="12" fill="rgba(72,187,120,0.08)" stroke="#48bb78" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="255" y="22" text-anchor="middle" class="section-title">☁️ AWS Cloud Infrastructure</text>
+      
+      <!-- 9. ECR (Top) -->
+      <g transform="translate(40, 60)" class="s9">
+        <ellipse cx="50" cy="32" rx="52" ry="35" fill="#fff5f5" stroke="#fc8181" stroke-width="2"/>
+        <text x="50" y="28" text-anchor="middle" style="font-size:14px">🐳</text>
+        <text x="50" y="46" text-anchor="middle" class="node-text">AWS ECR</text>
+      </g>
+      
+      <!-- 9. GitOps (Bottom) -->
+      <g transform="translate(35, 155)" class="s9">
+        <rect x="0" y="0" width="100" height="50" rx="8" fill="#edf2f7" stroke="#a0aec0" stroke-width="2"/>
+        <text x="50" y="20" text-anchor="middle" style="font-size:12px">📁</text>
+        <text x="50" y="38" text-anchor="middle" class="node-text">GitOps Repo</text>
+      </g>
+      
+      <!-- 10. ArgoCD Cloud (Center) -->
+      <g transform="translate(220, 105)" class="s10">
+        <rect x="0" y="0" width="95" height="55" rx="8" fill="#c6f6d5" stroke="#48bb78" stroke-width="2"/>
+        <text x="47" y="22" text-anchor="middle" style="font-size:12px">🔄</text>
+        <text x="47" y="40" text-anchor="middle" class="node-text">ArgoCD</text>
+      </g>
+      
+      <!-- 10. EKS (Right) -->
+      <g transform="translate(380, 95)" class="s10">
+        <polygon points="48,0 96,26 96,70 48,96 0,70 0,26" fill="#48bb78" stroke="#276749" stroke-width="2"/>
+        <text x="48" y="42" text-anchor="middle" class="node-text-light" style="font-size:11px">AWS</text>
+        <text x="48" y="58" text-anchor="middle" class="node-text-light" style="font-size:11px">EKS ✓</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ========== ORTHOGONAL CONNECTIONS (Right Angles Only) ========== -->
+  <!-- Path 1 -> 6 -->
+  <!-- Step 1: Dev → GitLab (Horizontal) -->
+  <path d="M 130 130 L 180 130" stroke="#7dd3fc" stroke-width="3" class="l1" fill="none"/>
+  <g transform="translate(155, 112)"><circle r="10" fill="#7dd3fc" class="indicator s1"/><text x="0" y="4" text-anchor="middle" class="step-num">1</text></g>
+  
+  <!-- Step 2: GitLab → Jenkins (Horizontal) -->
+  <path d="M 260 130 L 310 130" stroke="#9f7aea" stroke-width="3" class="l2" fill="none"/>
+  <g transform="translate(285, 112)"><circle r="10" fill="#9f7aea" class="indicator s2"/><text x="0" y="4" text-anchor="middle" class="step-num">2</text></g>
+  
+  <!-- Step 3: Jenkins → Harbor (Horizontal) -->
+  <path d="M 400 130 L 450 130" stroke="#4299e1" stroke-width="3" class="l3" fill="none"/>
+  <g transform="translate(425, 112)"><circle r="10" fill="#4299e1" class="indicator s3"/><text x="0" y="4" text-anchor="middle" class="step-num">3</text></g>
+  
+  <!-- Step 4: Harbor → ArgoCD (Horizontal) -->
+  <path d="M 537 130 L 580 130" stroke="#667eea" stroke-width="3" class="l4" fill="none"/>
+  <g transform="translate(558, 112)"><circle r="10" fill="#667eea" class="indicator s4"/><text x="0" y="4" text-anchor="middle" class="step-num">4</text></g>
+  
+  <!-- Step 5: ArgoCD → K8s (Horizontal) -->
+  <path d="M 665 127 L 720 127" stroke="#3182ce" stroke-width="3" class="l5" fill="none"/>
+  <g transform="translate(692, 110)"><circle r="10" fill="#3182ce" class="indicator s5"/><text x="0" y="4" text-anchor="middle" class="step-num">5</text></g>
+  <text x="685" y="145" class="step-text" style="fill:#68d391">Auto</text>
+  
+  <!-- Step 6: Jenkins → CTO (Orthogonal: down then left then down) -->
+  <path d="M 355 165 L 355 330 M 405 360 L 460 360" stroke="#ed8936" stroke-width="3" stroke-dasharray="6 4" class="l6" fill="none"/>
+  <g transform="translate(385, 230)"><circle r="10" fill="#ed8936" class="indicator s6"/><text x="0" y="4" text-anchor="middle" class="step-num">6</text></g>
+  <text x="370" y="260" class="step-text" style="fill:#ed8936">Request</text>
+  
+  <!-- Path 7 -> 10 -->
+  <g transform="translate(125, 0)">
+
+    <!-- Step 7: CTO → Decision (Horizontal) → Deploy (Horizontal) -->
+    <path d="M 435 360 L 490 360" stroke="#48bb78" stroke-width="3" class="l7" fill="none"/>
+    <g transform="translate(460, 345)"><circle r="10" fill="#48bb78" class="indicator s7"/><text x="0" y="4" text-anchor="middle" class="step-num">7</text></g>
+    <text x="440" y="380" class="step-text" style="fill:#48bb78">✓ Approve</text>
+    
+    <!-- Reject path (Vertical down) -->
+    <path d="M 385 410 L 385 450" stroke="#f56565" stroke-width="2" stroke-dasharray="4 4" class="lreject" fill="none"/>
+    <g transform="translate(420, 420)"><circle r="10" fill="#f56565" class="indicator s7"/><text x="0" y="4" text-anchor="middle" class="step-num">7</text></g>
+    <text x="400" y="440" class="step-text" style="fill:#f56565">✗ Reject</text>
+    
+    <!-- Step 8: Deploy → ECR + GitOps (Orthogonal right angles) -->
+    <!-- To ECR: right, up, right -->
+    <path d="M 590 345 L 620 345 L 620 322 L 690 322" stroke="#fc8181" stroke-width="3" class="l8" fill="none"/>
+    <!-- To GitOps: right, down, right -->
+    <path d="M 590 375 L 620 375 L 620 415 L 685 415" stroke="#a0aec0" stroke-width="3" class="l8" fill="none"/>
+    <g transform="translate(637, 305)"><circle r="10" fill="#fc8181" class="indicator s8"/><text x="0" y="4" text-anchor="middle" class="step-num">8</text></g>
+    <g transform="translate(637, 435)"><circle r="10" fill="#a0aec0" class="indicator s8"/><text x="0" y="4" text-anchor="middle" class="step-num">8</text></g>
+    
+    <!-- Step 9: ECR + GitOps → ArgoCD (Orthogonal merge) -->
+    <!-- From ECR: right, down, right -->
+    <path d="M 792 322 L 830 322 L 830 360 L 870 360" stroke="#48bb78" stroke-width="3" class="l9" fill="none"/>
+    <!-- From GitOps: right, up, right -->
+    <path d="M 785 415 L 830 415 L 830 370 L 870 370" stroke="#48bb78" stroke-width="3" class="l9" fill="none"/>
+    <g transform="translate(850, 345)"><circle r="10" fill="#48bb78" class="indicator s9"/><text x="0" y="4" text-anchor="middle" class="step-num">9</text></g>
+    <text x="840" y="385" class="step-text">Sync</text>
+    
+    <!-- Step 10: ArgoCD → EKS (Horizontal) -->
+    <path d="M 965 365 L 1030 365" stroke="#276749" stroke-width="3" class="l10" fill="none"/>
+    <g transform="translate(997, 347)"><circle r="12" fill="#276749" class="indicator s10"/><text x="0" y="5" text-anchor="middle" class="step-num">10</text></g>
+    <text x="985" y="385" class="step-text" style="fill:#68d391">Deploy</text>
+
+  </g>
+  
+  <!-- ========== LEGEND ========== -->
+  <g transform="translate(450, 550)">
+    <rect x="0" y="0" width="750" height="80" rx="10" fill="rgba(45,55,72,0.9)" stroke="#4a5568"/>
+    <text x="375" y="20" text-anchor="middle" class="subtitle" style="font-weight:600; fill:#e2e8f0">Pipeline Flow - Orthogonal Routing</text>
+    
+    <text x="30" y="42" class="step-text" style="fill:#7dd3fc">1-2: Code Push</text>
+    <text x="140" y="42" class="step-text" style="fill:#fc8181">3: Build</text>
+    <text x="230" y="42" class="step-text" style="fill:#4299e1">4: Push Harbor</text>
+    <text x="340" y="42" class="step-text" style="fill:#3182ce">5: Local Auto Deploy ✓</text>
+    
+    <text x="30" y="62" class="step-text" style="fill:#ed8936">6: CTO Approval Request</text>
+    <text x="180" y="62" class="step-text" style="fill:#48bb78">7: Approve Decision ✓</text>
+    <text x="320" y="62" class="step-text" style="fill:#fc8181">8: ECR + GitOps (Parallel)</text>
+    <text x="490" y="62" class="step-text">9: Sync to ArgoCD</text>
+    <text x="600" y="62" class="step-text" style="fill:#48bb78">10: EKS Deploy ✓</text>
+  </g>
+</svg>
