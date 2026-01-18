@@ -11,7 +11,7 @@
   - [Attributes (Thuộc tính) - Thứ bạn "Nhận về"](#attributes-thuộc-tính---thứ-bạn-nhận-về)
 - [3. Ví dụ thực chiến: Kết nối Web và Database](#3-ví-dụ-thực-chiến-kết-nối-web-và-database)
 - [4. Kiểu dữ liệu & Comment](#4-kiểu-dữ-liệu--comment)
-- [Lời kết & Gợi mở](#lời-kết--gợi-mở)
+- [Lời kết](#lời-kết)
 
 ---
 
@@ -124,7 +124,7 @@ HCL hỗ trợ các kiểu dữ liệu cơ bản: `String` (chuỗi), `Number` (
 
 ---
 
-## Lời kết & Gợi mở
+## Lời kết
 
 Nắm vững "khung xương" HCL là bạn đã sẵn sàng để xây dựng mọi thứ. Nhưng hạ tầng thực tế cần sự linh hoạt để dùng một bộ code cho nhiều môi trường (Staging, Production) khác nhau.
 
