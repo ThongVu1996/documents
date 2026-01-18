@@ -207,7 +207,7 @@ output "instance_ip" {
 3.  **Resource:** Terraform thực thi tạo tài nguyên thực tế dựa trên các biến trên.
 4.  **Output Values:** Terraform trả lại "hóa đơn" (IP của Server vừa tạo).
 
-![Terraform Data Flow](./terraform_data_flow.svg)
+![Terraform Data Flow](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/part_4/terraform_data_flow.svg)
 
 ---
 
