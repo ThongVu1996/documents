@@ -1,5 +1,21 @@
 # [Terraform 102] Làm chủ ngôn ngữ HCL - Giải mã bí ẩn đằng sau những dòng code
 
+## Mục lục
+- [Lời mở đầu: HCL - "Bản hợp đồng" giữa bạn và Cloud](#lời-mở-đầu-hcl---bản-hợp-đồng-giữa-bạn-và-cloud)
+- [1. HCL là gì? Đừng gọi nó là ngôn ngữ lập trình, tội nó!](#1-hcl-là-gì-đừng-gọi-nó-là-ngôn-ngữ-lập-trình-tội-nó)
+- [2. Tư duy "Khai báo" (Declarative) – Đặt hàng thay vì tự đi nấu](#2-tư-duy-khai-báo-declarative--đặt-hàng-thay-vì-tự-đi-nấu)
+  - [Cách cũ (Mệnh lệnh - Imperative)](#cách-cũ-mệnh-lệnh---imperative)
+  - [Cách HCL (Khai báo - Declarative)](#cách-hcl-khai-báo---declarative)
+- [3. Tại sao không xài "cơm nguội" JSON hay YAML?](#3-tại-sao-không-xài-cơm-nguội-json-hay-yaml)
+  - [Cách cũ: Dùng Bash Script (Mệnh lệnh)](#cách-cũ-dùng-bash-script-mệnh-lệnh)
+  - [Cách mới: Dùng HCL (Khai báo)](#cách-mới-dùng-hcl-khai-báo)
+  - [Bảng so sánh nhanh](#bảng-so-sánh-nhanh)
+- [4. Hệ sinh thái HashiCorp – Học một lần, "vẩy tay" mọi mặt trận](#4-hệ-sinh-thái-hashicorp--học-một-lần-vẩy-tay-mọi-mặt-trận)
+- [5. Setup nhanh để "vọc" (Cho anh em dùng Mac/Nix/Neovim)](#5-setup-nhanh-để-vọc-cho-anh-em-dùng-macnixneovim)
+- [Lời kết & Gợi mở bài sau](#lời-kết--gợi-mở-bài-sau)
+
+---
+
 ## Lời mở đầu: HCL - "Bản hợp đồng" giữa bạn và Cloud
 
 Ở bài trước, chúng ta đã biết muốn "sai bảo" Terraform thì phải thạo HCL. Đừng coi nó là code khô khan, hãy coi HCL là **một bản hợp đồng quyền lực**: Bạn chỉ cần ghi rõ "điều khoản" mình muốn, Terraform sẽ tự đi "đòi" kết quả từ Cloud Provider cho bạn.
@@ -93,5 +109,5 @@ Hiểu được "tại sao lại là HCL" là bạn đã đi được nửa ch�
 *   Làm sao để biến những dòng code cứng nhắc thành một hệ thống linh động?
 *   Làm sao để truyền dữ liệu qua lại giữa các thành phần hạ tầng?
 
-Hẹn gặp lại các bạn ở bài viết tiếp theo: **[Terraform 103] Variables & Outputs – Biến hóa hạ tầng theo cách của bạn.**
+Hẹn gặp lại các bạn ở bài viết tiếp theo: **[Terraform 103] HCL Syntax: Từ cú pháp quen thuộc đến tư duy viết code hạ tầng**
 
