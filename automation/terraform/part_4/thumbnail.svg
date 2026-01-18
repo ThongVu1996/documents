@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" style="background: radial-gradient(circle at 50% 100%, #020617 0%, #1e1b4b 100%); font-family: 'Segoe UI', sans-serif;">
+  <defs>
+    <!-- Filters -->
+    <filter id="core-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feComposite in="SourceGraphic" in2="coloredBlur" operator="over"/>
+    </filter>
+
+    <linearGradient id="title-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+
+    <!-- Flow Gradients -->
+    <linearGradient id="stream-1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#f59e0b"/> <!-- Amber -->
+    </linearGradient>
+    <linearGradient id="stream-2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ec4899" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#ec4899"/> <!-- Pink -->
+    </linearGradient>
+    <linearGradient id="stream-3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#10b981"/> <!-- Emerald -->
+    </linearGradient>
+
+    <linearGradient id="output-beam" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#60a5fa" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Grid -->
+  <path d="M0 315 L1200 315" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+  <path d="M600 0 L600 630" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+  <circle cx="600" cy="315" r="250" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+
+  <!-- CENTRAL VISUALIZATION -->
+  <g transform="translate(600, 315)">
+      
+      <!-- LEFT: Input Streams (Abstract Energy) -->
+      <g transform="translate(-40, 0)">
+          <!-- Top Stream -->
+          <path d="M-400 -80 C-200 -80 -150 -20 0 -20" fill="none" stroke="url(#stream-1)" stroke-width="6" stroke-linecap="round" filter="url(#core-glow)" opacity="0.8">
+              <animate attributeName="stroke-dasharray" values="0,1000; 1000,0" dur="3s" repeatCount="indefinite" />
+          </path>
+          
+          <!-- Middle Stream -->
+          <path d="M-450 0 C-250 0 -150 0 0 0" fill="none" stroke="url(#stream-2)" stroke-width="6" stroke-linecap="round" filter="url(#core-glow)" opacity="0.9">
+               <animate attributeName="stroke-dasharray" values="0,1000; 1000,0" dur="2.5s" repeatCount="indefinite" />
+          </path>
+
+          <!-- Bottom Stream -->
+          <path d="M-400 80 C-200 80 -150 20 0 20" fill="none" stroke="url(#stream-3)" stroke-width="6" stroke-linecap="round" filter="url(#core-glow)" opacity="0.8">
+               <animate attributeName="stroke-dasharray" values="0,1000; 1000,0" dur="3.5s" repeatCount="indefinite" />
+          </path>
+      </g>
+
+      <!-- CENTER: The Core (Prism/Processor) -->
+      <g filter="url(#core-glow)">
+          <path d="M-30 -50 L30 0 L-30 50 Z" fill="rgba(30, 58, 138, 0.8)" stroke="#60a5fa" stroke-width="2"/>
+          <path d="M-30 -50 L-30 50" stroke="#60a5fa" stroke-width="2"/>
+          <!-- Inner Rotating element -->
+          <rect x="-15" y="-15" width="10" height="30" fill="#93c5fd" opacity="0.5">
+              <animateTransform attributeName="transform" type="rotate" from="0 -20 0" to="360 -20 0" dur="4s" repeatCount="indefinite"/>
+          </rect>
+      </g>
+
+      <!-- RIGHT: Output Beam (Solid Structure) -->
+      <g transform="translate(40, 0)">
+          <rect x="0" y="-30" width="400" height="60" fill="url(#output-beam)" opacity="0.6" filter="url(#core-glow)">
+              <animate attributeName="width" values="0;400" dur="0.5s" fill="freeze" />
+          </rect>
+          <path d="M0 -30 L400 -30" stroke="#60a5fa" stroke-width="1" opacity="0.8"/>
+          <path d="M0 30 L400 30" stroke="#60a5fa" stroke-width="1" opacity="0.8"/>
+          
+          <!-- Abstract "Result" blocks floating in beam -->
+          <rect x="50" y="-10" width="20" height="20" fill="white" opacity="0.8">
+               <animate attributeName="x" values="0;400" dur="2s" repeatCount="indefinite"/>
+               <animate attributeName="opacity" values="0.8;0" dur="2s" repeatCount="indefinite"/>
+          </rect>
+          <rect x="150" y="-10" width="20" height="20" fill="white" opacity="0.5">
+               <animate attributeName="x" values="0;400" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+               <animate attributeName="opacity" values="0.5;0" dur="2s" repeatCount="indefinite"/>
+          </rect>
+      </g>
+
+  </g>
+
+  <!-- TITLE (Centered, matching user request) -->
+  <g transform="translate(600, 500)">
+      <text x="0" y="0" font-family="'Arial', sans-serif" font-weight="900" font-size="72" fill="url(#title-grad)" text-anchor="middle" letter-spacing="-1" style="text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);">
+          VARIABLES <tspan fill="#3b82f6">&amp;</tspan> OUTPUTS
+      </text>
+  </g>
+
+</svg>
+

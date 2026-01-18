@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" style="background: #0f172a; font-family: 'Segoe UI', sans-serif;">
+  <defs>
+    <!-- Filters -->
+    <filter id="glow-flow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <marker id="arrow-flow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#64748b" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="40" fill="white" font-size="20" font-weight="bold" text-anchor="middle" letter-spacing="2">TERRAFORM DATA FLOW</text>
+
+  <!-- Flow Container -->
+  <g transform="translate(50, 80)">
+
+      <!-- 1. INPUT -->
+      <g transform="translate(0, 50)">
+          <rect x="0" y="0" width="160" height="80" rx="10" fill="rgba(59, 130, 246, 0.1)" stroke="#3b82f6" stroke-width="2"/>
+          <text x="80" y="35" fill="#60a5fa" font-size="16" font-weight="bold" text-anchor="middle">INPUT</text>
+          <text x="80" y="55" fill="#93c5fd" font-size="12" text-anchor="middle">(Variables)</text>
+          
+          <!-- Icon hint -->
+          <circle cx="20" cy="15" r="5" fill="#3b82f6"/>
+      </g>
+
+      <!-- Arrow 1 -->
+      <line x1="160" y1="90" x2="210" y2="90" stroke="#475569" stroke-width="2" marker-end="url(#arrow-flow)"/>
+
+      <!-- 2. LOCALS (Processing) -->
+      <g transform="translate(210, 50)">
+          <rect x="0" y="0" width="160" height="80" rx="10" fill="rgba(234, 179, 8, 0.1)" stroke="#eab308" stroke-width="2" stroke-dasharray="5,5"/>
+          <text x="80" y="35" fill="#facc15" font-size="16" font-weight="bold" text-anchor="middle">LOCALS</text>
+          <text x="80" y="55" fill="#fde047" font-size="12" text-anchor="middle">(Calculation)</text>
+      </g>
+
+      <!-- Arrow 2 -->
+      <line x1="370" y1="90" x2="420" y2="90" stroke="#475569" stroke-width="2" marker-end="url(#arrow-flow)"/>
+
+      <!-- 3. RESOURCE (Core Engine) -->
+      <g transform="translate(420, 30)">
+          <rect x="0" y="0" width="160" height="120" rx="10" fill="rgba(16, 185, 129, 0.1)" stroke="#10b981" stroke-width="3" filter="url(#glow-flow)"/>
+          <text x="80" y="55" fill="#34d399" font-size="18" font-weight="800" text-anchor="middle">RESOURCE</text>
+          <text x="80" y="80" fill="#6ee7b7" font-size="12" text-anchor="middle">(Provisions Infra)</text>
+          
+          <!-- Gear animation hint -->
+          <g transform="translate(130, 90)">
+             <circle cx="0" cy="0" r="10" stroke="#10b981" stroke-width="2" fill="none" stroke-dasharray="3,3" />
+          </g>
+      </g>
+
+      <!-- Arrow 3 -->
+      <line x1="580" y1="90" x2="630" y2="90" stroke="#475569" stroke-width="2" marker-end="url(#arrow-flow)"/>
+
+      <!-- 4. OUTPUT -->
+      <g transform="translate(630, 50)">
+          <rect x="0" y="0" width="160" height="80" rx="10" fill="rgba(236, 72, 153, 0.1)" stroke="#ec4899" stroke-width="2"/>
+          <text x="80" y="35" fill="#f472b6" font-size="16" font-weight="bold" text-anchor="middle">OUTPUT</text>
+          <text x="80" y="55" fill="#fbcfe8" font-size="12" text-anchor="middle">(Return Value)</text>
+      </g>
+
+  </g>
+</svg>
+
