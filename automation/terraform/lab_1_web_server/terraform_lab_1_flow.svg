@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" style="background: #0f172a; font-family: 'Segoe UI', sans-serif;">
+  <defs>
+    <!-- Filters -->
+    <filter id="task-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Refined Arrow Marker (Smaller) -->
+    <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 Z" fill="#64748b" />
+    </marker>
+  </defs>
+
+  <text x="450" y="40" fill="#94a3b8" font-size="20" font-weight="bold" text-anchor="middle" letter-spacing="2">AUTOMATION FLOW (Lab #1)</text>
+
+  <!-- PHASE 1: LOCAL ACTIONS -->
+  <g transform="translate(50, 100)">
+      <rect x="0" y="0" width="250" height="350" rx="10" fill="rgba(30, 41, 59, 0.5)" stroke="#475569" stroke-dasharray="5 5"/>
+      <text x="125" y="30" fill="#cbd5e1" font-size="14" font-weight="bold" text-anchor="middle">PHASE 1: LOCAL (Machine)</text>
+
+      <!-- Step 1: Terraform Init -->
+      <g transform="translate(25, 70)">
+          <rect x="0" y="0" width="200" height="40" rx="5" fill="#3b82f6" stroke="#60a5fa" filter="url(#task-glow)"/>
+          <text x="100" y="25" fill="white" font-size="12" font-weight="bold" text-anchor="middle">1. Terraform Apply</text>
+      </g>
+
+      <!-- Arrow down -->
+      <line x1="125" y1="110" x2="125" y2="140" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- Step 2: TLS Provider -->
+      <g transform="translate(25, 140)">
+          <rect x="0" y="0" width="200" height="40" rx="5" fill="#8b5cf6" stroke="#a78bfa"/>
+          <text x="100" y="25" fill="white" font-size="12" font-weight="bold" text-anchor="middle">2. Generate SSH Key Pair</text>
+          <text x="210" y="40" fill="#a78bfa" font-size="10">(TLS)</text>
+      </g>
+
+      <!-- Arrow down -->
+      <line x1="125" y1="180" x2="125" y2="210" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- Step 3: Local Provider -->
+      <g transform="translate(25, 210)">
+          <rect x="0" y="0" width="200" height="40" rx="5" fill="#8b5cf6" stroke="#a78bfa"/>
+          <text x="100" y="25" fill="white" font-size="12" font-weight="bold" text-anchor="middle">3. Save 'private_key.pem'</text>
+          <text x="210" y="25" fill="#a78bfa" font-size="10">(Local)</text>
+      </g>
+  </g>
+
+
+  <!-- CONNECTION: LOCAL TO CLOUD -->
+  <!-- Moving this to align with the TLS output and Import Input -->
+  <g transform="translate(275, 260)"> 
+     <!-- Global Y for Step 2 is 100+140+20 = 260. Global Y for Step 4 is 100+140+20 = 260. Perfect alignment. -->
+      <path d="M0 0 L155 0" stroke="#fbbf24" stroke-width="2" stroke-dasharray="5 5">
+          <animate attributeName="stroke-dashoffset" from="10" to="0" dur="1s" repeatCount="indefinite"/>
+      </path>
+      <text x="77" y="-10" fill="#fbbf24" font-size="11" text-anchor="middle">Public Key Transfer</text>
+       <!-- Small arrow at end of transfer -->
+      <path d="M150 -3 L155 0 L150 3" stroke="#fbbf24" stroke-width="2" fill="none"/>
+  </g>
+
+
+  <!-- PHASE 2: CLOUD ACTIONS -->
+  <g transform="translate(400, 100)">
+      <rect x="0" y="0" width="450" height="350" rx="10" fill="rgba(30, 41, 59, 0.5)" stroke="#475569" stroke-dasharray="5 5"/>
+      <text x="225" y="30" fill="#cbd5e1" font-size="14" font-weight="bold" text-anchor="middle">PHASE 2: CLOUD (AWS)</text>
+
+      <!-- Step 4: Import Key -->
+      <g transform="translate(30, 140)">
+          <rect x="0" y="0" width="180" height="40" rx="5" fill="#f59e0b" stroke="#fcd34d"/>
+          <text x="90" y="25" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">4. Import Key Pair</text>
+      </g>
+
+      <!-- Step 5: Data Source (Parallel) -->
+      <g transform="translate(240, 140)">
+          <rect x="0" y="0" width="180" height="40" rx="5" fill="#10b981" stroke="#34d399"/>
+          <text x="90" y="25" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">5. Find Ubuntu AMI</text>
+      </g>
+
+      <!-- Arrow Merging -->
+      <path d="M120 180 L120 210 L225 210" stroke="#64748b" stroke-width="2"/>
+      <path d="M330 180 L330 210 L225 210" stroke="#64748b" stroke-width="2"/>
+      <line x1="225" y1="210" x2="225" y2="230" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+      
+
+      <!-- Step 6: Create SG & EC2 -->
+      <g transform="translate(115, 230)">
+          <rect x="0" y="0" width="220" height="80" rx="5" fill="#ea580c" stroke="#fdba74" filter="url(#task-glow)"/>
+          <text x="110" y="25" fill="white" font-size="12" font-weight="bold" text-anchor="middle">6. Create Resources</text>
+          
+          <g transform="translate(20, 40)">
+              <rect x="0" y="0" width="80" height="25" rx="3" fill="#c2410c"/>
+              <text x="40" y="17" fill="#fdba74" font-size="10" text-anchor="middle">Security Group</text>
+          </g>
+          <g transform="translate(120, 40)">
+              <rect x="0" y="0" width="80" height="25" rx="3" fill="#c2410c"/>
+              <text x="40" y="17" fill="#fdba74" font-size="10" text-anchor="middle">EC2 Instance</text>
+          </g>
+      </g>
+  </g>
+
+
+  <!-- OUTPUTS -->
+  <g transform="translate(50, 480)">
+      <line x1="625" y1="-30" x2="625" y2="20" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+      <path d="M515 -30 L515 5 L625 5" stroke="#64748b" stroke-width="2" fill="none" opacity="0.5"/> <!-- Line from EC2 box to output -->
+
+      <rect x="250" y="20" width="450" height="60" rx="5" fill="#1e293b" stroke="#334155"/>
+      <text x="270" y="40" fill="#22d3ee" font-family="monospace" font-size="12">> Outputs:</text>
+      <text x="280" y="60" fill="#94a3b8" font-family="monospace" font-size="12">ssh_cmd = "ssh -i generated-key.pem ubuntu@1.2.3.4"</text>
+  </g>
+
+</svg>
+

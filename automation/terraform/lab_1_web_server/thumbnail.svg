@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" style="background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #020617 100%); font-family: 'Segoe UI', sans-serif;">
+  <defs>
+    <!-- Filters -->
+    <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <linearGradient id="title-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#c7d2fe"/>
+    </linearGradient>
+
+    <linearGradient id="key-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fcd34d"/> <!-- Gold -->
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+
+    <linearGradient id="server-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/> <!-- Blue -->
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+    
+    <linearGradient id="flow-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#fcd34d" stop-opacity="0.8"/>
+        <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Grid -->
+  <g opacity="0.1" stroke="#4f46e5" stroke-width="1">
+      <path d="M100 0 L100 630" />
+      <path d="M1100 0 L1100 630" />
+      <path d="M0 100 L1200 100" />
+      <path d="M0 530 L1200 530" />
+  </g>
+
+  <!-- TITLE (Top) -->
+  <g transform="translate(600, 80)">
+      <text x="0" y="0" font-family="'Arial', sans-serif" font-weight="900" font-size="40" fill="#818cf8" text-anchor="middle" letter-spacing="4">LAB #1</text>
+  </g>
+
+  <!-- VISUALS: A-Z Flow -->
+  <g transform="translate(600, 320)">
+      
+      <!-- 1. START: SSH KEY (Left) -->
+      <g transform="translate(-300, 0)">
+          <!-- The Key -->
+          <g filter="url(#neon-glow)">
+             <path d="M-30 0 A 30 30 0 1 0 30 0 A 30 30 0 1 0 -30 0 M0 30 L0 90 M0 90 L15 90 M0 75 L-15 75" 
+                   fill="none" stroke="url(#key-grad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+             <circle cx="0" cy="0" r="10" fill="url(#key-grad)" opacity="0.5"/>
+          </g>
+          
+          <text x="0" y="-50" fill="#fcd34d" font-size="16" font-weight="bold" text-anchor="middle">SSH KEY GEN</text>
+          
+          <!-- Levitation -->
+          <animateTransform attributeName="transform" type="translate" values="-300,0; -300,-10; -300,0" dur="3s" repeatCount="indefinite"/>
+      </g>
+
+
+      <!-- 2. END: WEB SERVER (Right) -->
+      <g transform="translate(300, 0)">
+          <!-- Server Rack -->
+          <rect x="-60" y="-40" width="120" height="140" rx="4" fill="url(#server-grad)" stroke="#60a5fa" stroke-width="2" filter="url(#neon-glow)"/>
+          <!-- Lights -->
+          <circle cx="-40" cy="-20" r="4" fill="#22c55e"/>
+          <circle cx="-40" cy="0" r="4" fill="#22c55e">
+              <animate attributeName="opacity" values="1;0.5;1" dur="0.5s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="-40" cy="20" r="4" fill="#22c55e"/>
+          
+          <!-- Hologram WWW -->
+          <g transform="translate(0, -90)">
+              <ellipse cx="0" cy="0" rx="50" ry="20" fill="none" stroke="#22d3ee" stroke-width="2" opacity="0.8"/>
+              <path d="M-50 0 Q0 20 50 0" fill="none" stroke="#22d3ee" stroke-width="1" opacity="0.5"/>
+              <path d="M-50 0 Q0 -20 50 0" fill="none" stroke="#22d3ee" stroke-width="1" opacity="0.5"/>
+              <line x1="0" y1="-20" x2="0" y2="20" stroke="#22d3ee" stroke-width="1" opacity="0.5"/>
+              <text x="0" y="5" fill="#22d3ee" font-size="14" font-weight="bold" text-anchor="middle">WWW</text>
+              
+              <animateTransform attributeName="transform" type="translate" values="0,-90; 0,-95; 0,-90" dur="4s" repeatCount="indefinite"/>
+          </g>
+          
+          <text x="0" y="130" fill="#60a5fa" font-size="16" font-weight="bold" text-anchor="middle">WEB SERVER</text>
+      </g>
+
+
+      <!-- 3. PROCESS: CONNECTION FLOW (Middle) -->
+      <g>
+          <!-- Connection Line -->
+          <path d="M-220 20 C-100 20 -100 20 220 20" fill="none" stroke="#475569" stroke-width="4" stroke-dasharray="10 10" opacity="0.5"/>
+          
+          <!-- Moving Energy Pulse -->
+          <circle r="6" fill="#fff" filter="url(#neon-glow)">
+               <animateMotion path="M-220 20 C-100 20 -100 20 220 20" dur="1.5s" repeatCount="indefinite"/>
+          </circle>
+          
+          <!-- Gear Icon (Automation) in Center -->
+          <g transform="translate(0, 20)">
+               <path d="M-20 -5 L-20 -15 L-10 -15 L-5 -22 L-10 -30 L0 -35 L10 -30 L5 -22 L10 -15 L20 -15 L20 -5 L27 0 L20 5 L20 15 L10 15 L5 22 L10 30 L0 35 L-10 30 L-5 22 L-10 15 L-20 15 L-20 5 L-27 0 Z" 
+                     fill="none" stroke="#818cf8" stroke-width="2">
+                    <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="4s" repeatCount="indefinite"/>
+               </path>
+               <text x="0" y="55" fill="#818cf8" font-size="12" text-anchor="middle">AUTO</text>
+          </g>
+      </g>
+
+  </g>
+
+  <!-- MAIN TITLE (Bottom) -->
+  <g transform="translate(600, 550)">
+      <text x="0" y="0" font-family="'Segoe UI', sans-serif" font-weight="800" font-size="60" fill="url(#title-grad)" text-anchor="middle" letter-spacing="-1" style="text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);">
+          WEB SERVER <tspan fill="#fcd34d">&amp;</tspan> SSH KEYS
+      </text>
+  </g>
+
+</svg>
