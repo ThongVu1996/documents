@@ -1,7 +1,22 @@
 # [Lab #3] Data Source Challenge - Truy vết và Kết nối hạ tầng có sẵn
 
 ---
+## Mục lục
+- [1. Giới thiệu nhiệm vụ: "The Tracker" (Kẻ truy vết)](#1-giới-thiệu-nhiệm-vụ-the-tracker-kẻ-truy-vết)
+  - [Minh họa: Nhiệm vụ Truy vết (Mission Flow)](#minh-họa-nhiệm-vụ-truy-vết-mission-flow)
+- [2. Chuẩn bị (Prerequisites)](#2-chuẩn-bị-prerequisites)
+- [3. Kịch bản thực thi](#3-kịch-bản-thực-thi)
+- [4. Nội dung File Lab (`main.tf`)](#4-nội-dung-file-lab-maintf)
+- [5. Thao tác thực hành & Kiểm chứng](#5-thao-tác-thực-hành--kiểm-chứng)
+  - [Bước 1: Khởi tạo công cụ](#bước-1-khởi-tạo-công-cụ)
+  - [Bước 2: Lên kế hoạch trinh sát (Plan)](#bước-2-lên-kế-hoạch-trinh-sát-plan)
+  - [Bước 3: Kích hoạt nhiệm vụ (Apply)](#bước-3-kích-hoạt-nhiệm-vụ-apply)
+  - [Bước 4: Nghiệm thu kết quả (Verification Checklist)](#bước-4-nghiệm-thu-kết-quả-verification-checklist)
+  - [Bước 5: Xóa dấu vết (Clean Up)](#bước-5-xóa-dấu-vết-clean-up)
+- [6. Tổng kết nhiệm vụ](#6-tổng-kết-nhiệm-vụ)
+- [Lời kết: Từ "Code chạy được" đến "Code chuyên nghiệp"](#lời-kết-từ-code-chạy-được-đến-code-chuyên-nghiệp)
 
+---
 ## 1. Giới thiệu nhiệm vụ: "The Tracker" (Kẻ truy vết)
 
 Chào mừng các "điệp viên hạ tầng" đã quay trở lại! Trong môi trường thực tế, không phải lúc nào bạn cũng được quyền "khai sơn phá thạch" (tạo mới mọi thứ từ đầu).
