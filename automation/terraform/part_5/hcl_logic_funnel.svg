@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="background: #0f172a; font-family: 'Segoe UI', sans-serif;">
+  <defs>
+    <!-- Filters -->
+    <filter id="glow-funnel" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <linearGradient id="funnel-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.8"/>
+    </linearGradient>
+
+    <!-- Particles -->
+    <circle id="particle" r="4" fill="white"/>
+  </defs>
+
+  <g transform="translate(400, 250)">
+      
+      <!-- 1. TOP SECTION: Raw Data (Cloud of chaos) -->
+      <g transform="translate(0, -180)">
+          <text x="0" y="-40" fill="#94a3b8" font-size="16" text-anchor="middle" letter-spacing="2">RAW DATA INPUT</text>
+          
+          <!-- Random Data items -->
+          <g font-family="'Consolas', monospace" font-size="14">
+              <text x="-120" y="0" fill="#fbbf24">"prod"</text>
+              <text x="-60" y="-15" fill="#f472b6">"dev"</text>
+              <text x="0" y="10" fill="#a78bfa">10.0.1.5</text>
+              <text x="60" y="-10" fill="#fbbf24">"test"</text>
+              <text x="120" y="5" fill="#34d399">192.168.1.1</text>
+          </g>
+          
+          <!-- Arrows down -->
+          <path d="M-100 20 L-80 50 M0 20 L0 50 M100 20 L80 50" stroke="#475569" stroke-width="2" marker-end="url(#arrow-down)"/>
+      </g>
+
+      <!-- 2. THE FUNNEL (Logic Processing) -->
+      <path d="M-200 -120 L-60 80 L-60 180 L60 180 L60 80 L200 -120 Z" fill="url(#funnel-grad)" stroke="#60a5fa" stroke-width="2" filter="url(#glow-funnel)"/>
+      
+      <!-- Logic Layers inside Funnel -->
+      <g transform="translate(0, -50)">
+          <!-- Layer 1: Conditionals -->
+          <line x1="-130" y1="0" x2="130" y2="0" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="5,5"/>
+          <rect x="-40" y="-15" width="80" height="30" rx="5" fill="#1e3a8a" stroke="#60a5fa"/>
+          <text x="0" y="5" fill="#93c5fd" font-size="14" font-weight="bold" text-anchor="middle">IF / ELSE</text>
+      </g>
+
+      <g transform="translate(0, 20)">
+          <!-- Layer 2: Functions -->
+          <line x1="-90" y1="0" x2="90" y2="0" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="5,5"/>
+          <rect x="-50" y="-15" width="100" height="30" rx="5" fill="#831843" stroke="#f472b6"/>
+          <text x="0" y="5" fill="#fbcfe8" font-size="14" font-weight="bold" text-anchor="middle">Functions</text>
+      </g>
+
+      <g transform="translate(0, 90)">
+          <!-- Layer 3: Loop/Filter -->
+          <line x1="-65" y1="0" x2="65" y2="0" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="5,5"/>
+          <rect x="-60" y="-15" width="120" height="30" rx="5" fill="#064e3b" stroke="#34d399"/>
+          <text x="0" y="5" fill="#a7f3d0" font-size="14" font-weight="bold" text-anchor="middle">For / Filter</text>
+      </g>
+
+
+      <!-- 3. BOTTOM SECTION: Refined Output -->
+      <g transform="translate(-20, 220)">
+          <text x="0" y="40" fill="#94a3b8" font-size="16" text-anchor="middle" letter-spacing="2">REFINED OUTPUT</text>
+          
+          <!-- Refined items coming out -->
+          <g font-family="'Consolas', monospace" font-size="14" font-weight="bold">
+              <text x="-50" y="0" fill="#38bdf8">["PROD", "10.0.1.5"]</text>
+          </g>
+          
+          <!-- Flow drips -->
+          <circle cx="0" cy="-20" r="4" fill="#60a5fa">
+              <animate attributeName="cy" values="-20;0" dur="1s" repeatCount="indefinite" />
+              <animate attributeName="opacity" values="1;0" dur="1s" repeatCount="indefinite" />
+          </circle>
+      </g>
+
+  </g>
+</svg>
+

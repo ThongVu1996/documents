@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" style="background: radial-gradient(circle at 50% 100%, #1e1b4b 0%, #020617 100%); font-family: 'Segoe UI', sans-serif;">
+  <defs>
+    <!-- Filters -->
+    <filter id="logic-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feComposite in="SourceGraphic" in2="coloredBlur" operator="over"/>
+    </filter>
+
+    <linearGradient id="title-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+
+    <!-- Path Gradients -->
+    <linearGradient id="input-stream" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#60a5fa"/>
+    </linearGradient>
+
+    <linearGradient id="true-path" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/> <!-- Green for True -->
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="false-path" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f43f5e"/> <!-- Red for False/Else -->
+      <stop offset="100%" stop-color="#f43f5e" stop-opacity="0"/>
+    </linearGradient>
+
+  </defs>
+
+  <!-- Background Circuit Patterns -->
+  <g stroke="rgba(255,255,255,0.03)" stroke-width="2" fill="none">
+      <path d="M100 0 L100 630" />
+      <path d="M1100 0 L1100 630" />
+      <path d="M0 100 L1200 100" />
+      <path d="M0 530 L1200 530" />
+      <circle cx="600" cy="315" r="300" />
+  </g>
+
+  <!-- CENTRAL VISUAL: The Logic Gate -->
+  <g transform="translate(600, 315)">
+      
+      <!-- 1. INPUT STREAM (Coming from Left) -->
+      <g transform="translate(-180, 0)">
+          <path d="M-400 0 L0 0" stroke="url(#input-stream)" stroke-width="8" stroke-linecap="round" filter="url(#logic-glow)">
+              <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="2s" repeatCount="indefinite"/>
+          </path>
+          <!-- Incoming Data Particles -->
+          <circle cx="-100" cy="0" r="6" fill="#60a5fa">
+               <animate attributeName="cx" values="-400;0" dur="1.5s" repeatCount="indefinite"/>
+               <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
+          </circle>
+      </g>
+
+      <!-- 2. THE DECISION NODE (Diamond) -->
+      <g filter="url(#logic-glow)">
+          <!-- Rotating outer ring -->
+          <path d="M0 -60 L60 0 L0 60 L-60 0 Z" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="10 5">
+               <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="10s" repeatCount="indefinite"/>
+          </path>
+          
+          <!-- Inner solid diamond -->
+          <path d="M0 -40 L40 0 L0 40 L-40 0 Z" fill="rgba(139, 92, 246, 0.4)" stroke="#a78bfa" stroke-width="3"/>
+          <text x="0" y="8" fill="#fff" font-family="'Consolas', monospace" font-size="24" font-weight="bold" text-anchor="middle">?</text>
+      </g>
+
+      <!-- 3. OUTPUT PATHS (Branching Right) -->
+      <g transform="translate(60, 0)">
+           <!-- Path A (Top/True) -->
+           <path d="M0 0 C50 0 50 -60 200 -80 L400 -100" stroke="url(#true-path)" stroke-width="6" fill="none" filter="url(#logic-glow)" opacity="0.9">
+                <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="3s" repeatCount="indefinite"/>
+           </path>
+           <circle cx="200" cy="-80" r="5" fill="#10b981">
+                <animate attributeName="r" values="3;6;3" dur="2s" repeatCount="indefinite"/>
+           </circle>
+
+           <!-- Path B (Bottom/False) -->
+           <path d="M0 0 C50 0 50 60 200 80 L400 100" stroke="url(#false-path)" stroke-width="4" fill="none" filter="url(#logic-glow)" opacity="0.6">
+                <!-- Slower animation for 'false' path -->
+                <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="4s" repeatCount="indefinite"/>
+           </path>
+           <rect x="195" y="75" width="10" height="10" fill="#f43f5e" transform="rotate(45 200 80)">
+                <animateTransform attributeName="transform" type="rotate" from="0 200 80" to="90 200 80" dur="2s" repeatCount="indefinite"/>
+           </rect>
+      </g>
+  </g>
+
+  <!-- TITLE -->
+  <g transform="translate(600, 500)">
+      <text x="0" y="0" font-family="'Arial', sans-serif" font-weight="900" font-size="72" fill="url(#title-grad)" text-anchor="middle" letter-spacing="-1" style="text-shadow: 0 0 20px rgba(167, 139, 250, 0.5);">
+          LOGIC <tspan fill="#a78bfa">&amp;</tspan> EXPRESSIONS
+      </text>
+  </g>
+
+</svg>
+
