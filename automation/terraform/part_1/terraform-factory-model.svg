@@ -1,0 +1,280 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" style="background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <linearGradient id="providerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="resourceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Updated Arrow Marker: Sleeker and smaller -->
+    <marker id="arrowPurple" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,2 L10,6 L0,10 L2,6 z" fill="#667eea" />
+    </marker>
+  </defs>
+  
+  <style>
+    .title { font-family: 'Segoe UI', sans-serif; font-size: 24px; fill: #e2e8f0; font-weight: 700; }
+    .subtitle { font-family: 'Segoe UI', sans-serif; font-size: 12px; fill: #a0aec0; }
+    .section-title { font-family: 'Segoe UI', sans-serif; font-size: 14px; fill: #e2e8f0; font-weight: 600; }
+    .node-title { font-family: 'Segoe UI', sans-serif; font-size: 11px; fill: #1a202c; font-weight: 600; }
+    .node-title-light { font-family: 'Segoe UI', sans-serif; font-size: 11px; fill: #e2e8f0; font-weight: 600; }
+    .node-desc { font-family: 'Segoe UI', sans-serif; font-size: 8px; fill: #4a5568; }
+    .node-desc-light { font-family: 'Segoe UI', sans-serif; font-size: 8px; fill: #cbd5e0; }
+    .step-num { font-family: 'Segoe UI', sans-serif; font-size: 12px; fill: #fff; font-weight: 700; }
+    .step-text { font-family: 'Segoe UI', sans-serif; font-size: 9px; fill: #cbd5e0; }
+    .emoji { font-size: 20px; }
+    
+    /* Node animations - 24s cycle */
+    .s0 { opacity: 0.3; animation: hlPurple 24s ease-in-out infinite; animation-delay: 0s; }
+    .s1 { opacity: 0.3; animation: hlYellow 24s ease-in-out infinite; animation-delay: 3s; }
+    .s2 { opacity: 0.3; animation: hlBlue 24s ease-in-out infinite; animation-delay: 6s; }
+    .s3 { opacity: 0.3; animation: hlOrange 24s ease-in-out infinite; animation-delay: 9s; }
+    .s4 { opacity: 0.3; animation: hlPink 24s ease-in-out infinite; animation-delay: 12s; }
+    .s5 { opacity: 0.3; animation: hlGreen 24s ease-in-out infinite; animation-delay: 15s; }
+    .s6 { opacity: 0.3; animation: hlTeal 24s ease-in-out infinite; animation-delay: 18s; }
+    .s7 { opacity: 0.3; animation: hlCyan 24s ease-in-out infinite; animation-delay: 21s; }
+    
+    /* Line animations */
+    .l0 { opacity: 0.2; animation: lineGlowPurple 24s ease-in-out infinite; animation-delay: 0s; }
+    .l1 { opacity: 0.2; animation: lineGlowYellow 24s ease-in-out infinite; animation-delay: 3s; }
+    .l2 { opacity: 0.2; animation: lineGlowBlue 24s ease-in-out infinite; animation-delay: 6s; }
+    .l3 { opacity: 0.2; animation: lineGlowOrange 24s ease-in-out infinite; animation-delay: 9s; }
+    .l4 { opacity: 0.2; animation: lineGlowPink 24s ease-in-out infinite; animation-delay: 12s; }
+    .l5 { opacity: 0.2; animation: lineGlowGreen 24s ease-in-out infinite; animation-delay: 15s; }
+    .l6 { opacity: 0.2; animation: lineGlowTeal 24s ease-in-out infinite; animation-delay: 18s; }
+    .l7 { opacity: 0.2; animation: lineGlowCyan 24s ease-in-out infinite; animation-delay: 21s; }
+    
+    @keyframes hlPurple { 0%,10% { opacity:1; filter:drop-shadow(0 0 12px rgba(102,126,234,0.9)); } 11%,100% { opacity:0.3; } }
+    @keyframes hlYellow { 0%,10% { opacity:1; filter:drop-shadow(0 0 12px rgba(251,191,36,0.9)); } 11%,100% { opacity:0.3; } }
+    @keyframes hlBlue { 0%,10% { opacity:1; filter:drop-shadow(0 0 12px rgba(59,130,246,0.9)); } 11%,100% { opacity:0.3; } }
+    @keyframes hlOrange { 0%,10% { opacity:1; filter:drop-shadow(0 0 12px rgba(249,115,22,0.9)); } 11%,100% { opacity:0.3; } }
+    @keyframes hlPink { 0%,10% { opacity:1; filter:drop-shadow(0 0 12px rgba(236,72,153,0.9)); } 11%,100% { opacity:0.3; } }
+    @keyframes hlGreen { 0%,10% { opacity:1; filter:drop-shadow(0 0 12px rgba(34,197,94,0.9)); } 11%,100% { opacity:0.3; } }
+    @keyframes hlTeal { 0%,10% { opacity:1; filter:drop-shadow(0 0 12px rgba(20,184,166,0.9)); } 11%,100% { opacity:0.3; } }
+    @keyframes hlCyan { 0%,10% { opacity:1; filter:drop-shadow(0 0 12px rgba(6,182,212,0.9)); } 11%,100% { opacity:0.3; } }
+    
+    @keyframes lineGlowPurple { 0%,10% { opacity:1; stroke-width:4; filter:drop-shadow(0 0 6px rgba(102,126,234,0.7)); } 11%,100% { opacity:0.25; stroke-width:3; } }
+    @keyframes lineGlowYellow { 0%,10% { opacity:1; stroke-width:4; filter:drop-shadow(0 0 6px rgba(251,191,36,0.7)); } 11%,100% { opacity:0.25; stroke-width:3; } }
+    @keyframes lineGlowBlue { 0%,10% { opacity:1; stroke-width:4; filter:drop-shadow(0 0 6px rgba(59,130,246,0.7)); } 11%,100% { opacity:0.25; stroke-width:3; } }
+    @keyframes lineGlowOrange { 0%,10% { opacity:1; stroke-width:4; filter:drop-shadow(0 0 6px rgba(249,115,22,0.7)); } 11%,100% { opacity:0.25; stroke-width:3; } }
+    @keyframes lineGlowPink { 0%,10% { opacity:1; stroke-width:4; filter:drop-shadow(0 0 6px rgba(236,72,153,0.7)); } 11%,100% { opacity:0.25; stroke-width:3; } }
+    @keyframes lineGlowGreen { 0%,10% { opacity:1; stroke-width:4; filter:drop-shadow(0 0 6px rgba(34,197,94,0.7)); } 11%,100% { opacity:0.25; stroke-width:3; } }
+    @keyframes lineGlowTeal { 0%,10% { opacity:1; stroke-width:4; filter:drop-shadow(0 0 6px rgba(20,184,166,0.7)); } 11%,100% { opacity:0.25; stroke-width:3; } }
+    @keyframes lineGlowCyan { 0%,10% { opacity:1; stroke-width:4; filter:drop-shadow(0 0 6px rgba(6,182,212,0.7)); } 11%,100% { opacity:0.25; stroke-width:3; } }
+    
+    .indicator { animation: pulse 1s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.1); } }
+  </style>
+  
+  <!-- Title -->
+  <text x="800" y="35" text-anchor="middle" class="title">🏭 Terraform Factory Model - Infrastructure as Code</text>
+  <text x="800" y="55" text-anchor="middle" class="subtitle">Input → Process → Output | Declarative Workflow | 24s Animation Cycle</text>
+  
+  <!-- ========== STEP 0: TERRAFORM INIT (Setup) ========== -->
+  <g transform="translate(50, 100)" class="s0">
+    <rect x="0" y="0" width="140" height="80" rx="12" fill="#2d3748" stroke="#667eea" stroke-width="3"/>
+    <text x="70" y="30" text-anchor="middle" class="emoji">🔧</text>
+    <text x="70" y="50" text-anchor="middle" class="node-title-light">terraform init</text>
+    <text x="70" y="65" text-anchor="middle" class="node-desc-light">Thiết lập công xưởng</text>
+  </g>
+  
+  <!-- ========== INPUT SECTION ========== -->
+  <g transform="translate(0, 200)">
+    <rect x="50" y="0" width="300" height="400" rx="12" fill="rgba(251,191,36,0.08)" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="240" y="25" text-anchor="middle" class="section-title">📥 INPUT - Nguyên liệu đầu vào</text>
+    
+    <!-- Step 1: Variables -->
+    <g transform="translate(80, 60)" class="s1">
+      <rect x="0" y="0" width="110" height="85" rx="10" fill="#fef3c7" stroke="#fbbf24" stroke-width="2.5"/>
+      <text x="55" y="28" text-anchor="middle" class="emoji">📝</text>
+      <text x="55" y="48" text-anchor="middle" class="node-title">variable</text>
+      <text x="55" y="62" text-anchor="middle" class="node-desc">Yêu cầu khách hàng</text>
+      <text x="55" y="75" text-anchor="middle" class="node-desc">instance_size</text>
+    </g>
+    
+    <!-- Step 2: Data Sources -->
+    <g transform="translate(80, 170)" class="s2">
+      <rect x="0" y="0" width="110" height="85" rx="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5"/>
+      <text x="55" y="28" text-anchor="middle" class="emoji">🔍</text>
+      <text x="55" y="48" text-anchor="middle" class="node-title">data</text>
+      <text x="55" y="62" text-anchor="middle" class="node-desc">Hàng nhập khẩu</text>
+      <text x="55" y="75" text-anchor="middle" class="node-desc">aws_ami.ubuntu</text>
+    </g>
+    
+    <!-- Step 3: Locals -->
+    <g transform="translate(80, 280)" class="s3">
+      <rect x="0" y="0" width="110" height="85" rx="10" fill="#fed7aa" stroke="#f97316" stroke-width="2.5"/>
+      <text x="55" y="28" text-anchor="middle" class="emoji">⚙️</text>
+      <text x="55" y="48" text-anchor="middle" class="node-title">locals</text>
+      <text x="55" y="62" text-anchor="middle" class="node-desc">Sơ chế tại chỗ</text>
+      <text x="55" y="75" text-anchor="middle" class="node-desc">common_tags</text>
+    </g>
+  </g>
+  
+  <!-- ========== PROCESS SECTION ========== -->
+  <g transform="translate(400, 200)">
+    <rect x="0" y="0" width="450" height="400" rx="12" fill="rgba(236,72,153,0.08)" stroke="#ec4899" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="225" y="25" text-anchor="middle" class="section-title">⚡ PROCESS - Dây chuyền sản xuất</text>
+    
+    <!-- Provider Box -->
+    <g transform="translate(50, 60)" class="s0">
+      <rect x="0" y="0" width="150" height="70" rx="10" fill="url(#providerGrad)" stroke="#764ba2" stroke-width="2.5"/>
+      <text x="75" y="28" text-anchor="middle" class="emoji">🔌</text>
+      <text x="75" y="48" text-anchor="middle" class="node-title-light">provider "aws"</text>
+      <text x="75" y="62" text-anchor="middle" class="node-desc-light">Công cụ chuyên dụng</text>
+    </g>
+    
+    <!-- Step 4: Resource Block -->
+    <g transform="translate(80, 170)" class="s4">
+      <rect x="0" y="0" width="290" height="180" rx="12" fill="url(#resourceGrad)" stroke="#f5576c" stroke-width="3"/>
+      <text x="145" y="30" text-anchor="middle" class="emoji" style="font-size:24px">🏗️</text>
+      <text x="145" y="55" text-anchor="middle" class="node-title-light" style="font-size:13px">resource "aws_instance"</text>
+      <text x="145" y="72" text-anchor="middle" class="node-desc-light">Bản vẽ kỹ thuật - Tổng hợp nguyên liệu</text>
+      
+      <!-- Resource details -->
+      <g transform="translate(20, 90)">
+        <rect x="0" y="0" width="250" height="70" rx="6" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+        <text x="10" y="18" class="node-desc-light" style="font-size:9px">• ami = data.aws_ami.ubuntu.id</text>
+        <text x="10" y="33" class="node-desc-light" style="font-size:9px">• instance_type = var.instance_size</text>
+        <text x="10" y="48" class="node-desc-light" style="font-size:9px">• tags = merge(local.common_tags, {...})</text>
+        <text x="10" y="63" class="node-desc-light" style="font-size:9px; fill:#fbbf24">→ Tạo Infrastructure thực tế</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- ========== OUTPUT SECTION ========== -->
+  <g transform="translate(900, 200)">
+    <rect x="0" y="0" width="300" height="400" rx="12" fill="rgba(34,197,94,0.08)" stroke="#22c55e" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="150" y="25" text-anchor="middle" class="section-title">📤 OUTPUT - Kết quả</text>
+    
+    <!-- Step 5: Real Infrastructure -->
+    <g transform="translate(75, 80)" class="s5">
+      <rect x="0" y="0" width="150" height="100" rx="10" fill="#d1fae5" stroke="#22c55e" stroke-width="2.5"/>
+      <text x="75" y="32" text-anchor="middle" class="emoji">☁️</text>
+      <text x="75" y="55" text-anchor="middle" class="node-title" style="font-size:12px">Real Infrastructure</text>
+      <text x="75" y="70" text-anchor="middle" class="node-desc">AWS EC2 Instance</text>
+      <text x="75" y="83" text-anchor="middle" class="node-desc">Running on Cloud</text>
+    </g>
+    
+    <!-- Step 6: State File -->
+    <g transform="translate(75, 205)" class="s6">
+      <rect x="0" y="0" width="150" height="85" rx="10" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+      <text x="75" y="28" text-anchor="middle" class="emoji">💾</text>
+      <text x="75" y="48" text-anchor="middle" class="node-title">terraform.tfstate</text>
+      <text x="75" y="62" text-anchor="middle" class="node-desc">Lưu trạng thái</text>
+      <text x="75" y="75" text-anchor="middle" class="node-desc">Version control</text>
+    </g>
+    
+    <!-- Step 7: Output Values -->
+    <g transform="translate(75, 315)" class="s7">
+      <rect x="0" y="0" width="150" height="70" rx="10" fill="#cffafe" stroke="#06b6d4" stroke-width="2.5"/>
+      <text x="75" y="26" text-anchor="middle" class="emoji">🏷️</text>
+      <text x="75" y="46" text-anchor="middle" class="node-title">output</text>
+      <text x="75" y="60" text-anchor="middle" class="node-desc">server_public_ip</text>
+    </g>
+  </g>
+  
+  <!-- ========== WORKFLOW COMMANDS ========== -->
+  <g transform="translate(50, 670)">
+    <rect x="0" y="0" width="1200" height="100" rx="12" fill="rgba(45,55,72,0.9)" stroke="#4a5568" stroke-width="2"/>
+    <text x="600" y="25" text-anchor="middle" class="section-title">🔄 Terraform Workflow Commands</text>
+    
+    <g transform="translate(50, 45)">
+      <circle cx="0" cy="0" r="12" fill="#667eea" class="s0"/>
+      <text x="0" y="4" text-anchor="middle" class="step-num" style="font-size:10px">0</text>
+      <text x="20" y="5" class="step-text" style="fill:#667eea">terraform init</text>
+      
+      <circle cx="150" cy="0" r="12" fill="#fbbf24" class="s1"/>
+      <text x="150" y="4" text-anchor="middle" class="step-num" style="font-size:10px">1</text>
+      <text x="170" y="5" class="step-text" style="fill:#fbbf24">Load Variables</text>
+      
+      <circle cx="290" cy="0" r="12" fill="#3b82f6" class="s2"/>
+      <text x="290" y="4" text-anchor="middle" class="step-num" style="font-size:10px">2</text>
+      <text x="310" y="5" class="step-text" style="fill:#3b82f6">Fetch Data</text>
+      
+      <circle cx="420" cy="0" r="12" fill="#f97316" class="s3"/>
+      <text x="420" y="4" text-anchor="middle" class="step-num" style="font-size:10px">3</text>
+      <text x="440" y="5" class="step-text" style="fill:#f97316">Process Locals</text>
+      
+      <circle cx="560" cy="0" r="12" fill="#ec4899" class="s4"/>
+      <text x="560" y="4" text-anchor="middle" class="step-num" style="font-size:10px">4</text>
+      <text x="580" y="5" class="step-text" style="fill:#ec4899">terraform plan/apply</text>
+    </g>
+    
+    <g transform="translate(50, 70)">
+      <circle cx="0" cy="0" r="12" fill="#22c55e" class="s5"/>
+      <text x="0" y="4" text-anchor="middle" class="step-num" style="font-size:10px">5</text>
+      <text x="20" y="5" class="step-text" style="fill:#22c55e">Create Infrastructure</text>
+      
+      <circle cx="180" cy="0" r="12" fill="#14b8a6" class="s6"/>
+      <text x="180" y="4" text-anchor="middle" class="step-num" style="font-size:10px">6</text>
+      <text x="200" y="5" class="step-text" style="fill:#14b8a6">Update State File</text>
+      
+      <circle cx="350" cy="0" r="12" fill="#06b6d4" class="s7"/>
+      <text x="350" y="4" text-anchor="middle" class="step-num" style="font-size:10px">7</text>
+      <text x="370" y="5" class="step-text" style="fill:#06b6d4">Display Outputs</text>
+      
+      <text x="550" y="5" class="step-text" style="fill:#a0aec0; font-size:10px">💡 Destroy: terraform destroy (Xóa toàn bộ)</text>
+    </g>
+  </g>
+  
+  <!-- ========== CONNECTION LINES ========== -->
+  <!-- Init to Variables (UPDATED PATH: Avoid Text Overlap) -->
+  <path d="M 120 180 L 120 255" stroke="#667eea" stroke-width="3" class="l0" fill="none"/>
+  <g transform="translate(120, 190)"><circle r="10" fill="#667eea" class="indicator s0"/><text x="0" y="4" text-anchor="middle" class="step-num" style="font-size:10px">0</text></g>
+  
+  <!-- Variables to Data -->
+  <path d="M 135 345 L 135 370" stroke="#fbbf24" stroke-width="3" class="l1" fill="none"/>
+  <g transform="translate(150, 360)"><circle r="10" fill="#fbbf24" class="indicator s1"/><text x="0" y="4" text-anchor="middle" class="step-num" style="font-size:10px">1</text></g>
+  
+  <!-- Data to Locals -->
+  <path d="M 135 455 L 135 480" stroke="#3b82f6" stroke-width="3" class="l2" fill="none"/>
+  <g transform="translate(150, 470)"><circle r="10" fill="#3b82f6" class="indicator s2"/><text x="0" y="4" text-anchor="middle" class="step-num" style="font-size:10px">2</text></g>
+  
+  <!-- Locals to Resource -->
+  <path d="M 190 522 L 350 522 L 350 400 L 480 400" stroke="#f97316" stroke-width="3" class="l3" fill="none"/>
+  <g transform="translate(280, 507)"><circle r="10" fill="#f97316" class="indicator s3"/><text x="0" y="4" text-anchor="middle" class="step-num" style="font-size:10px">3</text></g>
+  
+  <!-- Resource to Infrastructure -->
+  <path d="M 770 400 L 900 400 L 900 330 L 975 330" stroke="#ec4899" stroke-width="3" class="l4" fill="none"/>
+  <g transform="translate(835, 385)"><circle r="10" fill="#ec4899" class="indicator s4"/><text x="0" y="4" text-anchor="middle" class="step-num" style="font-size:10px">4</text></g>
+  
+  <!-- Infrastructure to State -->
+  <path d="M 1050 380 L 1050 405" stroke="#22c55e" stroke-width="3" class="l5" fill="none"/>
+  <g transform="translate(1065, 392)"><circle r="10" fill="#22c55e" class="indicator s5"/><text x="0" y="4" text-anchor="middle" class="step-num" style="font-size:10px">5</text></g>
+  
+  <!-- State to Output -->
+  <path d="M 1050 490 L 1050 515" stroke="#14b8a6" stroke-width="3" class="l6" fill="none"/>
+  <g transform="translate(1065, 502)"><circle r="10" fill="#14b8a6" class="indicator s6"/><text x="0" y="4" text-anchor="middle" class="step-num" style="font-size:10px">6</text></g>
+  
+  <!-- Output indicator -->
+  <g transform="translate(1065, 602)"><circle r="10" fill="#06b6d4" class="indicator s7"/><text x="0" y="4" text-anchor="middle" class="step-num" style="font-size:10px">7</text></g>
+  
+  <!-- Legend Box -->
+  <g transform="translate(1250, 100)">
+    <rect x="0" y="0" width="300" height="200" rx="10" fill="rgba(45,55,72,0.95)" stroke="#4a5568" stroke-width="2"/>
+    <text x="150" y="25" text-anchor="middle" class="section-title" style="font-size:12px">📚 Key Concepts</text>
+    
+    <text x="15" y="50" class="step-text" style="fill:#fbbf24">• Declarative: Mô tả kết quả</text>
+    <text x="15" y="70" class="step-text" style="fill:#3b82f6">• Idempotent: Chạy lại = kết quả</text>
+    <text x="15" y="90" class="step-text" style="fill:#ec4899">• State Management: Theo dõi</text>
+    <text x="15" y="110" class="step-text" style="fill:#22c55e">• Provider: AWS/Azure/GCP</text>
+    <text x="15" y="130" class="step-text" style="fill:#14b8a6">• Version Control: Git-friendly</text>
+    
+    <text x="15" y="160" class="step-text" style="fill:#a0aec0; font-size:8px">💡 Tư duy: Nhà máy tự động hóa</text>
+    <text x="15" y="175" class="step-text" style="fill:#a0aec0; font-size:8px">Input → Process → Output</text>
+  </g>
+</svg>
+

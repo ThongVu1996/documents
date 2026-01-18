@@ -1,0 +1,360 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1000" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <linearGradient id="codeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+    </linearGradient>
+    
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(148,163,184,0.1)" stroke-width="0.5"/>
+    </pattern>
+
+    <!-- MISSING MARKERS ADDED -->
+    <marker id="arrowPurple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#8b5cf6" />
+    </marker>
+    <marker id="arrowPink" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ec4899" />
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22c55e" />
+    </marker>
+  </defs>
+  
+  <style>
+    .title { font-family: 'Consolas', 'Monaco', monospace; font-size: 22px; fill: #e2e8f0; font-weight: 700; }
+    .subtitle { font-family: 'Segoe UI', sans-serif; font-size: 11px; fill: #94a3b8; }
+    .section-header { font-family: 'Consolas', monospace; font-size: 13px; fill: #10b981; font-weight: 600; }
+    .code-line { font-family: 'Consolas', monospace; font-size: 9px; fill: #cbd5e0; }
+    .code-keyword { fill: #c084fc; font-weight: 600; }
+    .code-string { fill: #fbbf24; }
+    .code-comment { fill: #64748b; font-style: italic; }
+    .code-value { fill: #38bdf8; }
+    .block-label { font-family: 'Segoe UI', sans-serif; font-size: 11px; fill: #1e293b; font-weight: 600; }
+    .block-label-light { font-family: 'Segoe UI', sans-serif; font-size: 11px; fill: #e2e8f0; font-weight: 600; }
+    .arrow-label { font-family: 'Segoe UI', sans-serif; font-size: 9px; fill: #cbd5e0; font-weight: 500; }
+    .step-num { font-family: 'Segoe UI', sans-serif; font-size: 11px; fill: #fff; font-weight: 700; }
+    
+    /* Section animations - 28s cycle (7 sections × 4s each) */
+    .section-a { opacity: 0.3; animation: hlSection 28s ease-in-out infinite; animation-delay: 0s; }
+    .section-b1 { opacity: 0.3; animation: hlSection 28s ease-in-out infinite; animation-delay: 4s; }
+    .section-b2 { opacity: 0.3; animation: hlSection 28s ease-in-out infinite; animation-delay: 8s; }
+    .section-b3 { opacity: 0.3; animation: hlSection 28s ease-in-out infinite; animation-delay: 12s; }
+    .section-c { opacity: 0.3; animation: hlSection 28s ease-in-out infinite; animation-delay: 16s; }
+    .section-d { opacity: 0.3; animation: hlSection 28s ease-in-out infinite; animation-delay: 20s; }
+    .section-result { opacity: 0.3; animation: hlSection 28s ease-in-out infinite; animation-delay: 24s; }
+    
+    /* Arrow animations */
+    .arrow-a { opacity: 0.2; animation: arrowGlow 28s ease-in-out infinite; animation-delay: 0s; }
+    .arrow-b1 { opacity: 0.2; animation: arrowGlow 28s ease-in-out infinite; animation-delay: 4s; }
+    .arrow-b2 { opacity: 0.2; animation: arrowGlow 28s ease-in-out infinite; animation-delay: 8s; }
+    .arrow-b3 { opacity: 0.2; animation: arrowGlow 28s ease-in-out infinite; animation-delay: 12s; }
+    .arrow-c { opacity: 0.2; animation: arrowGlow 28s ease-in-out infinite; animation-delay: 16s; }
+    .arrow-d { opacity: 0.2; animation: arrowGlow 28s ease-in-out infinite; animation-delay: 20s; }
+    .arrow-result { opacity: 0.2; animation: arrowGlow 28s ease-in-out infinite; animation-delay: 24s; }
+    
+    @keyframes hlSection {
+      0%,14% { opacity: 1; filter: drop-shadow(0 0 12px rgba(139,92,246,0.8)); }
+      15%,100% { opacity: 0.3; }
+    }
+    
+    @keyframes arrowGlow {
+      0%,14% { opacity: 1; stroke-width: 3; filter: drop-shadow(0 0 6px rgba(139,92,246,0.7)); }
+      15%,100% { opacity: 0.2; stroke-width: 2; }
+    }
+    
+    .pulse { animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity: 0.6; } 50% { opacity: 1; } }
+  </style>
+  
+  <!-- Background grid -->
+  <rect width="1800" height="1000" fill="url(#grid)"/>
+  
+  <!-- Title -->
+  <text x="900" y="35" text-anchor="middle" class="title">📄 main.tf - Terraform Code Structure</text>
+  <text x="900" y="55" text-anchor="middle" class="subtitle">A: Setup → B: Input (Var/Data/Local) → C: Process → D: Output | 28s cycle</text>
+  
+  <!-- ========== LEFT SIDE: CODE VISUALIZATION ========== -->
+  <g transform="translate(50, 90)">
+    <rect x="0" y="0" width="680" height="840" rx="12" fill="url(#codeGrad)" stroke="#334155" stroke-width="2"/>
+    
+    <!-- SECTION A: SETUP -->
+    <g class="section-a">
+      <rect x="15" y="15" width="650" height="130" rx="8" fill="rgba(139,92,246,0.1)" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="25" y="35" class="section-header"># PHẦN A: KHO BÃI &amp; CÔNG CỤ</text>
+      
+      <text x="25" y="55" class="code-line"><tspan class="code-keyword">terraform</tspan> {</text>
+      <text x="40" y="70" class="code-line"><tspan class="code-keyword">required_providers</tspan> {</text>
+      <text x="55" y="85" class="code-line">aws = {</text>
+      <text x="70" y="100" class="code-line">source = <tspan class="code-string">"hashicorp/aws"</tspan></text>
+      <text x="70" y="115" class="code-line">version = <tspan class="code-string">"~> 5.0"</tspan></text>
+      <text x="55" y="130" class="code-line">}</text>
+      
+      <text x="340" y="70" class="code-line"><tspan class="code-keyword">provider</tspan> <tspan class="code-string">"aws"</tspan> {</text>
+      <text x="355" y="85" class="code-line">region = <tspan class="code-string">"us-east-1"</tspan></text>
+      <text x="340" y="100" class="code-line">}</text>
+    </g>
+    
+    <!-- SECTION B: INPUT -->
+    <g transform="translate(0, 160)">
+      <rect x="15" y="0" width="650" height="340" rx="8" fill="rgba(251,191,36,0.08)" stroke="#fbbf24" stroke-width="2"/>
+      <text x="25" y="20" class="section-header"># PHẦN B: NGUYÊN LIỆU ĐẦU VÀO</text>
+      
+      <!-- B1: Variable -->
+      <g class="section-b1">
+        <rect x="25" y="30" width="300" height="90" rx="6" fill="rgba(251,191,36,0.15)" stroke="#fbbf24" stroke-width="1.5"/>
+        <text x="35" y="50" class="code-line"><tspan class="code-comment"># 1. VARIABLE</tspan></text>
+        <text x="35" y="65" class="code-line"><tspan class="code-keyword">variable</tspan> <tspan class="code-string">"instance_size"</tspan> {</text>
+        <text x="50" y="80" class="code-line">description = <tspan class="code-string">"Loại máy ảo..."</tspan></text>
+        <text x="50" y="95" class="code-line">default = <tspan class="code-string">"t2.micro"</tspan></text>
+        <text x="50" y="110" class="code-line">type = <tspan class="code-value">string</tspan></text>
+      </g>
+      
+      <g class="section-b1">
+        <rect x="340" y="30" width="300" height="90" rx="6" fill="rgba(251,191,36,0.15)" stroke="#fbbf24" stroke-width="1.5"/>
+        <text x="350" y="65" class="code-line"><tspan class="code-keyword">variable</tspan> <tspan class="code-string">"project_name"</tspan> {</text>
+        <text x="365" y="80" class="code-line">description = <tspan class="code-string">"Tên dự án"</tspan></text>
+        <text x="365" y="95" class="code-line">default = <tspan class="code-string">"Terraform-Lab"</tspan></text>
+        <text x="350" y="110" class="code-line">}</text>
+      </g>
+      
+      <!-- B2: Data Source -->
+      <g class="section-b2" transform="translate(0, 100)">
+        <rect x="25" y="30" width="615" height="90" rx="6" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1.5"/>
+        <text x="35" y="50" class="code-line"><tspan class="code-comment"># 2. DATA SOURCE</tspan></text>
+        <text x="35" y="65" class="code-line"><tspan class="code-keyword">data</tspan> <tspan class="code-string">"aws_ami"</tspan> <tspan class="code-string">"ubuntu"</tspan> {</text>
+        <text x="50" y="80" class="code-line">most_recent = <tspan class="code-value">true</tspan></text>
+        <text x="50" y="95" class="code-line">owners = [<tspan class="code-string">"099720109477"</tspan>] <tspan class="code-comment"># Canonical</tspan></text>
+        <text x="50" y="110" class="code-line">filter { name = <tspan class="code-string">"name"</tspan>, values = [<tspan class="code-string">"ubuntu/..."</tspan>] }</text>
+      </g>
+      
+      <!-- B3: Locals -->
+      <g class="section-b3" transform="translate(0, 200)">
+        <rect x="25" y="30" width="615" height="90" rx="6" fill="rgba(249,115,22,0.15)" stroke="#f97316" stroke-width="1.5"/>
+        <text x="35" y="50" class="code-line"><tspan class="code-comment"># 3. LOCALS</tspan></text>
+        <text x="35" y="65" class="code-line"><tspan class="code-keyword">locals</tspan> {</text>
+        <text x="50" y="80" class="code-line">common_tags = {</text>
+        <text x="65" y="95" class="code-line">Project = <tspan class="code-value">var.project_name</tspan></text>
+        <text x="65" y="110" class="code-line">Owner = <tspan class="code-string">"DevOps-Team"</tspan>, ManagedBy = <tspan class="code-string">"Terraform"</tspan></text>
+      </g>
+    </g>
+    
+    <!-- SECTION C: RESOURCE -->
+    <g class="section-c" transform="translate(0, 515)">
+      <rect x="15" y="0" width="650" height="140" rx="8" fill="rgba(236,72,153,0.1)" stroke="#ec4899" stroke-width="2"/>
+      <text x="25" y="20" class="section-header"># PHẦN C: BẢN VẼ THIẾT KẾ (PROCESS)</text>
+      
+      <text x="25" y="40" class="code-line"><tspan class="code-keyword">resource</tspan> <tspan class="code-string">"aws_instance"</tspan> <tspan class="code-string">"web_server"</tspan> {</text>
+      <text x="40" y="60" class="code-line">ami = <tspan class="code-value">data.aws_ami.ubuntu.id</tspan> <tspan class="code-comment"># Từ DATA</tspan></text>
+      <text x="40" y="80" class="code-line">instance_type = <tspan class="code-value">var.instance_size</tspan> <tspan class="code-comment"># Từ VARIABLE</tspan></text>
+      <text x="40" y="100" class="code-line">tags = <tspan class="code-keyword">merge</tspan>(<tspan class="code-value">local.common_tags</tspan>, { <tspan class="code-comment"># Từ LOCAL</tspan></text>
+      <text x="55" y="115" class="code-line">Name = <tspan class="code-string">"${var.project_name}-WebServer"</tspan></text>
+      <text x="40" y="130" class="code-line">})</text>
+    </g>
+    
+    <!-- SECTION D: OUTPUT -->
+    <g class="section-d" transform="translate(0, 670)">
+      <rect x="15" y="0" width="650" height="95" rx="8" fill="rgba(34,197,94,0.1)" stroke="#22c55e" stroke-width="2"/>
+      <text x="25" y="20" class="section-header"># PHẦN D: ĐẦU RA HIỂN THỊ</text>
+      
+      <text x="25" y="40" class="code-line"><tspan class="code-keyword">output</tspan> <tspan class="code-string">"server_public_ip"</tspan> {</text>
+      <text x="40" y="55" class="code-line">description = <tspan class="code-string">"IP Public để truy cập server"</tspan></text>
+      <text x="40" y="70" class="code-line">value = <tspan class="code-value">aws_instance.web_server.public_ip</tspan></text>
+      <text x="25" y="85" class="code-line">}</text>
+    </g>
+  </g>
+  
+  <!-- ========== RIGHT SIDE: VISUAL FLOW ========== -->
+  <g transform="translate(800, 90)">
+    
+    <!-- Step A: Setup Box -->
+    <g class="section-a">
+      <rect x="0" y="0" width="180" height="100" rx="10" fill="#8b5cf6" stroke="#6d28d9" stroke-width="2"/>
+      <text x="90" y="30" text-anchor="middle" style="font-size:28px">🔧</text>
+      <text x="90" y="55" text-anchor="middle" class="block-label-light">SETUP</text>
+      <text x="90" y="72" text-anchor="middle" style="font-size:9px; fill:#e9d5ff">terraform + provider</text>
+      <text x="90" y="87" text-anchor="middle" style="font-size:9px; fill:#e9d5ff">Kho bãi &amp; Công cụ</text>
+    </g>
+    
+    <!-- Arrow A → B -->
+    <g class="arrow-a">
+      <path d="M 90 100 L 90 145" stroke="#8b5cf6" stroke-width="2" fill="none" marker-end="url(#arrowPurple)"/>
+      <circle cx="90" cy="122" r="12" fill="#8b5cf6" class="pulse"/>
+      <text x="90" y="127" text-anchor="middle" class="step-num" style="font-size:10px">A</text>
+    </g>
+    
+    <!-- Step B: Input Section -->
+    <g transform="translate(-70, 145)">
+      <rect x="0" y="0" width="320" height="340" rx="10" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="160" y="20" text-anchor="middle" class="section-header" style="fill:#fbbf24">INPUT - Nguyên liệu</text>
+      
+      <!-- B1: Variable -->
+      <g class="section-b1" transform="translate(20, 40)">
+        <rect x="0" y="0" width="130" height="75" rx="8" fill="#fef3c7" stroke="#fbbf24" stroke-width="2"/>
+        <text x="65" y="28" text-anchor="middle" style="font-size:20px">📝</text>
+        <text x="65" y="48" text-anchor="middle" class="block-label">variable</text>
+        <text x="65" y="63" text-anchor="middle" style="font-size:8px; fill:#78716c">Khách hàng</text>
+      </g>
+      
+      <!-- B2: Data -->
+      <g class="section-b2" transform="translate(20, 135)">
+        <rect x="0" y="0" width="130" height="75" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+        <text x="65" y="28" text-anchor="middle" style="font-size:20px">🔍</text>
+        <text x="65" y="48" text-anchor="middle" class="block-label">data</text>
+        <text x="65" y="63" text-anchor="middle" style="font-size:8px; fill:#78716c">Nhập khẩu</text>
+      </g>
+      
+      <!-- B3: Locals -->
+      <g class="section-b3" transform="translate(20, 230)">
+        <rect x="0" y="0" width="130" height="75" rx="8" fill="#fed7aa" stroke="#f97316" stroke-width="2"/>
+        <text x="65" y="28" text-anchor="middle" style="font-size:20px">⚙️</text>
+        <text x="65" y="48" text-anchor="middle" class="block-label">locals</text>
+        <text x="65" y="63" text-anchor="middle" style="font-size:8px; fill:#78716c">Sơ chế</text>
+      </g>
+      
+      <!-- Merge arrows to center -->
+      <g class="arrow-b1">
+        <path d="M 150 77 L 220 77 L 220 170 L 255 170" stroke="#fbbf24" stroke-width="2" fill="none"/>
+      </g>
+      <g class="arrow-b2">
+        <path d="M 150 172 L 255 172" stroke="#3b82f6" stroke-width="2" fill="none"/>
+      </g>
+      <g class="arrow-b3">
+        <path d="M 150 267 L 220 267 L 220 174 L 255 174" stroke="#f97316" stroke-width="2" fill="none"/>
+      </g>
+      
+      <!-- Merge point -->
+      <g transform="translate(260, 160)">
+        <circle cx="0" cy="12" r="18" fill="#fbbf24" stroke="#f97316" stroke-width="2" class="section-b3 pulse"/>
+        <text x="0" y="17" text-anchor="middle" class="step-num">B</text>
+      </g>
+    </g>
+    
+    <!-- Arrow B → C -->
+    <g class="arrow-c">
+      <path d="M 90 485 L 90 525" stroke="#ec4899" stroke-width="2" fill="none" marker-end="url(#arrowPink)"/>
+      <text x="110" y="510" class="arrow-label" style="fill:#ec4899">Tổng hợp</text>
+    </g>
+    
+    <!-- Step C: Resource -->
+    <g class="section-c" transform="translate(-30, 525)">
+      <rect x="0" y="0" width="240" height="120" rx="10" fill="#ec4899" stroke="#db2777" stroke-width="3"/>
+      <text x="120" y="35" text-anchor="middle" style="font-size:30px">🏗️</text>
+      <text x="120" y="62" text-anchor="middle" class="block-label-light" style="font-size:13px">RESOURCE</text>
+      <text x="120" y="80" text-anchor="middle" style="font-size:9px; fill:#fce7f3">aws_instance</text>
+      <text x="120" y="95" text-anchor="middle" style="font-size:9px; fill:#fce7f3">Bản vẽ kỹ thuật</text>
+      <text x="120" y="108" text-anchor="middle" style="font-size:8px; fill:#fce7f3">⚡ terraform apply</text>
+    </g>
+    
+    <!-- Arrow C → D -->
+    <g class="arrow-d">
+      <path d="M 90 645 L 90 685" stroke="#22c55e" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
+      <text x="110" y="670" class="arrow-label" style="fill:#22c55e">Tạo thực tế</text>
+    </g>
+    
+    <!-- Step D: Output -->
+    <g class="section-d" transform="translate(-50, 685)">
+      <rect x="0" y="0" width="280" height="140" rx="10" fill="rgba(34,197,94,0.1)" stroke="#22c55e" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="140" y="20" text-anchor="middle" class="section-header" style="fill:#22c55e">OUTPUT</text>
+      
+      <g transform="translate(20, 35)">
+        <!-- Infrastructure -->
+        <g class="section-result" transform="translate(0, 0)">
+          <rect x="0" y="0" width="110" height="70" rx="8" fill="#d1fae5" stroke="#22c55e" stroke-width="2"/>
+          <text x="55" y="26" text-anchor="middle" style="font-size:18px">☁️</text>
+          <text x="55" y="44" text-anchor="middle" class="block-label" style="font-size:10px">Infrastructure</text>
+          <text x="55" y="58" text-anchor="middle" style="font-size:8px; fill:#065f46">EC2 Running</text>
+        </g>
+        
+        <!-- Output value -->
+        <g class="section-d" transform="translate(130, 0)">
+          <rect x="0" y="0" width="110" height="70" rx="8" fill="#cffafe" stroke="#06b6d4" stroke-width="2"/>
+          <text x="55" y="26" text-anchor="middle" style="font-size:18px">🏷️</text>
+          <text x="55" y="44" text-anchor="middle" class="block-label" style="font-size:10px">output</text>
+          <text x="55" y="58" text-anchor="middle" style="font-size:8px; fill:#164e63">server_public_ip</text>
+        </g>
+      </g>
+    </g>
+    
+    <!-- Result indicator -->
+    <g class="section-result" transform="translate(75, 875)">
+      <circle cx="0" cy="0" r="14" fill="#22c55e" class="pulse"/>
+      <text x="0" y="5" text-anchor="middle" class="step-num">✓</text>
+    </g>
+  </g>
+  
+  <!-- ========== LEGEND & WORKFLOW ========== -->
+  <g transform="translate(1250, 90)">
+    <rect x="0" y="0" width="500" height="840" rx="12" fill="rgba(30,41,59,0.95)" stroke="#475569" stroke-width="2"/>
+    <text x="250" y="30" text-anchor="middle" class="section-header" style="font-size:16px; fill:#e2e8f0">📚 Giải thích Chi tiết</text>
+    
+    <!-- Section A: Setup -->
+    <g transform="translate(20, 60)">
+      <rect x="0" y="0" width="460" height="85" rx="8" fill="rgba(139,92,246,0.15)" stroke="#8b5cf6" stroke-width="1.5"/>
+      <circle cx="15" cy="15" r="10" fill="#8b5cf6"/>
+      <text x="15" y="19" text-anchor="middle" style="font-size:10px; fill:#fff; font-weight:700">A</text>
+      <text x="35" y="19" class="code-line" style="font-size:11px; fill:#c4b5fd; font-weight:600">SETUP - Kho bãi &amp; Công cụ</text>
+      
+      <text x="15" y="40" class="code-line" style="font-size:9px">• <tspan class="code-keyword">terraform</tspan>: Khai báo phiên bản</text>
+      <text x="15" y="55" class="code-line" style="font-size:9px">• <tspan class="code-keyword">required_providers</tspan>: Tải plugin AWS</text>
+      <text x="15" y="70" class="code-line" style="font-size:9px">• <tspan class="code-keyword">provider "aws"</tspan>: Cấu hình kết nối AWS</text>
+    </g>
+    
+    <!-- Section B: Input -->
+    <g transform="translate(20, 160)">
+      <rect x="0" y="0" width="460" height="170" rx="8" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="1.5"/>
+      <circle cx="15" cy="15" r="10" fill="#fbbf24"/>
+      <text x="15" y="19" text-anchor="middle" style="font-size:10px; fill:#1e293b; font-weight:700">B</text>
+      <text x="35" y="19" class="code-line" style="font-size:11px; fill:#fbbf24; font-weight:600">INPUT - Nguyên liệu đầu vào</text>
+      
+      <text x="15" y="40" class="code-line" style="font-size:9px; fill:#fbbf24; font-weight:600">B1. Variable (📝 Khách hàng)</text>
+      <text x="25" y="55" class="code-line" style="font-size:8px">• Tham số có thể thay đổi khi chạy</text>
+      <text x="25" y="68" class="code-line" style="font-size:8px">• Ví dụ: instance_size, project_name</text>
+      
+      <text x="15" y="90" class="code-line" style="font-size:9px; fill:#3b82f6; font-weight:600">B2. Data Source (🔍 Nhập khẩu)</text>
+      <text x="25" y="105" class="code-line" style="font-size:8px">• Lấy dữ liệu có sẵn từ Cloud</text>
+      <text x="25" y="118" class="code-line" style="font-size:8px">• Ví dụ: AMI ID của Ubuntu mới nhất</text>
+      
+      <text x="15" y="140" class="code-line" style="font-size:9px; fill:#f97316; font-weight:600">B3. Locals (⚙️ Sơ chế)</text>
+      <text x="25" y="155" class="code-line" style="font-size:8px">• Biến tính toán nội bộ, tái sử dụng</text>
+      <text x="25" y="168" class="code-line" style="font-size:8px">• Ví dụ: common_tags cho tất cả resource</text>
+    </g>
+    
+    <!-- Section C: Resource -->
+    <g transform="translate(20, 345)">
+      <rect x="0" y="0" width="460" height="110" rx="8" fill="rgba(236,72,153,0.15)" stroke="#ec4899" stroke-width="1.5"/>
+      <circle cx="15" cy="15" r="10" fill="#ec4899"/>
+      <text x="15" y="19" text-anchor="middle" style="font-size:10px; fill:#fff; font-weight:700">C</text>
+      <text x="35" y="19" class="code-line" style="font-size:11px; fill:#f9a8d4; font-weight:600">PROCESS - Bản vẽ thiết kế</text>
+      
+      <text x="15" y="45" class="code-line" style="font-size:9px">• Nơi Input biến thành Resource thực tế</text>
+      <text x="15" y="65" class="code-line" style="font-size:9px">• <tspan class="code-keyword">resource</tspan>: Khối quan trọng nhất</text>
+      <text x="15" y="85" class="code-line" style="font-size:9px">• Kết hợp: AMI (Data) + Size (Var) + Tags (Local)</text>
+    </g>
+    
+     <!-- Section D: Output -->
+    <g transform="translate(20, 470)">
+      <rect x="0" y="0" width="460" height="100" rx="8" fill="rgba(34,197,94,0.15)" stroke="#22c55e" stroke-width="1.5"/>
+      <circle cx="15" cy="15" r="10" fill="#22c55e"/>
+      <text x="15" y="19" text-anchor="middle" style="font-size:10px; fill:#fff; font-weight:700">D</text>
+      <text x="35" y="19" class="code-line" style="font-size:11px; fill:#86efac; font-weight:600">OUTPUT - Đầu ra hiển thị</text>
+      
+      <text x="15" y="45" class="code-line" style="font-size:9px">• In thông tin ra màn hình console sau khi chạy</text>
+      <text x="15" y="65" class="code-line" style="font-size:9px">• Giá trị trả về sử dụng cho người dùng hoặc module khác</text>
+      <text x="15" y="85" class="code-line" style="font-size:9px">• Ví dụ: IP Public của server vừa tạo</text>
+    </g>
+
+    <!-- Footer Note -->
+    <text x="250" y="810" text-anchor="middle" class="subtitle" style="fill:#64748b; font-size:10px">
+      Generated based on provided main.tf structure
+    </text>
+  </g>
+</svg>
