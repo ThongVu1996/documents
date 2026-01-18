@@ -1,5 +1,22 @@
 # [Terraform 105] Logic & Expressions: Biến HCL thành "ngôn ngữ" thực thụ
 
+---
+
+## Mục lục
+- [Lời mở đầu: Thổi bùng sức sống cho đống dữ liệu](#lời-mở-đầu-thổi-bùng-sức-sống-cho-đống-dữ-liệu)
+- [1. Toán tử (Operators): Những phép tính cơ bản](#1-toán-tử-operators-những-phép-tính-cơ-bản)
+- [2. Conditional Expressions: Cú pháp "Hỏi - Đáp" (Ternary)](#2-conditional-expressions-cú-pháp-hỏi---đáp-ternary)
+- [3. Hàm tích hợp (Built-in Functions): Bộ "đồ nghề" có sẵn](#3-hàm-tích-hợp-built-in-functions-bộ-đồ-nghề-có-sẵn)
+- [4. Sức mạnh của For Expressions: "Phù thủy" biến đổi dữ liệu](#4-sức-mạnh-của-for-expressions-phù-thủy-biến-đổi-dữ-liệu)
+  - [Ví dụ 1: Biến đổi dữ liệu (Mapping)](#ví-dụ-1-biến-đổi-dữ-liệu-mapping)
+  - [Ví dụ 2: Lọc dữ liệu (Filtering)](#ví-dụ-2-lọc-dữ-liệu-filtering)
+  - [Ví dụ 3: Xử lý Map (Key-Value)](#ví-dụ-3-xử-lý-map-key-value)
+  - [Minh họa quy trình xử lý (Logic Funnel)](#minh-họa-quy-trình-xử-lý-logic-funnel)
+- [5. Bảng đối chiếu nhanh "Não trái - Não phải"](#5-bảng-đối-chiếu-nhanh-não-trái---não-phải)
+- [Lời kết](#lời-kết)
+
+---
+
 ## Lời mở đầu: Thổi bùng sức sống cho đống dữ liệu
 
 Ở bài trước, chúng ta đã nắm trong tay các "nguyên liệu" (Kiểu dữ liệu) và biết cách tạo ra các "đơn đặt hàng" linh hoạt (Variables). Tuy nhiên, nếu chỉ dừng lại ở đó, Terraform vẫn chỉ là một file cấu hình tĩnh.
@@ -94,7 +111,7 @@ ssh_list = [for name, ip in var.server_map : "ssh admin@${ip} # ${name}"]
 ```
 
 ### Minh họa quy trình xử lý (Logic Funnel)
-![HCL Logic Funnel](./hcl_logic_funnel.svg)
+![HCL Logic Funnel](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/part_5/hcl_logic_funnel.svg)
 
 ---
 
@@ -108,11 +125,11 @@ ssh_list = [for name, ip in var.server_map : "ssh admin@${ip} # ${name}"]
 
 ---
 
-## Lời kết & Gợi mở
+## Lời kết
 
 Khi đã nắm được Logic, bạn không còn là người "khai báo" đơn thuần nữa, mà đã trở thành một Programmer thực thụ trong giới hạ tầng. Code của bạn giờ đây đã thông minh hơn, biết tự ứng biến theo môi trường.
 
 Nhưng có một vấn đề: Làm sao để lấy dữ liệu từ những thứ đã tồn tại sẵn trên Cloud (như một cái KeyPair bạn tạo bằng tay, hay một con VPC của dự án khác)? Làm sao để "soi" thông tin đó về file HCL của mình?
 
-Hẹn gặp lại các bạn ở bài viết tiếp theo: **[Terraform 106] Data Sources - Cửa sổ nhìn ra thế giới Cloud.**
+Hẹn gặp lại các bạn ở bài viết tiếp theo: **[Terraform 106] Meta-Arguments & Dynamic Blocks: Nghệ thuật nhân bản hạ tầng**
 
