@@ -33,7 +33,7 @@ Nói đơn giản, một Module là một tập hợp các file `.tf` nằm chun
 | **System** | Giống như việc viết một Shell Script tổng để gọi các Sub-scripts khác nhau cho từng nhiệm vụ (Cài Web, Cài DB, Firewall). |
 
 ### Minh họa: Cây Component (Modular Tree)
-![Terraform Modular Tree](./terraform_modular_tree.svg)
+![Terraform Modular Tree](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/part_8/terraform_modular_tree.svg)
 
 ---
 
