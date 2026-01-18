@@ -19,7 +19,7 @@
   - [B. Local Values: Biến tạm nội bộ (DRY)](#b-local-values-biến-tạm-nội-bộ-dry)
   - [C. Output Values: Kết quả trả về](#c-output-values-kết-quả-trả-về)
 - [5. Tổng kết: Luồng đi của dữ liệu](#5-tổng-kết-luồng-đi-của-dữ-liệu)
-- [Lời kết & Gợi mở](#lời-kết--gợi-mở)
+- [Lời kết & Gợi mở](#lời-kết)
 
 --- 
 ## Lời mở đầu: Thoát khỏi kiếp "Hard-code"
@@ -55,10 +55,10 @@ Chỉ có `true` hoặc `false`. Dùng làm "công tắc" bật/tắt tính năn
 Dành cho việc quản lý các danh sách dữ liệu cùng loại.
 
 ### List: Mảng các giá trị cùng kiểu
-> **Góc nhìn Dev (JS):** Chính là `Array`.
-> ```javascript
-> const subnets = ["subnet-1", "subnet-2"];
-> ```
+**Góc nhìn Dev (JS):** Chính là `Array`.
+```javascript
+const subnets = ["subnet-1", "subnet-2"];
+```
 
 **Góc nhìn System:** Giống danh sách DNS trong `/etc/resolv.conf`.
 ```bash
@@ -72,10 +72,10 @@ dns_servers = ["8.8.8.8", "8.8.4.4"]
 ```
 
 ### Map: Cặp Key-Value cùng kiểu
-> **Góc nhìn Dev (JS):** Giống như một `Object` cấu hình.
-> ```javascript
-> const instanceSizes = { "dev": "t2.micro", "prod": "m5.large" };
-> ```
+**Góc nhìn Dev (JS):** Giống như một `Object` cấu hình.
+```javascript
+const instanceSizes = { "dev": "t2.micro", "prod": "m5.large" };
+```
 
 **Góc nhìn System:** Giống tệp `/etc/hosts` – ánh xạ IP và Hostname.
 ```text
@@ -97,10 +97,10 @@ server_ips = {
 Dùng để định nghĩa các bộ hồ sơ hạ tầng phức tạp.
 
 ### Object: Bản ghi đa dữ liệu
-> **Góc nhìn Dev (JS):** Một Object phức tạp chứa nhiều kiểu dữ liệu.
-> ```javascript
-> const server = { name: "app", cpu: 2, public: true };
-> ```
+**Góc nhìn Dev (JS):** Một Object phức tạp chứa nhiều kiểu dữ liệu.
+```javascript
+const server = { name: "app", cpu: 2, public: true };
+```
 
 **Góc nhìn System:** Giống cấu hình một Service trong Systemd.
 ```ini
@@ -211,7 +211,7 @@ output "instance_ip" {
 
 ---
 
-## Lời kết & Gợi mở
+## Lời kết
 
 Làm chủ được Biến và Output, bạn đã bắt đầu chế tạo ra những "khuôn đúc" hạ tầng chuyên nghiệp. Nhưng làm sao để lấy dữ liệu từ những thứ đã có sẵn trên Cloud (như ID của một VPC cũ) mà không cần tạo mới?
 
