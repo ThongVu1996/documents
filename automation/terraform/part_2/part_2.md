@@ -12,7 +12,7 @@
   - [Bảng so sánh nhanh](#bảng-so-sánh-nhanh)
 - [4. Hệ sinh thái HashiCorp – Học một lần, "vẩy tay" mọi mặt trận](#4-hệ-sinh-thái-hashicorp--học-một-lần-vẩy-tay-mọi-mặt-trận)
 - [5. Setup nhanh để "vọc" (Cho anh em dùng Mac/Nix/Neovim)](#5-setup-nhanh-để-vọc-cho-anh-em-dùng-macnixneovim)
-- [Lời kết & Gợi mở bài sau](#lời-kết--gợi-mở-bài-sau)
+- [Lời kết](#lời-kết)
 
 ---
 
@@ -102,7 +102,7 @@ Vì chúng ta là dân chuyên nghiệp, hãy setup môi trường thật chuẩ
 
 ---
 
-## Lời kết & Gợi mở bài sau
+## Lời kết
 
 Hiểu được "tại sao lại là HCL" là bạn đã đi được nửa chặng đường làm chủ Terraform. Nhưng một bản hợp đồng thực tế sẽ không chỉ đơn giản như ví dụ trên. Nó cần những tham số linh hoạt, những giá trị đầu ra và khả năng tái sử dụng.
 
