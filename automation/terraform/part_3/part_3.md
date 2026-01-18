@@ -1,6 +1,6 @@
 # [Terraform 103] HCL Syntax: Từ cú pháp quen thuộc đến tư duy viết code hạ tầng
 
-## Mục lụcMục lục
+## Mục lục
 - [Lời mở đầu: Đừng để vẻ ngoài đánh lừa](#lời-mở-đầu-đừng-để-vẻ-ngoài-đánh-lừa)
 - [1. Giải phẫu một "Block" – Đơn vị cơ bản nhất](#1-giải-phẫu-một-block--đơn-vị-cơ-bản-nhất)
   - [Giải phẫu học HCL (Anatomy)](#giải-phẫu-học-hcl-anatomy)
