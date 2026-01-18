@@ -117,7 +117,7 @@ Nó là một file JSON (thường nằm ẩn trong máy bạn hoặc trên Clou
 
 Biểu đồ dưới đây tóm tắt cách luồng dữ liệu di chuyển từ đầu vào, qua xử lý, được ghi chép vào State (Sổ kho) và tạo ra kết quả.
 
-![Terraform Architecture](https://github.com/ThongVu1996/documents/blob/main/automation/terraform/part_1/terraform-code-structure.svg)
+![Terraform Architecture](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/part_1/terraform-code-structure.svg)
 
 ---
 
@@ -155,7 +155,7 @@ output "server_public_ip" { value = aws_instance.web_server.public_ip }
 ```
 
 
-![terraform code structure](https://github.com/ThongVu1996/documents/blob/main/automation/terraform/part_1/terraform-code-structure.svg)
+![terraform code structure](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/part_1/terraform-code-structure.svg)
 
 ---
 
