@@ -29,7 +29,7 @@ Giống như bạn dặn: *"Đi ra chợ mua thịt, về bật bếp, chờ d�
 Bạn chỉ cần nói: **"Tôi muốn có một đĩa thịt rán trên bàn"**.
 > ✅ **An tâm:** Việc đi chợ hay nấu nướng là việc của Terraform. Nếu đĩa thịt đã có sẵn trên bàn, nó sẽ không làm gì thêm.
 
-![Imperative vs Declarative](./imperative_vs_declarative.svg)
+![Imperative vs Declarative](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/part_2/thumbnail.svg)
 
 ---
 
