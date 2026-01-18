@@ -3,8 +3,7 @@
 
 ---
 
-<!-- toc -->
-
+## Mục lục
 - [1. Mở đầu: Từ "ClickOps" đến Tự động hóa](#1-mở-đầu-từ-clickops-đến-tự-động-hóa)
 - [2. Tư duy cốt lõi: Imperative vs. Declarative](#2-tư-duy-cốt-lõi-imperative-vs-declarative)
 - [3. Mô hình "Công xưởng chế tác" (The Factory Model)](#3-mô-hình-công-xưởng-chế-tác-the-factory-model)
@@ -118,7 +117,7 @@ Nó là một file JSON (thường nằm ẩn trong máy bạn hoặc trên Clou
 
 Biểu đồ dưới đây tóm tắt cách luồng dữ liệu di chuyển từ đầu vào, qua xử lý, được ghi chép vào State (Sổ kho) và tạo ra kết quả.
 
-![Terraform Architecture](./terraform-factory-model.svg)
+![Terraform Architecture](https://github.com/ThongVu1996/documents/blob/main/automation/terraform/part_1/terraform-code-structure.svg)
 
 ---
 
@@ -156,7 +155,7 @@ output "server_public_ip" { value = aws_instance.web_server.public_ip }
 ```
 
 
-![terraform code structure](./terraform-code-structure.svg)
+![terraform code structure](https://github.com/ThongVu1996/documents/blob/main/automation/terraform/part_1/terraform-code-structure.svg)
 
 ---
 
