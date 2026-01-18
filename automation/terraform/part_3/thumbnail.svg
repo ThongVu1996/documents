@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" style="background: radial-gradient(circle at 50% 100%, #0f172a 0%, #020617 100%); font-family: 'Segoe UI', sans-serif;">
+  <defs>
+    <!-- Filters -->
+    <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff" />
+      <stop offset="100%" stop-color="#94a3b8" />
+    </linearGradient>
+
+    <!-- Block Gradients -->
+    <linearGradient id="iso-top" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="iso-left" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+    <linearGradient id="iso-right" x1="100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#075985"/>
+    </linearGradient>
+
+    <!-- Syntax Braces Pattern -->
+    <pattern id="braces-pat" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <text x="50" y="50" font-family="Consolas" font-size="20" fill="rgba(255,255,255,0.03)" text-anchor="middle">{ }</text>
+    </pattern>
+  </defs>
+
+  <!-- Background Texture -->
+  <rect width="100%" height="100%" fill="url(#braces-pat)" />
+  
+  <!-- Giant Stylized Braces (The "Syntax" Hint) -->
+  <g transform="translate(600, 315)" opacity="0.1" font-family="'Consolas', monospace" font-weight="bold" font-size="500" fill="white" text-anchor="middle">
+      <text x="-350" y="150">{</text>
+      <text x="350" y="150">}</text>
+  </g>
+
+  <!-- Central Visual: Isometric Assembly (The "Block" Structure) -->
+  <g transform="translate(600, 260)">
+      
+      <!-- Floating Top Block (Identifier) -->
+      <g>
+          <animateTransform attributeName="transform" type="translate" values="0,-20; 0,-30; 0,-20" dur="4s" repeatCount="indefinite"/>
+          <path d="M0 -60 L50 -35 L0 -10 L-50 -35 Z" fill="#f472b6" filter="url(#neon-glow)"/> <!-- Pink Top -->
+          <path d="M-50 -35 L0 -10 L0 40 L-50 15 Z" fill="#db2777"/>
+          <path d="M0 -10 L50 -35 L50 15 L0 40 Z" fill="#be185d"/>
+      </g>
+
+      <!-- Middle Block (Type) -->
+      <g transform="translate(0, 55)">
+           <path d="M0 -60 L50 -35 L0 -10 L-50 -35 Z" fill="#fbbf24" opacity="0.9"/> <!-- Yellow Top -->
+           <path d="M-50 -35 L0 -10 L0 40 L-50 15 Z" fill="#d97706" opacity="0.9"/>
+           <path d="M0 -10 L50 -35 L50 15 L0 40 Z" fill="#b45309" opacity="0.9"/>
+      </g>
+
+      <!-- Bottom Base Block (Config) -->
+      <g transform="translate(0, 110)">
+           <path d="M0 -60 L50 -35 L0 -10 L-50 -35 Z" fill="#22d3ee" opacity="0.8"/> <!-- Blue Top -->
+           <path d="M-50 -35 L0 -10 L0 40 L-50 15 Z" fill="#0891b2" opacity="0.8"/>
+           <path d="M0 -10 L50 -35 L50 15 L0 40 Z" fill="#0e7490" opacity="0.8"/>
+      </g>
+
+      <!-- Connection Lines -->
+      <line x1="-80" y1="-20" x2="-50" y2="-20" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+      <circle cx="-85" cy="-20" r="3" fill="#f472b6"/>
+      
+      <line x1="80" y1="35" x2="50" y2="35" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+      <circle cx="85" cy="35" r="3" fill="#fbbf24"/>
+      
+      <line x1="-80" y1="90" x2="-50" y2="90" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+      <circle cx="-85" cy="90" r="3" fill="#22d3ee"/>
+
+  </g>
+
+  <!-- Title Section -->
+  <g transform="translate(600, 500)">
+      <text x="0" y="40" font-family="'Segoe UI', sans-serif" font-size="22" font-weight="300" fill="#cbd5e1" text-anchor="middle" letter-spacing="6">HCL SYNTAX MASTERY</text>
+  </g>
+
+</svg>
+
