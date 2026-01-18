@@ -19,7 +19,7 @@
   - [B. Local Values: Biến tạm nội bộ (DRY)](#b-local-values-biến-tạm-nội-bộ-dry)
   - [C. Output Values: Kết quả trả về](#c-output-values-kết-quả-trả-về)
 - [5. Tổng kết: Luồng đi của dữ liệu](#5-tổng-kết-luồng-đi-của-dữ-liệu)
-- [Lời kết & Gợi mở](#lời-kết)
+- [Lời kết](#lời-kết)
 
 --- 
 ## Lời mở đầu: Thoát khỏi kiếp "Hard-code"
