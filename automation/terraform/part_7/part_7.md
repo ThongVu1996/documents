@@ -112,13 +112,6 @@ Anh em rất hay nhầm lẫn hai cái này khi mới bắt đầu. Hãy nhớ q
 ---
 
 ## Lời kết
-
-Vậy là chúng ta đã đi qua trọn bộ các khái niệm cốt lõi nhất của Terraform:
-1.  **Core:** HCL Syntax, Declarative Mindset.
-2.  **Variables:** Biến hóa linh hoạt.
-3.  **Logic:** Xử lý điều kiện thông minh.
-4.  **Meta-Arguments:** Nhân bản tự động.
-5.  **Data Sources:** Kết nối với thế giới có sẵn.
-
-Nắm vững 5 trụ cột này, bạn đã đủ tự tin để viết những module Terraform chuyên nghiệp, dễ đọc và dễ bảo trì. Chúc các bạn thành công trên con đường Infrastructure as Code!
-
+- Nắm vững Data Sources, bạn đã hoàn thiện bộ kỹ năng "đọc và viết" trên Cloud Cloud một cách mượt mà. Tuy nhiên, khi dự án của bạn bắt đầu phình to với hàng trăm tài nguyên và hàng nghìn dòng code, việc dồn tất cả vào một file duy nhất sẽ trở thành một cơn ác mộng.
+- Làm thế nào để chúng ta đóng gói các thành phần hạ tầng (như VPC, DB, Web) thành những khối Lego chuyên nghiệp để tái sử dụng cho nhiều dự án khác nhau? Làm thế nào để tổ chức thư mục sao cho chuẩn "Industry"?
+- Hẹn gặp lại các bạn ở bài viết tiếp theo: **[Terraform 108] Module hóa & Cấu trúc dự án thực tế** — nơi chúng ta nâng tầm từ một người viết code đơn thuần thành một Cloud Architect thực thụ!
