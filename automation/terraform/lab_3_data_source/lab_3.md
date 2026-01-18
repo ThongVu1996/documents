@@ -2,19 +2,21 @@
 
 ---
 ## Mục lục
-- [1. Giới thiệu nhiệm vụ: "The Tracker" (Kẻ truy vết)](#1-giới-thiệu-nhiệm-vụ-the-tracker-kẻ-truy-vết)
-  - [Minh họa: Nhiệm vụ Truy vết (Mission Flow)](#minh-họa-nhiệm-vụ-truy-vết-mission-flow)
-- [2. Chuẩn bị (Prerequisites)](#2-chuẩn-bị-prerequisites)
-- [3. Kịch bản thực thi](#3-kịch-bản-thực-thi)
-- [4. Nội dung File Lab (`main.tf`)](#4-nội-dung-file-lab-maintf)
-- [5. Thao tác thực hành & Kiểm chứng](#5-thao-tác-thực-hành--kiểm-chứng)
-  - [Bước 1: Khởi tạo công cụ](#bước-1-khởi-tạo-công-cụ)
-  - [Bước 2: Lên kế hoạch trinh sát (Plan)](#bước-2-lên-kế-hoạch-trinh-sát-plan)
-  - [Bước 3: Kích hoạt nhiệm vụ (Apply)](#bước-3-kích-hoạt-nhiệm-vụ-apply)
-  - [Bước 4: Nghiệm thu kết quả (Verification Checklist)](#bước-4-nghiệm-thu-kết-quả-verification-checklist)
-  - [Bước 5: Xóa dấu vết (Clean Up)](#bước-5-xóa-dấu-vết-clean-up)
-- [6. Tổng kết nhiệm vụ](#6-tổng-kết-nhiệm-vụ)
-- [Lời kết: Từ "Code chạy được" đến "Code chuyên nghiệp"](#lời-kết-từ-code-chạy-được-đến-code-chuyên-nghiệp)
+- [\[Lab #3\] Data Source Challenge - Truy vết và Kết nối hạ tầng có sẵn](#lab-3-data-source-challenge---truy-vết-và-kết-nối-hạ-tầng-có-sẵn)
+  - [Mục lục](#mục-lục)
+  - [1. Giới thiệu nhiệm vụ: "The Tracker" (Kẻ truy vết)](#1-giới-thiệu-nhiệm-vụ-the-tracker-kẻ-truy-vết)
+    - [Minh họa: Nhiệm vụ Truy vết (Mission Flow)](#minh-họa-nhiệm-vụ-truy-vết-mission-flow)
+  - [2. Chuẩn bị (Prerequisites)](#2-chuẩn-bị-prerequisites)
+  - [3. Kịch bản thực thi](#3-kịch-bản-thực-thi)
+  - [4. Nội dung File Lab (`main.tf`)](#4-nội-dung-file-lab-maintf)
+  - [5. Thao tác thực hành \& Kiểm chứng](#5-thao-tác-thực-hành--kiểm-chứng)
+    - [Bước 1: Khởi tạo công cụ](#bước-1-khởi-tạo-công-cụ)
+    - [Bước 2: Lên kế hoạch trinh sát (Plan)](#bước-2-lên-kế-hoạch-trinh-sát-plan)
+    - [Bước 3: Kích hoạt nhiệm vụ (Apply)](#bước-3-kích-hoạt-nhiệm-vụ-apply)
+    - [Bước 4: Nghiệm thu kết quả (Verification Checklist)](#bước-4-nghiệm-thu-kết-quả-verification-checklist)
+    - [Bước 5: Xóa dấu vết (Clean Up)](#bước-5-xóa-dấu-vết-clean-up)
+  - [6. Tổng kết nhiệm vụ](#6-tổng-kết-nhiệm-vụ)
+  - [Lời kết: Từ "Code chạy được" đến "Code chuyên nghiệp"](#lời-kết-từ-code-chạy-được-đến-code-chuyên-nghiệp)
 
 ---
 ## 1. Giới thiệu nhiệm vụ: "The Tracker" (Kẻ truy vết)
@@ -166,11 +168,15 @@ Tải về AWS Provider để Terraform sẵn sàng làm việc.
 terraform init
 ```
 
+![Terraform Init](./init.png)
+
 ### Bước 2: Lên kế hoạch trinh sát (Plan)
 Quan sát kỹ Log hiển thị. Bạn sẽ thấy Terraform dự định tạo ra `aws_security_group.secret_base` trước (nhờ `depends_on`), sau đó `data` mới dựa vào đó để tìm ID.
 ```bash
 terraform plan
 ```
+
+![Terraform Plan](./plan.png)
 
 ### Bước 3: Kích hoạt nhiệm vụ (Apply)
 Triển khai toàn bộ kịch bản.
@@ -178,27 +184,34 @@ Triển khai toàn bộ kịch bản.
 terraform apply -auto-approve
 ```
 
+![Terraform Apply](./apply.png)
+
 ### Bước 4: Nghiệm thu kết quả (Verification Checklist)
 Đây là bước quan trọng nhất để biết "điệp viên" Agent-007 có hoàn thành nhiệm vụ hay không:
 
 1.  **Kiểm tra Báo cáo (Terminal Outputs):**
     *   Nhìn vào dòng `mission_report_sg_id` được in ra ở cuối màn hình (Ví dụ: `sg-0a1b...`).
+    ![Terminal Output](./mission_report_sg_id.png)
 
 2.  **Đối chiếu trên AWS Console:**
     *   Truy cập EC2 Dashboard -> **Security Groups**.
     *   Tìm SG có tên `secret-base-sg`.
     *   So sánh ID của nó với ID bạn thấy ở Terminal. Chúng phải trùng khớp 100%.
+    ![Aws Security](./aws-security.png)
 
 3.  **Kiểm tra Đặc vụ (Instance):**
     *   Vào menu Instances, chọn `Agent-007-Mission-Complete`.
     *   Nhấp vào tab **Security** (Bảo mật) ở phía dưới.
     *   Xác nhận: Security Group đang được gắn chính là `secret-base-sg` (hoặc tên tương ứng có tag `Matrix-Rev`).
+    ![Instance Sercurity](./instance_security.png)
 
 ### Bước 5: Xóa dấu vết (Clean Up)
 Sau khi hoàn thành bài Lab, hãy hủy bỏ tài nguyên:
 ```bash
 terraform destroy -auto-approve
 ```
+
+![Terrafrom Destroy](./destroy.png)
 
 ---
 
