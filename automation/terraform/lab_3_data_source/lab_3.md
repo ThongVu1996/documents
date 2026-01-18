@@ -33,7 +33,7 @@ Chào mừng các "điệp viên hạ tầng" đã quay trở lại! Trong môi 
 3.  Kết hợp dữ liệu truy vấn được để chèn vào tài nguyên mới tự động.
 
 ### Minh họa: Nhiệm vụ Truy vết (Mission Flow)
-![Terraform Lab 3 Mission Flow](./terraform_lab_3_mission.svg)
+![Terraform Lab 3 Mission Flow](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_3_data_source/terraform_lab_3_mission.svg)
 
 ---
 
@@ -168,7 +168,7 @@ Tải về AWS Provider để Terraform sẵn sàng làm việc.
 terraform init
 ```
 
-![Terraform Init](./init.png)
+![Terraform Init](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_3_data_source/init.png)
 
 ### Bước 2: Lên kế hoạch trinh sát (Plan)
 Quan sát kỹ Log hiển thị. Bạn sẽ thấy Terraform dự định tạo ra `aws_security_group.secret_base` trước (nhờ `depends_on`), sau đó `data` mới dựa vào đó để tìm ID.
@@ -176,7 +176,7 @@ Quan sát kỹ Log hiển thị. Bạn sẽ thấy Terraform dự định tạo 
 terraform plan
 ```
 
-![Terraform Plan](./plan.png)
+![Terraform Plan](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_3_data_source/plan.png)
 
 ### Bước 3: Kích hoạt nhiệm vụ (Apply)
 Triển khai toàn bộ kịch bản.
@@ -184,26 +184,26 @@ Triển khai toàn bộ kịch bản.
 terraform apply -auto-approve
 ```
 
-![Terraform Apply](./apply.png)
+![Terraform Apply](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_3_data_source/apply.png)
 
 ### Bước 4: Nghiệm thu kết quả (Verification Checklist)
 Đây là bước quan trọng nhất để biết "điệp viên" Agent-007 có hoàn thành nhiệm vụ hay không:
 
 1.  **Kiểm tra Báo cáo (Terminal Outputs):**
     *   Nhìn vào dòng `mission_report_sg_id` được in ra ở cuối màn hình (Ví dụ: `sg-0a1b...`).
-    ![Terminal Output](./mission_report_sg_id.png)
+    ![Terminal Output](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_3_data_source/mission_report_sg_id.png)
 
 2.  **Đối chiếu trên AWS Console:**
     *   Truy cập EC2 Dashboard -> **Security Groups**.
     *   Tìm SG có tên `secret-base-sg`.
     *   So sánh ID của nó với ID bạn thấy ở Terminal. Chúng phải trùng khớp 100%.
-    ![Aws Security](./aws-security.png)
+    ![Aws Security](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_3_data_source/aws-security.png)
 
 3.  **Kiểm tra Đặc vụ (Instance):**
     *   Vào menu Instances, chọn `Agent-007-Mission-Complete`.
     *   Nhấp vào tab **Security** (Bảo mật) ở phía dưới.
     *   Xác nhận: Security Group đang được gắn chính là `secret-base-sg` (hoặc tên tương ứng có tag `Matrix-Rev`).
-    ![Instance Sercurity](./instance_security.png)
+    ![Instance Sercurity](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_3_data_source/instance_security.png)
 
 ### Bước 5: Xóa dấu vết (Clean Up)
 Sau khi hoàn thành bài Lab, hãy hủy bỏ tài nguyên:
@@ -211,7 +211,7 @@ Sau khi hoàn thành bài Lab, hãy hủy bỏ tài nguyên:
 terraform destroy -auto-approve
 ```
 
-![Terrafrom Destroy](./destroy.png)
+![Terrafrom Destroy](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_3_data_source/destroy.png)
 
 ---
 
