@@ -1,5 +1,21 @@
 # [Terraform 106] Meta-Arguments & Dynamic Blocks: Nghệ thuật nhân bản hạ tầng
 
+--- 
+
+## Mục lục
+- [Lời mở đầu: Đừng làm thợ xây, hãy làm kiến trúc sư](#lời-mở-đầu-đừng-làm-thợ-xây-hãy-làm-kiến-trúc-sư)
+- [1. Meta-Arguments là gì?](#1-meta-arguments-là-gì)
+- [2. Meta-arguments "Nhân bản": Count vs For_each](#2-meta-arguments-nhân-bản-count-vs-for_each)
+  - [A. count: Nhân bản theo số lượng](#a-count-nhân-bản-theo-số-lượng)
+  - [B. for_each: Nhân bản theo danh sách (Khuyên dùng)](#b-for_each-nhân-bản-theo-danh-sách-khuyên-dùng)
+- [3. Kiểm soát "Sinh - Tử": depends_on & lifecycle](#3-kiểm-soát-sinh---tử-depends_on--lifecycle)
+- [4. Dynamic Blocks: "Co giãn" cấu hình con](#4-dynamic-blocks-co-giãn-cấu-hình-con)
+  - [Minh họa quy trình nhân bản (The Replication Factory)](#minh-họa-quy-trình-nhân-bản-the-replication-factory)
+- [Bảng đối chiếu nhanh cho anh em](#bảng-đối-chiếu-nhanh-cho-anh-em)
+- [Lời kết](#lời-kết)
+
+--- 
+
 ## Lời mở đầu: Đừng làm thợ xây, hãy làm kiến trúc sư
 
 Bạn đã bao giờ rơi vào cảnh phải Copy-Paste một đoạn code tạo Server ra 10 lần chỉ vì khách hàng muốn có 10 con Server giống hệt nhau chưa? Nếu có, thì bài học hôm nay là dành cho bạn.
@@ -100,7 +116,7 @@ resource "aws_security_group" "web_sg" {
 ```
 
 ### Minh họa quy trình nhân bản (The Replication Factory)
-![Terraform Replication Factory](./terraform_replication_factory.svg)
+![Terraform Replication Factory](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/part_6/terraform_replication_factory.svg)
 
 ---
 
@@ -115,7 +131,7 @@ resource "aws_security_group" "web_sg" {
 
 ---
 
-## Lời kết & Gợi mở
+## Lời kết
 
 Đến đây, bạn đã nắm trong tay những kỹ thuật "thượng thừa" để nhân bản và bảo vệ hạ tầng. Bạn không còn phải Copy-Paste thủ công, code của bạn đã cực kỳ tinh gọn và chuyên nghiệp.
 
