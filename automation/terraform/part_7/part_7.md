@@ -34,7 +34,7 @@ Data Source cho phép Terraform sử dụng các thông tin được định ngh
 *   **Góc nhìn System:** Giống như lệnh `grep` hoặc `find` để tìm kiếm thông tin hệ thống hiện tại (như `ip addr` hay `lsblk`) trước khi thực hiện script.
 
 ### Minh họa: Cloud Sonar (Máy quét đám mây)
-![Terraform Cloud Sonar](./terraform_cloud_sonar.svg)
+![Terraform Cloud Sonar](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/part_7/terraform_cloud_sonar.svg)
 
 ---
 
