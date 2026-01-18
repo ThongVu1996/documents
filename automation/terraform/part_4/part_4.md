@@ -18,7 +18,10 @@
   - [A. Input Variables: Tham số từ bên ngoài](#a-input-variables-tham-số-từ-bên-ngoài)
   - [B. Local Values: Biến tạm nội bộ (DRY)](#b-local-values-biến-tạm-nội-bộ-dry)
   - [C. Output Values: Kết quả trả về](#c-output-values-kết-quả-trả-về)
-- [5. Tổng kết: Luồng đi của dữ liệu](#5-tổng-kết-luồng-đi-của-dữ-liệu)
+- [5. Nguồn giá trị & Thứ tự ưu tiên (Precedence)](#5-nguồn-giá-trị--thứ-tự-ưu-tiên-precedence)
+  - [A. Các nguồn cấp giá trị](#a-các-nguồn-cấp-giá-trị)
+  - [B. Thứ tự ưu tiên (The Order of Precedence)](#b-thứ-tự-ưu-tiên-the-order-of-precedence)
+- [6. Tổng kết: Luồng đi của dữ liệu](#6-tổng-kết-luồng-đi-của-dữ-liệu)
 - [Lời kết](#lời-kết)
 
 --- 
@@ -198,7 +201,36 @@ output "instance_ip" {
 
 ---
 
-## 5. Tổng kết: Luồng đi của dữ liệu
+## 5. Nguồn giá trị & Thứ tự ưu tiên (Precedence)
+
+Trong thực tế, ngoài việc khai báo giá trị mặc định (`default`), Terraform có thể nhận giá trị từ rất nhiều nguồn khác nhau. Đây là cách anh em quản lý cấu hình cho từng môi trường (Dev/Staging/Prod) mà không cần sửa code.
+
+### A. Các nguồn cấp giá trị
+
+*   **File `terraform.tfvars`:** File mặc định Terraform sẽ tự động quét. Anh em thường để các thông số chung của dự án ở đây.
+*   **File `*.auto.tfvars`:** Cũng được tự động quét, thường dùng để tách riêng cấu hình mạng, bảo mật...
+*   **Tham số dòng lệnh (`-var`):** Truyền trực tiếp khi chạy lệnh.
+    *   *Góc nhìn System:* Giống như truyền tham số `--port=80`.
+*   **Biến môi trường (`TF_VAR_...`):** Cực kỳ hữu dụng khi chạy trong CI/CD (Jenkins/GitLab Runner).
+    *   *Ví dụ:* Nếu bạn có biến `instance_type`, hãy đặt biến môi trường tên là `TF_VAR_instance_type`.
+
+### B. Thứ tự ưu tiên (The Order of Precedence)
+
+Nếu một biến có mặt ở tất cả các nguồn trên, Terraform sẽ ưu tiên theo thứ tự từ thấp đến cao (cái sau đè lên cái trước):
+
+1.  Biến môi trường (`TF_VAR_name`) - **Thấp nhất**
+2.  File `terraform.tfvars`
+3.  File `terraform.tfvars.json`
+4.  Các file `*.auto.tfvars` (đọc theo thứ tự chữ cái tên file)
+5.  Tham số `-var` hoặc `-var-file` trên dòng lệnh - **Cao nhất**
+
+> **Mẹo cho anh em:**
+> *   **Góc nhìn Dev (JS):** Hãy coi thứ tự này giống như cách CSS ưu tiên: *External CSS < Internal CSS < Inline Style*.
+> *   **Góc nhìn System Admin:** Giống như thứ tự đọc config của một số dịch vụ: *File config mặc định < File config người dùng < Tham số dòng lệnh khi start service*.
+
+---
+
+## 6. Tổng kết: Luồng đi của dữ liệu
 
 Để dễ hình dung, hãy nhìn vào quy trình thực tế:
 
@@ -216,3 +248,4 @@ output "instance_ip" {
 Làm chủ được Biến và Output, bạn đã bắt đầu chế tạo ra những "khuôn đúc" hạ tầng chuyên nghiệp. Nhưng làm sao để lấy dữ liệu từ những thứ đã có sẵn trên Cloud (như ID của một VPC cũ) mà không cần tạo mới?
 
 Hẹn gặp lại các bạn ở bài viết tiếp theo: **[Terraform 105] Logic & Expressions: Biến HCL thành "ngôn ngữ" thực thụ**
+

@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" style="background: radial-gradient(circle at 100% 50%, #0f172a 0%, #020617 100%); font-family: 'Segoe UI', sans-serif;">
+  <defs>
+    <!-- Filters -->
+    <filter id="holo-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <linearGradient id="title-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+
+    <!-- Hologram Gradients -->
+    <linearGradient id="master-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+
+    <linearGradient id="clone-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.1"/>
+    </linearGradient>
+
+    <linearGradient id="beam-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7dd3fc" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#7dd3fc" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Tech Lines -->
+  <g stroke="rgba(255,255,255,0.05)" stroke-width="1">
+      <line x1="0" y1="100" x2="1200" y2="100" />
+      <line x1="0" y1="530" x2="1200" y2="530" />
+      <circle cx="600" cy="315" r="400" fill="none" stroke-dasharray="20 20" opacity="0.3">
+           <animateTransform attributeName="transform" type="rotate" from="0 600 315" to="360 600 315" dur="60s" repeatCount="indefinite"/>
+      </circle>
+  </g>
+
+  <!-- CENTRAL VISUAL: Master & Clones -->
+  <g transform="translate(600, 300)">
+      
+      <!-- 1. The MASTER Node (Source) -->
+      <g transform="translate(-300, 0)">
+          <!-- Floating Cube animation -->
+          <animateTransform attributeName="transform" type="translate" values="-300,0; -300,-10; -300,0" dur="4s" repeatCount="indefinite"/>
+          
+          <path d="M-60 -35 L0 -70 L60 -35 L0 0 Z" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
+          <path d="M-60 -35 L-60 35 L0 70 L0 0 Z" fill="#0369a1" stroke="#38bdf8" stroke-width="2"/>
+          <path d="M0 0 L60 -35 L60 35 L0 70 Z" fill="#075985" stroke="#38bdf8" stroke-width="2"/>
+          
+          <!-- Core glow -->
+          <circle cx="0" cy="0" r="20" fill="#bae6fd" filter="url(#holo-glow)" opacity="0.8">
+              <animate attributeName="opacity" values="0.8;0.4;0.8" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          
+          <text x="0" y="-90" fill="#7dd3fc" font-size="16" font-weight="bold" text-anchor="middle" letter-spacing="2">SOURCE</text>
+      </g>
+
+      <!-- 2. The CLONING BEAMS -->
+      <g>
+          <!-- Beam to Clone 1 -->
+          <path d="M-240 0 C-100 0 -100 -100 0 -100" fill="none" stroke="url(#beam-grad)" stroke-width="2" stroke-dasharray="5 5">
+               <animate attributeName="stroke-dashoffset" from="100" to="0" dur="1s" repeatCount="indefinite"/>
+          </path>
+          <!-- Beam to Clone 2 -->
+          <path d="M-240 0 L0 0" fill="none" stroke="url(#beam-grad)" stroke-width="2" stroke-dasharray="5 5">
+               <animate attributeName="stroke-dashoffset" from="100" to="0" dur="1.2s" repeatCount="indefinite"/>
+          </path>
+          <!-- Beam to Clone 3 -->
+          <path d="M-240 0 C-100 0 -100 100 0 100" fill="none" stroke="url(#beam-grad)" stroke-width="2" stroke-dasharray="5 5">
+               <animate attributeName="stroke-dashoffset" from="100" to="0" dur="1.4s" repeatCount="indefinite"/>
+          </path>
+      </g>
+
+      <!-- 3. The CLONES (Holographic Projections) -->
+      <g transform="translate(50, 0)">
+          
+          <!-- Clone 1 (Top) -->
+          <g transform="translate(0, -100)" opacity="0.8">
+              <path d="M-40 -25 L0 -50 L40 -25 L0 0 Z" fill="url(#clone-grad)" stroke="#38bdf8" stroke-width="1"/>
+              <path d="M-40 -25 L-40 25 L0 50 L0 0 Z" fill="url(#clone-grad)" stroke="#38bdf8" stroke-width="1"/>
+              <path d="M0 0 L40 -25 L40 25 L0 50 Z" fill="url(#clone-grad)" stroke="#38bdf8" stroke-width="1"/>
+              <!-- Dynamic Element inside -->
+              <circle cx="0" cy="0" r="10" fill="#a855f7" filter="url(#holo-glow)"/> 
+          </g>
+
+          <!-- Clone 2 (Middle) -->
+          <g transform="translate(0, 0)" opacity="0.8">
+              <path d="M-40 -25 L0 -50 L40 -25 L0 0 Z" fill="url(#clone-grad)" stroke="#38bdf8" stroke-width="1"/>
+              <path d="M-40 -25 L-40 25 L0 50 L0 0 Z" fill="url(#clone-grad)" stroke="#38bdf8" stroke-width="1"/>
+              <path d="M0 0 L40 -25 L40 25 L0 50 Z" fill="url(#clone-grad)" stroke="#38bdf8" stroke-width="1"/>
+               <!-- Dynamic Element inside (Different color) -->
+              <rect x="-8" y="-8" width="16" height="16" fill="#ec4899" filter="url(#holo-glow)"/>
+          </g>
+
+          <!-- Clone 3 (Bottom) -->
+          <g transform="translate(0, 100)" opacity="0.8">
+              <path d="M-40 -25 L0 -50 L40 -25 L0 0 Z" fill="url(#clone-grad)" stroke="#38bdf8" stroke-width="1"/>
+              <path d="M-40 -25 L-40 25 L0 50 L0 0 Z" fill="url(#clone-grad)" stroke="#38bdf8" stroke-width="1"/>
+              <path d="M0 0 L40 -25 L40 25 L0 50 Z" fill="url(#clone-grad)" stroke="#38bdf8" stroke-width="1"/>
+               <!-- Dynamic Element inside -->
+               <path d="M0 -10 L10 10 L-10 10 Z" fill="#fbbf24" filter="url(#holo-glow)"/>
+          </g>
+      </g>
+      
+      <!-- SCANNER EFFECT traversing the clones -->
+      <rect x="0" y="-150" width="100" height="300" fill="url(#beam-grad)" opacity="0.1">
+          <animate attributeName="x" values="0;100;0" dur="3s" repeatCount="indefinite"/>
+      </rect>
+
+  </g>
+
+  <!-- TITLE -->
+  <g transform="translate(600, 520)">
+      <text x="0" y="0" font-family="'Arial', sans-serif" font-weight="900" font-size="60" fill="url(#title-grad)" text-anchor="middle" letter-spacing="-1" style="text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);">
+          META-ARGUMENTS
+      </text>
+      <text x="0" y="50" font-family="'Segoe UI', sans-serif" font-weight="300" font-size="30" fill="#bae6fd" text-anchor="middle" letter-spacing="8">
+          &amp; DYNAMIC BLOCKS
+      </text>
+  </g>
+
+</svg>
+

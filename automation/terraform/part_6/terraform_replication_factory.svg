@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" style="background: radial-gradient(circle at 50% 100%, #0f172a 0%, #020617 100%); font-family: 'Segoe UI', sans-serif;">
+  <defs>
+    <!-- Filters -->
+    <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <linearGradient id="belt-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1e293b" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Machine Gradients -->
+    <linearGradient id="count-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="foreach-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#7e22ce"/>
+    </linearGradient>
+    <linearGradient id="dynamic-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#be185d"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Grid -->
+  <pattern id="grid" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+  </pattern>
+  <rect width="100%" height="100%" fill="url(#grid)" />
+
+  <!-- Title -->
+  <g transform="translate(500, 50)">
+      <text x="0" y="0" fill="white" font-size="28" font-weight="800" text-anchor="middle" letter-spacing="4" filter="url(#neon-glow)">THE REPLICATION FACTORY</text>
+      <line x1="-150" y1="15" x2="150" y2="15" stroke="#475569" stroke-width="2"/>
+  </g>
+
+  <!-- Conveyor Belt -->
+  <rect x="50" y="350" width="900" height="20" fill="url(#belt-grad)"/>
+  <line x1="50" y1="350" x2="950" y2="350" stroke="#475569" stroke-width="2" stroke-dasharray="10 10">
+      <animate attributeName="stroke-dashoffset" from="100" to="0" dur="2s" repeatCount="indefinite" />
+  </line>
+
+
+  <!-- STATION 1: COUNT (Cloner) -->
+  <g transform="translate(150, 150)">
+      <!-- Machine Body -->
+      <path d="M-60 0 L60 0 L80 200 L-80 200 Z" fill="url(#count-grad)" opacity="0.2" stroke="#3b82f6" stroke-width="2" filter="url(#neon-glow)"/>
+      <rect x="-40" y="20" width="80" height="100" fill="rgba(59, 130, 246, 0.1)"/>
+      
+      <!-- Hologram N=3 -->
+      <text x="0" y="80" fill="#60a5fa" font-size="40" font-weight="bold" text-anchor="middle" filter="url(#neon-glow)">x3</text>
+      
+      <!-- Label -->
+      <text x="0" y="-20" fill="#60a5fa" font-size="18" font-weight="bold" text-anchor="middle">COUNT (Index)</text>
+
+      <!-- Laser Beam -->
+      <path d="M0 120 L0 200" stroke="#60a5fa" stroke-width="4" stroke-dasharray="5 5" opacity="0.8">
+           <animate attributeName="opacity" values="1;0.5;1" dur="0.5s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- Products on Belt -->
+      <g transform="translate(0, 180)">
+          <rect x="-20" y="0" width="40" height="30" fill="#3b82f6" rx="4"/>
+          <text x="0" y="20" fill="white" font-size="10" text-anchor="middle">#0</text>
+          <animateTransform attributeName="transform" type="translate" values="0,180; 100,180" dur="2s" repeatCount="indefinite"/>
+      </g>
+  </g>
+
+
+  <!-- STATION 2: FOR_EACH (Labeler) -->
+  <g transform="translate(500, 150)">
+      <!-- Machine Body -->
+      <path d="M-60 0 L60 0 L80 200 L-80 200 Z" fill="url(#foreach-grad)" opacity="0.2" stroke="#a855f7" stroke-width="2" filter="url(#neon-glow)"/>
+      
+      <!-- Robotic Arm -->
+      <circle cx="0" cy="50" r="10" fill="#a855f7"/>
+      <line x1="0" y1="50" x2="0" y2="150" stroke="#a855f7" stroke-width="4"/>
+      <path d="M-20 150 L20 150 L0 180 Z" fill="#d8b4fe"/>
+
+      <!-- Label -->
+      <text x="0" y="-20" fill="#c084fc" font-size="18" font-weight="bold" text-anchor="middle">FOR_EACH (Map)</text>
+
+      <!-- Stamp Animation -->
+      <g transform="translate(0, 0)">
+          <animateTransform attributeName="transform" type="translate" values="0,0; 0,20; 0,0" dur="1s" repeatCount="indefinite"/>
+          <text x="40" y="160" fill="#e9d5ff" font-size="12" font-weight="bold">"PROD"</text>
+      </g>
+  </g>
+
+
+  <!-- STATION 3: DYNAMIC (Assembler) -->
+  <g transform="translate(850, 150)">
+      <!-- Machine Body -->
+      <path d="M-60 0 L60 0 L80 200 L-80 200 Z" fill="url(#dynamic-grad)" opacity="0.2" stroke="#ec4899" stroke-width="2" filter="url(#neon-glow)"/>
+
+      <!-- Multiple Arms -->
+      <g transform="translate(0, 60)">
+          <line x1="0" y1="0" x2="-30" y2="60" stroke="#ec4899" stroke-width="3"/>
+          <line x1="0" y1="0" x2="30" y2="60" stroke="#ec4899" stroke-width="3"/>
+          <circle cx="0" cy="0" r="8" fill="#ec4899"/>
+          
+          <g transform="translate(-30, 60)">
+             <rect x="-5" y="0" width="10" height="20" fill="#fbcfe8"/>
+             <animateTransform attributeName="transform" type="rotate" values="0 -30 60; 10 -30 60; 0 -30 60" dur="0.5s" repeatCount="indefinite"/>
+          </g>
+           <g transform="translate(30, 60)">
+             <rect x="-5" y="0" width="10" height="20" fill="#fbcfe8"/>
+             <animateTransform attributeName="transform" type="rotate" values="0 30 60; -10 30 60; 0 30 60" dur="0.5s" repeatCount="indefinite"/>
+          </g>
+      </g>
+
+      <!-- Label -->
+      <text x="0" y="-20" fill="#f472b6" font-size="18" font-weight="bold" text-anchor="middle">DYNAMIC (Blocks)</text>
+      
+      <!-- Injecting logic -->
+      <text x="0" y="150" fill="#fbcfe8" font-size="12" text-anchor="middle">Injecting Rules...</text>
+  </g>
+
+</svg>
+
