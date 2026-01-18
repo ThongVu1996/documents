@@ -30,7 +30,7 @@ Chào anh em! Sau chuỗi bài lý thuyết, đã đến lúc chúng ta "nhúng 
 3.  **Tự động cấu hình Web Server:** Server mọc lên là có sẵn Website Nginx đang chạy.
 
 ### Minh họa: Luồng tự động hóa (Automation Flow)
-![Terraform Lab 1 Automation Flow](./terraform_lab_1_flow.svg)
+![Terraform Lab 1 Automation Flow](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_1_web_server/terraform_lab_1_flow.svg)
 
 ---
 
@@ -228,7 +228,7 @@ terraform init
 
 Lệnh này sẽ tải về các Provider cần thiết. Hãy chắc chắn bạn thấy thông báo thành công 
 
-![Terraform Init](./init.png)
+![Terraform Init](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_1_web_server/init.png)
 
 ### Bước 2: Kiểm tra tính đúng đắn
 Đừng vội chạy ngay, hãy check cú pháp và xem Terraform định làm gì:
@@ -238,7 +238,7 @@ terraform validate  # Kiểm tra lỗi gõ phím
 terraform plan      # Xem "bản nháp" hạ tầng sắp tạo
 ```
 
-![Terraform Plan](./plan.png)
+![Terraform Plan](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_1_web_server/plan.png)
 
 ### Bước 3: Triển khai
 Gõ lệnh để bắt đầu thuê tài nguyên trên Cloud:
@@ -256,9 +256,9 @@ terraform apply -auto-approve
 Terraform sẽ in ra 2 dòng Output ở cuối màn hình:
 
 1.  **Web URL:** Copy link `http://<IP_PUBLIC>` dán vào trình duyệt. Bạn sẽ thấy trang chào mừng của Nginx hiển thị đúng tên môi trường (Dev/Prod).
-![Url](./url.png)
+![Url](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_1_web_server/url.png)
 2.  **SSH Command:** Copy nguyên dòng lệnh `ssh -i ...` và dán vào Terminal để truy cập trực tiếp vào trong Server.
-![ssh](./ssh.png)
+![ssh](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_1_web_server/ssh.png)
 
 ---
 
@@ -270,7 +270,7 @@ Sau khi vọc vạch xong, hãy xóa tài nguyên để không bị mất tiền
 terraform destroy -auto-approve
 ```
 
-![destroy](./destroy.png)
+![destroy](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_1_web_server/destroy.png)
 
 ---
 
