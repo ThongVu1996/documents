@@ -29,7 +29,7 @@ Trong thế giới HCL, mọi thứ đều được đóng gói trong các **Blo
 
 Để dễ hình dung, hãy nhìn vào "cơ thể" của một block tài nguyên:
 
-![HCL Block Anatomy](./hcl_block_anatomy.svg)
+![HCL Block Anatomy](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/part_3/hcl_block_anatomy.svg)
 
 ### Cấu trúc tổng quát
 
