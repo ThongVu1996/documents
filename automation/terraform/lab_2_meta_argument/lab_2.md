@@ -15,7 +15,7 @@ Chào mừng anh em quay trở lại! Nếu ở Lab #1 chúng ta mới chỉ h�
 5.  **Fix lỗi Duplicate:** Kỹ thuật sử dụng `random_id` để code có thể chạy lại nhiều lần mà không bị trùng tên tài nguyên trên Cloud.
 
 ### Minh họa: Kiến trúc Đa vùng & Scaling
-![Terraform Lab 2 Architecture](https://github.com/ThongVu1996/documents/blob/main/automation/terraform/lab_2_meta_argument/terraform_lab_2_arch.svg)
+![Terraform Lab 2 Architecture](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_2_meta_argument/terraform_lab_2_arch.svg)
 
 ---
 
@@ -269,7 +269,7 @@ Mở Terminal tại thư mục chứa file và thực hiện các lệnh sau:
 terraform init
 ```
 
-![Terraform Init](https://github.com/ThongVu1996/documents/blob/main/automation/terraform/lab_2_meta_argument/init.png)
+![Terraform Init](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_2_meta_argument/init.png)
 
 ### Bước 2: Kiểm tra bản phác thảo
 Hãy quan sát kỹ số lượng tài nguyên sẽ được tạo. Nhờ `count` và `for_each`, bạn sẽ thấy con số tài nguyên lên tới 7-8 objects chỉ với vài dòng code.
@@ -277,7 +277,7 @@ Hãy quan sát kỹ số lượng tài nguyên sẽ được tạo. Nhờ `count
 terraform plan
 ```
 
-![Terraform Plan](https://github.com/ThongVu1996/documents/blob/main/automation/terraform/lab_2_meta_argument/plan.png)
+![Terraform Plan](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_2_meta_argument/plan.png)
 
 ### Bước 3: Triển khai đa vùng
 Triển khai hạ tầng lên cả Singapore và Mỹ cùng lúc:
@@ -285,15 +285,15 @@ Triển khai hạ tầng lên cả Singapore và Mỹ cùng lúc:
 terraform apply -auto-approve
 ```
 
-![Terraform Apply](https://github.com/ThongVu1996/documents/blob/main/automation/terraform/lab_2_meta_argument/apply.png)
+![Terraform Apply](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_2_meta_argument/apply.png)
 
 ### Bước 4: Kiểm chứng (Checklist)
 *   **Singapore:** Vào EC2 Dashboard để thấy 2 Server đang chạy.
-![Server in AWS](https://github.com/ThongVu1996/documents/blob/main/automation/terraform/lab_2_meta_argument/server.png)
+![Server in AWS](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_2_meta_argument/server.png)
 *   **Virginia:** Đổi vùng trên Console sang N. Virginia để thấy Key Pair dự phòng đã được đẩy sang.
-![Key pair in AWS](https://github.com/ThongVu1996/documents/blob/main/automation/terraform/lab_2_meta_argument/key_pair.png)
+![Key pair in AWS](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_2_meta_argument/key_pair.png)
 *   **IAM Dashboard:** Kiểm tra danh sách User để thấy `user-alice` và `user-bob` với các Tag tương ứng.
-![User in AWS](https://github.com/ThongVu1996/documents/blob/main/automation/terraform/lab_2_meta_argument/user.png)
+![User in AWS](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_2_meta_argument/user.png)
 
 ### Bước 5: Dọn dẹp
 Đừng quên xóa bỏ mọi thứ sau khi kết thúc Lab để tránh phát sinh chi phí cho cả 2 vùng:
@@ -301,7 +301,7 @@ terraform apply -auto-approve
 terraform destroy -auto-approve
 ```
 
-![Terraform Destroy](https://github.com/ThongVu1996/documents/blob/main/automation/terraform/lab_2_meta_argument/destroy.png)
+![Terraform Destroy](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/lab_2_meta_argument/destroy.png)
 
 ---
 
