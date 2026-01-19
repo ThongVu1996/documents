@@ -37,7 +37,6 @@
     | :--- | :--- | :--- |
     | **HashiCorp Terraform** | HashiCorp | Syntax highlight, IntelliSense, format, validate, module explorer. |
     | **HashiCorp HCL** | HashiCorp | Syntax highlighting cho ngôn ngữ HCL (HashiCorp Configuration Language). |
-    | **Terraform (tflint)** | terraform-linters | Lint code (tflint), phát hiện lỗi best practice. |
            
     ![hashicorp-terraform-ext](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/hashicorp-terraform-ext.png)
     
