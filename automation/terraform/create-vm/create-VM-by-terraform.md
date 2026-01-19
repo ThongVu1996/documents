@@ -21,15 +21,15 @@
  - Ở đây hướng dẫn cài đặt qua home-manager của nixdeamon
   - Vào trang web `https://search.nixos.org/packages` rồi search từ khóa `terrform` sẽ thấy kết qur như trong ảnh 
     
-    ![terrform-in-nix-search](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/terraform-in-nix.png)
+    ![terrform-in-nix-search](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/terraform-in-nix.png)
 
   - Vào trong home.nix để thêm nó vào trong file như ảnh
         
-    ![add-package-to-nix](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/add-package-to-nix.png)
+    ![add-package-to-nix](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/add-package-to-nix.png)
 
   - Build lại và kiểm tra bằng lệnh `terrform -v`
         
-    ![check-version-terraform](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/check-version-terraform.png)
+    ![check-version-terraform](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/check-version-terraform.png)
     
 - Cài đặt Vscode
 
@@ -39,9 +39,9 @@
     | **HashiCorp HCL** | HashiCorp | Syntax highlighting cho ngôn ngữ HCL (HashiCorp Configuration Language). |
     | **Terraform (tflint)** | terraform-linters | Lint code (tflint), phát hiện lỗi best practice. |
            
-    ![hashicorp-terraform-ext](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/hashicorp-terraform-ext.png)
+    ![hashicorp-terraform-ext](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/hashicorp-terraform-ext.png)
     
-    ![hashiCorp-HCL-ext](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/hashiCorp-HCL-ext.png)
+    ![hashiCorp-HCL-ext](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/hashiCorp-HCL-ext.png)
 
 ---
 
@@ -69,7 +69,7 @@
       terrform init
     ```
 
-    ![terraform-init](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/terraform-init.png)
+    ![terraform-init](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/terraform-init.png)
     
 - Lệnh này sẽ tải xuống các Provider (như AWS, Azure, Google Cloud) và các module cần thiết.
 
@@ -80,17 +80,17 @@
    - **AMI ID:**: Đây là ID giúp terraform xác định kernal của máy ảo sẽ tạo ra. Chú ý là phải lấy đúng khu vực mà bạn
    đã khai báo trong file `.tf`. Bạn vào mục search gõ `AMI Catalog` rồi lựa chọn `AMI ID` như ảnh.
 
-      ![search-ami-catalog](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/search-ami-catalog.png)
+      ![search-ami-catalog](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/search-ami-catalog.png)
 
-      ![ami-id](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/ami-id.png)
+      ![ami-id](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/ami-id.png)
 
    - Tạo VPC và tạo Subnet để có thể tạo máy ảo trên đó. 
    
-      ![create-VPC](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/create-VPC.png)
+      ![create-VPC](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/create-VPC.png)
 
-      ![create-subnet-in-vpc](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/create-subnet-in-vpc.png)
+      ![create-subnet-in-vpc](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/create-subnet-in-vpc.png)
 
-      ![subnet-id](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/subnet-id.png)
+      ![subnet-id](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/subnet-id.png)
 
   #### 3.1.2 Tiến hành tạo VM
    - Tạo file `main.tf` tại thư mục vừa nãy chạy lệnh `terraform init` với nội dung như sau:
@@ -131,13 +131,13 @@
         terraform apply --auto-approve
      ```
 
-        ![terrform-apply-1](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/terrform-apply-1.png)
+        ![terrform-apply-1](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/terrform-apply-1.png)
         
-        ![terraform-apply-2](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/terraform-apply-2.png)
+        ![terraform-apply-2](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/terraform-apply-2.png)
 
    - Kết tạo ra 1 instance trong EC2:
 
-      ![result-terraform](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/result-terraform.png)
+      ![result-terraform](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/result-terraform.png)
 
    - Để hủy VM đã tạo ra chúng ta chạy lệnh sau:
 
@@ -145,17 +145,17 @@
           terraform destroy
       ```
         
-      ![terrform-apply-1](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/terraform-destroy-1.png)
+      ![terrform-apply-1](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/terraform-destroy-1.png)
                   
-      ![terraform-destroy-2](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/terraform-destroy-2.png)
+      ![terraform-destroy-2](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/terraform-destroy-2.png)
 
-      ![terraform-destroy-3](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/terraform-destroy-3.png)
+      ![terraform-destroy-3](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/terraform-destroy-3.png)
 
   - Như vậy là ta đã thấy instance của EC2 đã được hủy, nhưng ở đây vẫn còn VPC và Subnet chúng ta tự tạo ra bằng tay.
   
-    ![vpc-instance](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/vpc-instance.png)
+    ![vpc-instance](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/vpc-instance.png)
 
-    ![subnet-vpc](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/subnet-vpc.png)
+    ![subnet-vpc](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/subnet-vpc.png)
 
    - Chúng ta vẫn phải xóa chúng đi bằng tay, thế có cách nào tự động hết bằng terraform và cũng có thể ẩn đi 
    được các dữ liệu nhạy cảm là access_key và secret_key không ?
@@ -233,12 +233,12 @@
     
 - Ta thấy tự động tạo VPC, Subnet, rồi tiếp tục tạo instance. Lên AWS console để kiểm chứng
   
-  ![terrform-auto-apply](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/terrform-auto-apply.png)
+  ![terrform-auto-apply](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/terrform-auto-apply.png)
 
-  ![terrform-create-vpc](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/terrform-create-vpc.png)
+  ![terrform-create-vpc](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/terrform-create-vpc.png)
 
 
-  ![terraform-creat-subnet](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/terraform-creat-subnet.png)
+  ![terraform-creat-subnet](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/terraform-creat-subnet.png)
 
 - Tương tự để hủy thì sẽ chạy lệnh
    
@@ -246,7 +246,7 @@
       terraform destroy
    ```
 
-   ![terraform-auto-destroy](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/terraform-auto-destroy.png)
+   ![terraform-auto-destroy](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/terraform-auto-destroy.png)
 
 ### 3.2 Tạo VM trên Proxmox
    #### 3.2.1. Chuẩn bị
@@ -258,7 +258,7 @@
     - Pool: Resource Pool (ví dụ: `vuthong-pool`).
     - Source VM ID: ID của Template bạn vừa tạo (ví dụ: `101`).
     
-     ![info](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/info.png)
+     ![info](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/info.png)
 
    - Nội dung file cấu hình `main.tf`:
       ```bash
@@ -337,7 +337,7 @@
 #### 3.2.4 Kết quả
    - Kiểm tra trên promox 
 
-     ![create-vm-promox](https://github.com/ThongVu1996/documents/tree/main/automation/create-vm/create-vm-promox.png)
+     ![create-vm-promox](https://github.com/ThongVu1996/documents/raw/main/automation/terraform/create-vm/create-vm-promox.png)
 
 ---
 
