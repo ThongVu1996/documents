@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="background: #0f172a; font-family: 'Segoe UI', sans-serif;">
+  <defs>
+    <!-- Filters -->
+    <filter id="process-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#94a3b8" />
+    </marker>
+    
+    <linearGradient id="pipe-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#334155"/>
+        <stop offset="50%" stop-color="#475569"/>
+        <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="40" fill="#94a3b8" font-size="20" font-weight="bold" text-anchor="middle" letter-spacing="2">THE VARIABLE REFINERY (LOCALS)</text>
+  
+  <!-- PIPES BACKGROUND -->
+  <path d="M200 250 L350 250" stroke="url(#pipe-grad)" stroke-width="20" fill="none"/>
+  <path d="M550 250 L700 250" stroke="url(#pipe-grad)" stroke-width="20" fill="none"/>
+
+  <!-- ZONE 1: RAW INPUTS (Variables) -->
+  <g transform="translate(100, 250)">
+      <rect x="-80" y="-80" width="160" height="160" rx="10" fill="#1e293b" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="5 5"/>
+      <text x="0" y="-60" fill="#cbd5e1" font-size="14" font-weight="bold" text-anchor="middle">VARIABLES (Input)</text>
+      
+      <!-- Ingredient 1 -->
+      <g transform="translate(-40, -10)">
+          <circle r="25" fill="#f87171" opacity="0.8"/>
+          <text x="0" y="4" fill="#fff" font-size="10" text-anchor="middle">"SuperApp"</text>
+          <text x="0" y="35" fill="#f87171" font-size="8" text-anchor="middle">var.project</text>
+      </g>
+      
+      <!-- Ingredient 2 -->
+      <g transform="translate(40, -10)">
+          <circle r="25" fill="#60a5fa" opacity="0.8"/>
+          <text x="0" y="4" fill="#fff" font-size="10" text-anchor="middle">"dev"</text>
+          <text x="0" y="35" fill="#60a5fa" font-size="8" text-anchor="middle">var.env</text>
+      </g>
+      
+       <text x="0" y="60" fill="#94a3b8" font-size="10" font-style="italic" text-anchor="middle">Raw Materials</text>
+  </g>
+
+
+  <!-- ZONE 2: THE REFINERY (Locals) -->
+  <g transform="translate(450, 250)">
+      <!-- Machine Body -->
+      <rect x="-100" y="-100" width="200" height="200" rx="10" fill="#0f172a" stroke="#fbbf24" stroke-width="3" filter="url(#process-glow)"/>
+      <text x="0" y="-70" fill="#fbbf24" font-size="16" font-weight="bold" text-anchor="middle">LOCALS (Logic)</text>
+      
+      <!-- Gears Animation -->
+      <g transform="translate(0, 0)">
+           <g> 
+               <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="4s" repeatCount="indefinite"/>
+               <path d="M-30 -10 L-30 -20 L-10 -20 L0 -35 L10 -20 L30 -20 L30 -10 L45 0 L30 10 L30 20 L10 20 L0 35 L-10 20 L-30 20 L-30 10 L-45 0 Z" fill="#d97706"/>
+               <circle r="10" fill="#fbbf24"/>
+           </g>
+      </g>
+      
+      <!-- Logic Text -->
+      <text x="0" y="50" fill="#fcd34d" font-size="12" font-family="monospace" text-anchor="middle">"${var}-${var}"</text>
+      <text x="0" y="70" fill="#fcd34d" font-size="10" text-anchor="middle">Normalization &amp; Merging</text>
+  </g>
+
+
+  <!-- ZONE 3: FINISHED PRODUCT (Resource) -->
+  <g transform="translate(800, 250)">
+      <rect x="-80" y="-60" width="160" height="120" rx="10" fill="#1e293b" stroke="#34d399" stroke-width="2"/>
+      <text x="0" y="-40" fill="#34d399" font-size="14" font-weight="bold" text-anchor="middle">RESOURCE</text>
+      
+      <!-- Final Tag -->
+      <g transform="translate(0, 0)">
+          <rect x="-60" y="-15" width="120" height="30" rx="4" fill="#065f46" stroke="#34d399"/>
+          <text x="0" y="5" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">SuperApp-dev</text>
+      </g>
+      
+      <text x="0" y="40" fill="#94a3b8" font-size="10" font-style="italic" text-anchor="middle">Clean Tags</text>
+  </g>
+
+
+  <!-- FLOW ARROWS -->
+  <!-- Input to Machine -->
+  <g transform="translate(260, 250)">
+      <circle r="5" fill="#fbbf24">
+          <animate attributeName="cx" from="0" to="80" dur="1s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="1;0" dur="1s" repeatCount="indefinite"/>
+      </circle>
+  </g>
+  
+  <!-- Machine to Output -->
+  <g transform="translate(610, 250)">
+      <circle r="5" fill="#34d399">
+          <animate attributeName="cx" from="0" to="80" dur="1s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="1;0" dur="1s" repeatCount="indefinite"/>
+      </circle>
+  </g>
+
+</svg>
