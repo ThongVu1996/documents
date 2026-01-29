@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
+  <defs>
+    <style>
+      .commit { fill: #fff; stroke: #333; stroke-width: 2; }
+      .branch-line { fill: none; stroke: #888; stroke-width: 3; }
+      .label { font-family: sans-serif; font-size: 14px; fill: #333; }
+      .commit-text { font-family: monospace; font-size: 12px; fill: #333; text-anchor: middle; dominant-baseline: middle; }
+      
+      /* Animation definitions */
+      .fade-in { opacity: 0; animation: fadeIn 0.5s forwards; }
+      .path-draw { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: draw 1s forwards; }
+      
+      @keyframes fadeIn { to { opacity: 1; } }
+      @keyframes draw { to { stroke-dashoffset: 0; } }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="300" fill="#f9f9f9" rx="10" ry="10"/>
+
+  <!-- Main Branch Line -->
+  <path d="M 50 150 L 550 150" class="branch-line" />
+  <text x="50" y="120" class="label" fill="#007bff">Main Branch</text>
+
+  <!-- Feature Branch Line -->
+  <path d="M 150 150 Q 200 150 200 220 L 450 220 Q 500 220 500 150" class="branch-line path-draw" style="animation-delay: 1s;" />
+  <text x="230" y="250" class="label" fill="#28a745" style="opacity:0; animation: fadeIn 0.5s 1s forwards;">Feature Branch</text>
+
+  <!-- Commits Main Branch -->
+  <g class="fade-in" style="animation-delay: 0s;">
+    <circle cx="100" cy="150" r="15" class="commit" />
+    <text x="100" y="150" class="commit-text">C1</text>
+  </g>
+  <g class="fade-in" style="animation-delay: 0.5s;">
+    <circle cx="150" cy="150" r="15" class="commit" />
+    <text x="150" y="150" class="commit-text">C2</text>
+  </g>
+  
+  <!-- Main continues -->
+  <g class="fade-in" style="animation-delay: 2s;">
+    <circle cx="300" cy="150" r="15" class="commit" />
+    <text x="300" y="150" class="commit-text">C3</text>
+  </g>
+  <g class="fade-in" style="animation-delay: 2.5s;">
+    <circle cx="400" cy="150" r="15" class="commit" />
+    <text x="400" y="150" class="commit-text">C4</text>
+  </g>
+
+  <!-- Feature Branch Commits -->
+  <g class="fade-in" style="animation-delay: 1.5s;">
+    <circle cx="250" cy="220" r="15" class="commit" stroke="#28a745" />
+    <text x="250" y="220" class="commit-text">F1</text>
+  </g>
+  <g class="fade-in" style="animation-delay: 2.0s;">
+    <circle cx="350" cy="220" r="15" class="commit" stroke="#28a745" />
+    <text x="350" y="220" class="commit-text">F2</text>
+  </g>
+
+  <!-- Merge Commit -->
+  <g class="fade-in" style="animation-delay: 3.5s;">
+    <circle cx="500" cy="150" r="18" class="commit" stroke="#6f42c1" stroke-width="3" />
+    <text x="500" y="150" class="commit-text">M</text>
+    <text x="500" y="120" class="label" text-anchor="middle" fill="#6f42c1">Merge Commit</text>
+  </g>
+
+</svg>
